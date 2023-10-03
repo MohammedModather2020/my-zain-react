@@ -5175,3 +5175,6 @@ pre {
     flex-direction: row;
   }
 }
+.border-gray{
+border: solid 1px #e6e6e6b3 !important;
+}
