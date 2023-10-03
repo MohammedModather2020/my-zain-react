@@ -48,9 +48,12 @@ export default function Login() {
             isAuthenticated,
             token,
             roles,
-            message,
+            firstName,
+            lastName,
+            email,
             refreshTokenExpiration,
             expiresOn,
+            message,
           } = res.data;
           if (isAuthenticated) {
             dispatch({
@@ -60,6 +63,9 @@ export default function Login() {
                 expiresOn,
                 refreshTokenExpiration,
                 roles,
+                firstName,
+                lastName,
+                email,
                 username: values.username,
               },
             });
@@ -99,7 +105,7 @@ export default function Login() {
           <p className='text-center'>Sing in to your account</p>
           <form onSubmit={formik.handleSubmit}>
             <div className='text-left mt-3 mb-2'>
-              <label htmlFor='password'>Username</label>
+              <label htmlFor='username'>Username</label>
               <div className='form-group input-group mb-1 border-gray rounded-5'>
                 <div className='input-group-prepend'>
                   <span className='input-group-text pd-x-16'>
@@ -163,7 +169,7 @@ export default function Login() {
               Don&apos;t have an account ?
               <Link className='text-primary' to='/auth/register'>
                 {' '}
-                Register
+                Create Account
               </Link>
             </p>
           </form>

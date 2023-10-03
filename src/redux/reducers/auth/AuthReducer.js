@@ -6,7 +6,10 @@ const initState = {
   expiresOn: '',
   refreshTokenExpiration: '',
   roles: '',
+  firstName: '',
+  lastName: '',
   username: '',
+  email: '',
 };
 const AuthReducer = (state = initState, action) => {
   switch (action.type) {
@@ -18,7 +21,10 @@ const AuthReducer = (state = initState, action) => {
         expiresOn: action.payload.expiresOn,
         refreshTokenExpiration: action.payload.refreshTokenExpiration,
         roles: action.payload.roles,
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
         username: action.payload.username,
+        email: action.payload.email,
       };
     }
     case REMOVE_COOKIE:
@@ -29,7 +35,10 @@ const AuthReducer = (state = initState, action) => {
         expiresOn: '',
         refreshTokenExpiration: '',
         roles: '',
+        firstName: '',
+        lastName: '',
         username: '',
+        email: '',
       };
     default:
       return state;
