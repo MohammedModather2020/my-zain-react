@@ -81,7 +81,7 @@ export default function Login() {
       })
       .catch((err) => {
         setIsLoading(false);
-        toast.error(err?.response?.data?.msg);
+        toast.error(err?.response?.data);
       });
   };
   // ----------------------------------------------------------------------------------->

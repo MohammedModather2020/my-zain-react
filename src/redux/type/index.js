@@ -1,0 +1,5 @@
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const REMOVE_COOKIE = 'REMOVE_COOKIE';
+export const PRE_REQUEST = 'PRE_REQUEST';
+export const LOADED_SUCCESS = 'LOADED_SUCCESS';
+export const LOADED_ERROR = 'LOADED_ERROR';
