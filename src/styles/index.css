@@ -1656,7 +1656,7 @@ body:not(.page-sidebar-fixed) .page-sidebar .slimScrollDiv {
 
 .shadow-none,
 .card:hover {
-  box-shadow: none;
+  /* box-shadow: none; */
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   transition: all 0.5s;
@@ -5232,4 +5232,7 @@ border: solid 1px #e6e6e6b3 !important;
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+.text-danger{
+  font-size: .7rem;
 }

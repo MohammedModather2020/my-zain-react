@@ -1,9 +1,11 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': import.meta.env.VITE_BASE_URL,
   },
-  timeout: 1000 * 60, // Wait for 1 minute
+  timeout: 1000 * 60,
+  withCredentials: true,
 });
