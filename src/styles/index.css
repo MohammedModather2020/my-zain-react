@@ -1203,6 +1203,7 @@ body:not(.page-sidebar-fixed) .page-sidebar .slimScrollDiv {
 
 .page-sidebar-menu ul li a svg {
   height: 18px;
+  vertical-align: sub;
   margin-right: 7px;
 }
 

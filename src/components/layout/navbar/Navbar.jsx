@@ -27,7 +27,7 @@ export default function Navbar() {
               href='#'
               id='collapsed-sidebar-toggle-button'
             >
-              <IoMenu size={23} color='#777' />
+              <IoMenu size={23} color='#666' />
             </a>
           </li>
         </ul>
