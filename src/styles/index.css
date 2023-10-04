@@ -484,15 +484,15 @@ _::future,
   background-color: transparent;
 }
 
-ul li a#collapsed-sidebar-toggle-button i,
-.header-right ul li a#search-button i,
-.header-right ul li a.notification-icon i,
-.header-right ul li a.message-icon i,
-.header-right ul li a.settings-icon i {
+ul li a#collapsed-sidebar-toggle-button svg,
+.header-right ul li a#search-button svg,
+.header-right ul li a.notification-icon svg,
+.header-right ul li a.message-icon svg,
+.header-right ul li a.settings-icon svg {
   vertical-align: inherit;
 }
 
-.header-right ul li a.settings-icon i {
+.header-right ul li a.settings-icon svg {
   vertical-align: middle;
 }
 
@@ -849,7 +849,7 @@ ul li a#collapsed-sidebar-toggle-button i,
   display: block;
 }
 
-.header-right .user-profile-area .dropdown-item i {
+.header-right .user-profile-area .dropdown-item svg {
   margin-right: 10px;
   vertical-align: middle;
   font-size: 16px;
