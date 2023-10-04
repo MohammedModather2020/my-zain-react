@@ -17,8 +17,8 @@ function App() {
           <Route path='/auth/register' element={<Register />} />
         </Route>
         <Route element={<AdminRoute isLogin={isLogin} roles={roles} />}>
-          <Route path='/dashboard/statistics' element={<Statistics />} />
           <Route path='/dashboard' element={<Statistics />} />
+          {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>

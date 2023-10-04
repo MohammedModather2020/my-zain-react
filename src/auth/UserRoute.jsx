@@ -6,7 +6,7 @@ const UserRoute = ({ isLogin, roles }) => {
   return isLogin && roles.includes('User') ? (
     <Layout />
   ) : (
-    <Navigate to='/dashboard' />
+    <Navigate to='/auth/login' />
   );
 };
 

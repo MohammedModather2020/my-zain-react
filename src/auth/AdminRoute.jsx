@@ -6,7 +6,7 @@ const AdminRoute = ({ isLogin, roles }) => {
   return isLogin && roles.includes('Admin') ? (
     <Layout />
   ) : (
-    <Navigate to='/dashboard' />
+    <Navigate to='/auth/login' />
   );
 };
 

@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { BiCategory } from 'react-icons/bi';
 import { FiHome, FiLogOut } from 'react-icons/fi';
 import { LiaShoppingBagSolid, LiaUsersCogSolid } from 'react-icons/lia';
 import { AiOutlineApartment, AiOutlineShop } from 'react-icons/ai';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
+import { logout } from '../../../utils/logout';
 
 export default function Sidebar() {
+  const dispatch = useDispatch();
   return (
     <div className='page-sidebar'>
       <div className='logo'>
@@ -143,6 +146,7 @@ export default function Sidebar() {
           <CgProfile className='ht-15' />
         </Link>
         <Link
+          onClick={() => dispatch(logout())}
           className='pull-left'
           to='#'
           data-toggle='tooltip'
