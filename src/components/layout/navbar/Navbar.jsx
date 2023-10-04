@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Avatar from 'react-avatar';
 import { IoMdLogOut } from 'react-icons/io';
 import { CgProfile } from 'react-icons/cg';
 import { IoMenu } from 'react-icons/io5';
+import { logout } from '../../../utils/logout';
 
 export default function Navbar() {
+  const dispatch = useDispatch();
   const { email, firstName, lastName } = useSelector((state) => state?.auth);
 
   return (
@@ -59,7 +61,12 @@ export default function Navbar() {
                   <Link to='/auth/profile' className='dropdown-item'>
                     <CgProfile /> My profile
                   </Link>
-                  <Link to='#' className='dropdown-item'>
+
+                  <Link
+                    to='#'
+                    className='dropdown-item'
+                    onClick={() => dispatch(logout())}
+                  >
                     <IoMdLogOut /> Sign-out
                   </Link>
                 </div>

@@ -6,7 +6,7 @@ const ShopRoute = ({ isLogin, roles }) => {
   return isLogin && roles.includes('Shop') ? (
     <Layout />
   ) : (
-    <Navigate to='/dashboard' />
+    <Navigate to='/auth/login' />
   );
 };
 
