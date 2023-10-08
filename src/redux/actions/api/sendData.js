@@ -5,7 +5,7 @@ import {
   LOADED_SUCCESS,
   PRE_REQUEST,
   REMOVE_COOKIE,
-} from '../../types';
+} from '../../type';
 
 export const sendData =
   (url, token, data, navigate, redirect) => async (dispatch) => {
@@ -18,13 +18,20 @@ export const sendData =
           authorization: `Bearer ${token}`,
         },
       });
-      if (res.status === 201) {
-        toast.success(res.data.message);
-        dispatch({
-          type: LOADED_SUCCESS,
-          payload: '',
-        });
-        navigate(redirect);
+      if (res.status === 200) {
+        if (res.data.status) {
+          toast.success(res.data.message);
+          dispatch({
+            type: LOADED_SUCCESS,
+            payload: '',
+          });
+          navigate(redirect);
+        } else {
+          dispatch({
+            type: LOADED_ERROR,
+            payload: res?.data?.message,
+          });
+        }
       }
     } catch (err) {
       if (err?.response?.status === 401) {
