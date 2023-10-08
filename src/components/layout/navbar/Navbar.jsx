@@ -43,18 +43,22 @@ export default function Navbar() {
                 aria-expanded='false'
               >
                 <span className='select-profile'>
-                  Hi, {firstName + lastName}!
+                  Hi, {firstName + ' ' + lastName}!
                 </span>
-                <Avatar name={firstName + lastName} size='35' round />
+                <Avatar name={firstName + ' ' + lastName} size='35' round />
               </a>
               <div className='dropdown-menu dropdown-menu-right dropdown-profile shadow-2'>
                 <div className='user-profile-area'>
                   <div className='user-profile-heading'>
                     <div className='profile-thumbnail'>
-                      <Avatar name={firstName + lastName} size='35' round />
+                      <Avatar
+                        name={firstName + ' ' + lastName}
+                        size='35'
+                        round
+                      />
                     </div>
                     <div className='profile-text'>
-                      <h6>{firstName + lastName}</h6>
+                      <h6>{firstName + ' ' + lastName}</h6>
                       <span>{email}</span>
                     </div>
                   </div>

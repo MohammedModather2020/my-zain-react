@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Layout from '../components/layout/Layout';
 
 const UserRoute = ({ isLogin, roles }) => {
-  return isLogin && roles.includes('User') ? (
+  return isLogin && roles?.includes('User') ? (
     <Layout />
   ) : (
     <Navigate to='/auth/login' />
