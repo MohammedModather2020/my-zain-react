@@ -9,6 +9,7 @@ import Packages from '../pages/package/Packages';
 import UpdatePackage from '../pages/package/Update';
 import AddSegment from '../pages/segment/Add';
 import Segments from '../pages/segment/Segments';
+import UpdateSegment from '../pages/segment/Update';
 
 export {
   Login,
@@ -22,4 +23,5 @@ export {
   UpdatePackage,
   Segments,
   AddSegment,
+  UpdateSegment
 };
