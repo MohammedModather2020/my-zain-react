@@ -12,6 +12,7 @@ import {
   Register,
   Statistics,
   UpdateCategory,
+  UpdatePackage,
 } from './routes/Routes';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path='/categories/:id/update' element={<UpdateCategory />} />
           <Route path='/packages' element={<Packages />} />
           <Route path='/packages/add' element={<AddPackage />} />
+          <Route path='/packages/:id/update' element={<UpdatePackage />} />
           {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>

@@ -1,5 +1,5 @@
 import { Fragment, useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import * as Yup from 'yup';
@@ -7,13 +7,15 @@ import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import { BsSend } from 'react-icons/bs';
 import { IoIosArrowDown, IoIosRefresh } from 'react-icons/io';
-import { sendData } from '../../redux/actions/api/sendData';
+import { updateData } from '../../redux/actions/api/updateData';
 import { Loading } from '../../components/helper/loading/Loading';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
-export default function AddPackage() {
+export default function UpdatePackage() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { id } = useParams();
   const { accessToken } = useSelector((state) => state.auth);
   const { loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
@@ -23,8 +25,8 @@ export default function AddPackage() {
   // ----------------------------------------------------------------------------------->
   const initialValues = {
     // initial Values input felids
-    titleAr: '',
-    titleEn: '',
+    titleAr: location?.state?.titleAr,
+    titleEn: location?.state?.titleEn,
   };
   // ----------------------------------------------------------------------------------->
   const validationSchema = Yup.object({
@@ -42,11 +44,19 @@ export default function AddPackage() {
     const data = {
       titleAr: values?.titleAr,
       titleEn: values?.titleEn,
-      id: Math.floor(Math.random() * 5000) + 1,
-      lastUpdate: moment().format('L'),
+      id,
+      lastUpdate: moment().format(),
     };
+
     dispatch(
-      sendData(`package/addPackage`, accessToken, data, navigate, '/packages'),
+      updateData(
+        `package/updatePackage`,
+        accessToken,
+        data,
+        navigate,
+        '/packages',
+        true,
+      ),
     );
   };
   const formik = useFormik({
@@ -58,8 +68,8 @@ export default function AddPackage() {
     <Fragment>
       <Loading isLoading={loading} />
       <Breadcrumb
-        title='Add Package'
-        textActive='Add'
+        title='Update Package'
+        textActive='Update'
         items={[{ name: 'Packages', url: '/packages' }]}
       />
       <div className='row row-xs clearfix'>
