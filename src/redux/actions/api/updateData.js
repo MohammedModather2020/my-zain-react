@@ -5,9 +5,9 @@ import {
   LOADED_SUCCESS,
   PRE_REQUEST,
   REMOVE_COOKIE,
-} from '../../types';
+} from '../../type';
 
-export const editData =
+export const updateData =
   (url, token, data, navigate, redirect, type = false) =>
   async (dispatch) => {
     try {
