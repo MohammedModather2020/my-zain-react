@@ -1,8 +1,8 @@
 import { Fragment, useMemo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
 import { isArray } from 'lodash';
+import moment from 'moment';
 import { FiEdit } from 'react-icons/fi';
 import { AiFillDelete } from 'react-icons/ai';
 import { getData } from '../../redux/actions/api/getData';
@@ -12,28 +12,24 @@ import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import ModalConfirm from '../../components/helper/modal/ModalConfirm';
 import Table from '../../components/table/Table';
 
-export default function Categories() {
+export default function Packages() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [id, setId] = useState();
   const [isShowLoading, setIsShowLoading] = useState(false);
   const [showModalConfirm, setShowModalConfirm] = useState(false);
   const { accessToken } = useSelector((state) => state?.auth);
-  const {
-    data: categories,
-    loading,
-    error,
-  } = useSelector((state) => state.api);
+  const { data: packages, loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
     () => [
       {
-        Header: 'title AR',
+        Header: 'Title AR',
         disableFilters: true,
         accessor: 'titleAr',
       },
       {
-        Header: 'title En',
+        Header: 'Title En',
         disableFilters: true,
         accessor: 'titleEn',
       },
@@ -54,7 +50,7 @@ export default function Categories() {
             <button
               className='btn btn-primary btn-icon mg-r-5 mg-b-10'
               onClick={() =>
-                navigate(`/categories/${row.values.id}/update`, {
+                navigate(`/packages/${row.values.id}/update`, {
                   state: row.original,
                 })
               }
@@ -78,10 +74,10 @@ export default function Categories() {
   );
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
-    dispatch(getData(`category/getAllCategories`, accessToken));
+    dispatch(getData(`package/getAllPackages`, accessToken));
   }, [accessToken, dispatch, isShowLoading]);
   // ----------------------------------------------------------------------------------->
-  const data = useMemo(() => isArray(categories) && categories, [categories]);
+  const data = useMemo(() => isArray(packages) && packages, [packages]);
 
   return (
     <Fragment>
@@ -89,7 +85,7 @@ export default function Categories() {
         delete={() =>
           dispatch(
             deleteData(
-              `category/deleteCategory`,
+              `package/deletePackage`,
               accessToken,
               setShowModalConfirm,
               setIsShowLoading,
@@ -101,7 +97,7 @@ export default function Categories() {
         showModalConfirmTry={setShowModalConfirm}
         toggleModal={showModalConfirm}
       />
-      <Breadcrumb title='All categories' textActive='Categories' />
+      <Breadcrumb title='All packages' textActive='packages' />
       {loading ? (
         <Loading isLoading={loading} />
       ) : error ? (
@@ -113,7 +109,7 @@ export default function Categories() {
               // activePage={activePage}
               // setActivePage={setActivePage}
               // limitPage={limitPage}
-              total={categories?.total}
+              total={packages?.total}
               // setLimitPage={setLimitPage}
               columns={columns}
               data={data ?? []}

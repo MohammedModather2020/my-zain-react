@@ -7,6 +7,7 @@ import {
   AddCategory,
   Categories,
   Login,
+  Packages,
   Register,
   Statistics,
   UpdateCategory,
@@ -28,6 +29,7 @@ function App() {
           <Route path='/categories' element={<Categories />} />
           <Route path='/categories/add' element={<AddCategory />} />
           <Route path='/categories/:id/update' element={<UpdateCategory />} />
+          <Route path='/packages' element={<Packages />} />
           {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>
