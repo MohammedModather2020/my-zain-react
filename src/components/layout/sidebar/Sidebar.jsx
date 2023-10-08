@@ -33,11 +33,11 @@ export default function Sidebar() {
         <div className='page-sidebar-menu'>
           <ul className='accordion-menu'>
             <li>
-              <a href='#'>
+              <Link to='#'>
                 <FiHome size={25} />
                 <span>Dashboard</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </a>
+              </Link>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/dashboard/statistics'>Statistics</Link>
@@ -47,11 +47,11 @@ export default function Sidebar() {
             <li className='menu-divider mg-y-20-force'></li>
             <li className='mg-20-force menu-elements'>Elements</li>
             <li>
-              <a href='#'>
+              <Link to='#'>
                 <BiCategory size={25} />
                 <span>Categories</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </a>
+              </Link>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/categories'>All</Link>
@@ -62,11 +62,11 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <a href=''>
+              <Link to='#'>
                 <LiaShoppingBagSolid size={25} />
                 <span>Packages</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </a>
+              </Link>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/packages'>All</Link>
@@ -77,11 +77,11 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <a href='#'>
+              <Link to='#'>
                 <AiOutlineApartment size={25} />
                 <span>Segments</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </a>
+              </Link>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/segments'>All</Link>
@@ -92,11 +92,11 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <a href='#'>
+              <Link to='#'>
                 <AiOutlineShop size={25} />
                 <span>Shops</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </a>
+              </Link>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/shops/all'>All</Link>
@@ -109,11 +109,11 @@ export default function Sidebar() {
             <li className='menu-divider mg-y-20-force'></li>
             <li className='mg-20-force menu-extras'>Authorization</li>
             <li>
-              <a href='#'>
+              <Link to='#'>
                 <MdOutlineAdminPanelSettings size={25} />
                 <span>Admins</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </a>
+              </Link>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/admins'>All</Link>
@@ -121,11 +121,11 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <a href='#'>
+              <Link to='#'>
                 <LiaUsersCogSolid size={25} />
                 <span>Roles</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </a>
+              </Link>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/roles'>All</Link>

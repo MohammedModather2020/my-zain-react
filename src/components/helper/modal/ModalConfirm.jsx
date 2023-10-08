@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { FaInfo } from 'react-icons/fa';
-import { MdCheck, MdClear } from 'react-icons/md';
-import {GiCheckMark} from  'react-icons/gi'
+import { RiCloseLine } from 'react-icons/ri';
+import { GiCheckMark } from 'react-icons/gi';
 import '../../../styles/modal.css';
 
 function ModalConfirm(props) {
@@ -51,23 +51,27 @@ function ModalConfirm(props) {
                 </h4>
               </div>
             </div>
-            <div className='modal-footer d-flex justify-content-center'>
-              <button
-                type='button'
-                className='btn btn-cancel'
-                data-dismiss='modal'
-                onClick={() => closeModal()}
-              >
-                <MdClear /> No
-              </button>
-              <button
-                type='button'
-                className='btn btn-done'
-                data-toggle='modal'
-                onClick={() => props.delete()}
-              >
-                <GiCheckMark /> Yes
-              </button>
+            <div className='modal-footer row'>
+              <div className='col-sm'>
+                <button
+                  className='btn btn-secondary btn-block py-2'
+                  type='button'
+                  data-dismiss='modal'
+                  onClick={() => closeModal()}
+                >
+                  <RiCloseLine className='mr-2' /> No
+                </button>
+              </div>
+              <div className='col-6'>
+                <button
+                  className='btn btn-primary btn-block py-2'
+                  type='button'
+                  data-toggle='modal'
+                  onClick={() => props.delete()}
+                >
+                  <GiCheckMark className='mr-2' /> Yes{' '}
+                </button>
+              </div>
             </div>
           </div>
         </div>

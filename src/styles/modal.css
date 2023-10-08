@@ -33,17 +33,7 @@
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
-.modal-dialog .modal-footer .btn {
-  color: #ffffff;
-  font-size: 0.8rem;
-  padding: 0.7rem 1.4rem;
-}
-.modal-dialog .modal-footer .btn-cancel {
-  background-color: #d0d0d0;
-}
-.modal-dialog .modal-footer .btn-done {
-  background-color: #ef5757;
-}
+
 @media (max-width: 676px) {
   .modal-dialog {
     width: 340px !important;

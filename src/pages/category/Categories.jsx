@@ -28,12 +28,12 @@ export default function Categories() {
   const columns = useMemo(
     () => [
       {
-        Header: 'title AR',
+        Header: 'Title AR',
         disableFilters: true,
         accessor: 'titleAr',
       },
       {
-        Header: 'title En',
+        Header: 'Title En',
         disableFilters: true,
         accessor: 'titleEn',
       },
