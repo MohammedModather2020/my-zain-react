@@ -5242,3 +5242,22 @@ pre {
 .text-danger {
   font-size: 0.7rem;
 }
+.search-global {
+  position: relative;
+}
+.search-global input{
+  border-radius: 2rem;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -ms-border-radius: 2rem;
+  -o-border-radius: 2rem;
+}
+.search-global svg {
+  position: absolute;
+  top: 16px;
+  right: 32px;
+  color: #858796;
+}
+.search-global {
+  position: relative;
+}
