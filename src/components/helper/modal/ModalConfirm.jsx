@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { FaInfo } from 'react-icons/fa';
 import { MdCheck, MdClear } from 'react-icons/md';
+import {GiCheckMark} from  'react-icons/gi'
 import '../../../styles/modal.css';
 
 function ModalConfirm(props) {
@@ -65,7 +66,7 @@ function ModalConfirm(props) {
                 data-toggle='modal'
                 onClick={() => props.delete()}
               >
-                <MdCheck /> Yes
+                <GiCheckMark /> Yes
               </button>
             </div>
           </div>
