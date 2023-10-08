@@ -23,13 +23,15 @@ export const sendData =
           toast.success(res.data.message);
           dispatch({
             type: LOADED_SUCCESS,
-            payload: '',
+            payload: [],
+            error: '',
           });
           navigate(redirect);
         } else {
           dispatch({
             type: LOADED_ERROR,
-            payload: res?.data?.message,
+            payload: [],
+            error: res?.data?.message,
           });
         }
       }
@@ -39,12 +41,14 @@ export const sendData =
       } else if (err?.response?.status === 400) {
         dispatch({
           type: LOADED_ERROR,
-          payload: err?.response?.data,
+          payload: [],
+          error: err?.response?.data,
         });
       } else {
         dispatch({
           type: LOADED_ERROR,
-          payload: err?.response?.data,
+          payload: [],
+          error: err?.response?.data,
         });
       }
     }

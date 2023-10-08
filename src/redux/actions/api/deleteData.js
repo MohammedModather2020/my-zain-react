@@ -1,5 +1,10 @@
 import { toast } from 'react-toastify';
-import { LOADED_ERROR, LOADED_SUCCESS, PRE_REQUEST, REMOVE_COOKIE } from '../../type';
+import {
+  LOADED_ERROR,
+  LOADED_SUCCESS,
+  PRE_REQUEST,
+  REMOVE_COOKIE,
+} from '../../type';
 import ApiConfig from '../../../api/ApiConfig';
 
 export const deleteData =
@@ -24,14 +29,14 @@ export const deleteData =
           toast.success(res.data.message);
           dispatch({
             type: LOADED_SUCCESS,
-            payload: '',
+            payload: [],
+            error: '',
           });
-      
         } else {
-          toast.error(res.data.message);
           dispatch({
             type: LOADED_ERROR,
-            payload: '',
+            payload: [],
+            error: res.data.message,
           });
         }
       }
@@ -41,12 +46,14 @@ export const deleteData =
       } else if (err?.response?.status === 400) {
         dispatch({
           type: LOADED_ERROR,
-          payload: err?.response?.data,
+          payload: [],
+          error: err?.response?.data,
         });
       } else {
         dispatch({
           type: LOADED_ERROR,
-          payload: err?.response?.data,
+          payload: [],
+          error: err?.response?.data,
         });
       }
     }

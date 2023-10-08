@@ -20,6 +20,7 @@ export const getData = (url, token) => async (dispatch) => {
       dispatch({
         type: LOADED_SUCCESS,
         payload: res.data,
+        error:''
       });
     }
   } catch (err) {
@@ -28,12 +29,14 @@ export const getData = (url, token) => async (dispatch) => {
     } else if (err?.response?.status === 400) {
       dispatch({
         type: LOADED_ERROR,
-        payload: err?.response?.data,
+        payload: [],
+        error: err?.response?.data,
       });
     } else {
       dispatch({
         type: LOADED_ERROR,
-        payload: err?.response?.data,
+        payload: [],
+        error: err?.response?.data,
       });
     }
   }

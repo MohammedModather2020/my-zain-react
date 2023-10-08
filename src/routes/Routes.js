@@ -6,6 +6,7 @@ import UpdateCategory from '../pages/category/Update';
 import Statistics from '../pages/dashboard/Statistics';
 import AddPackage from '../pages/package/Add';
 import Packages from '../pages/package/Packages';
+import UpdatePackage from '../pages/package/Update';
 
 export {
   Login,
@@ -15,5 +16,6 @@ export {
   AddCategory,
   UpdateCategory,
   Packages,
-  AddPackage
+  AddPackage,
+  UpdatePackage,
 };
