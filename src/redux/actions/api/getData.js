@@ -4,14 +4,14 @@ import {
   LOADED_SUCCESS,
   PRE_REQUEST,
   REMOVE_COOKIE,
-} from '../../types';
+} from '../../type';
 
 export const getData = (url, token) => async (dispatch) => {
   try {
     dispatch({
       type: PRE_REQUEST,
     });
-    const res = await ApiConfig.get(`${url}`, {
+    const res = await ApiConfig.get(url, {
       headers: {
         authorization: `Bearer ${token}`,
       },
