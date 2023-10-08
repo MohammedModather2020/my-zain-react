@@ -16,13 +16,13 @@ export default function Sidebar() {
         <Link className='logo-img' to='/'>
           <img
             className='desktop-logo'
-            src='./assets/images/logo.jpg'
+            src='/assets/images/logo.jpg'
             alt='Logo'
           />
           <img
             style={{ filter: 'brightness(0.1) saturate(0%)' }}
             className='small-logo'
-            src='./assets/images/small-logo.png'
+            src='/assets/images/small-logo.png'
             alt='Logo'
           />
         </Link>
@@ -33,7 +33,7 @@ export default function Sidebar() {
         <div className='page-sidebar-menu'>
           <ul className='accordion-menu'>
             <li>
-              <a href=''>
+              <a href='#'>
                 <FiHome size={25} />
                 <span>Dashboard</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
@@ -47,7 +47,7 @@ export default function Sidebar() {
             <li className='menu-divider mg-y-20-force'></li>
             <li className='mg-20-force menu-elements'>Elements</li>
             <li>
-              <a href=''>
+              <a href='#'>
                 <BiCategory size={25} />
                 <span>Categories</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
@@ -77,7 +77,7 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <a href=''>
+              <a href='#'>
                 <AiOutlineApartment size={25} />
                 <span>Segments</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
@@ -92,7 +92,7 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <a href=''>
+              <a href='#'>
                 <AiOutlineShop size={25} />
                 <span>Shops</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
@@ -109,7 +109,7 @@ export default function Sidebar() {
             <li className='menu-divider mg-y-20-force'></li>
             <li className='mg-20-force menu-extras'>Authorization</li>
             <li>
-              <a href=''>
+              <a href='#'>
                 <MdOutlineAdminPanelSettings size={25} />
                 <span>Admins</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
@@ -121,7 +121,7 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <a href=''>
+              <a href='#'>
                 <LiaUsersCogSolid size={25} />
                 <span>Roles</span>
                 <i className='accordion-icon fa fa-angle-left'></i>

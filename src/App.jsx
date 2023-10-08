@@ -3,7 +3,13 @@ import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import PublicRoute from './auth/PublicRoute';
 import AdminRoute from './auth/AdminRoute';
-import { Categories, Login, Register, Statistics } from './routes/Routes';
+import {
+  AddCategory,
+  Categories,
+  Login,
+  Register,
+  Statistics,
+} from './routes/Routes';
 
 function App() {
   const { isLogin, roles } = useSelector((state) => state?.auth);
@@ -19,6 +25,7 @@ function App() {
         <Route element={<AdminRoute isLogin={isLogin} roles={roles} />}>
           <Route path='/dashboard' element={<Statistics />} />
           <Route path='/categories' element={<Categories />} />
+          <Route path='/categories/add' element={<AddCategory />} />
           {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>
