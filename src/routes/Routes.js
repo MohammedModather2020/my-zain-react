@@ -7,10 +7,10 @@ import Statistics from '../pages/dashboard/Statistics';
 import AddPackage from '../pages/package/Add';
 import Packages from '../pages/package/Packages';
 import UpdatePackage from '../pages/package/Update';
+import Profile from '../pages/profile/Profile';
 import AddSegment from '../pages/segment/Add';
 import Segments from '../pages/segment/Segments';
 import UpdateSegment from '../pages/segment/Update';
-
 export {
   Login,
   Register,
@@ -23,5 +23,6 @@ export {
   UpdatePackage,
   Segments,
   AddSegment,
-  UpdateSegment
+  UpdateSegment,
+  Profile,
 };
