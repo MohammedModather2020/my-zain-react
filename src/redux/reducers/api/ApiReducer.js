@@ -1,4 +1,4 @@
-import { PRE_REQUEST, LOADED_SUCCESS, LOADED_ERROR } from '../types';
+import { LOADED_ERROR, LOADED_SUCCESS, PRE_REQUEST } from '../../type';
 
 const initState = {
   data: [],
