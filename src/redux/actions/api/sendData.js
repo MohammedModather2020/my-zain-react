@@ -35,7 +35,6 @@ export const sendData =
       }
     } catch (err) {
       if (err?.response?.status === 401) {
-        // status failed userUnauthorized token
         dispatch({ type: REMOVE_COOKIE });
       } else if (err?.response?.status === 400) {
         dispatch({
