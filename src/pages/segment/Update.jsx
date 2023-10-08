@@ -1,18 +1,20 @@
 import { Fragment, useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import { BsSend } from 'react-icons/bs';
 import { IoIosArrowDown, IoIosRefresh } from 'react-icons/io';
-import { sendData } from '../../redux/actions/api/sendData';
+import { updateData } from '../../redux/actions/api/updateData';
 import { Loading } from '../../components/helper/loading/Loading';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
-export default function AddSegment() {
+export default function UpdateSegment() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { id } = useParams();
   const { accessToken } = useSelector((state) => state.auth);
   const { loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
@@ -21,9 +23,9 @@ export default function AddSegment() {
   }, [dispatch, error, loading]);
   // ----------------------------------------------------------------------------------->
   const initialValues = {
-    titleAr: '',
-    titleEn: '',
-    ratePlan: '',
+    titleAr: location?.state?.titleAr,
+    titleEn: location?.state?.titleEn,
+    ratePlan: location?.state?.ratePlan,
   };
   // ----------------------------------------------------------------------------------->
   const validationSchema = Yup.object({
@@ -45,11 +47,19 @@ export default function AddSegment() {
     const data = {
       titleAr: values?.titleAr,
       titleEn: values?.titleEn,
+      id,
       ratePlan: values?.ratePlan,
-      id: Math.floor(Math.random() * 5000) + 1,
     };
+
     dispatch(
-      sendData(`segment/addSegment`, accessToken, data, navigate, '/segments'),
+      updateData(
+        `segment/updateSegment`,
+        accessToken,
+        data,
+        navigate,
+        '/segments',
+        true,
+      ),
     );
   };
   const formik = useFormik({
@@ -61,8 +71,8 @@ export default function AddSegment() {
     <Fragment>
       <Loading isLoading={loading} />
       <Breadcrumb
-        title='Add Segment'
-        textActive='Add'
+        title='Update Segment'
+        textActive='Update'
         items={[{ name: 'Segments', url: '/segments' }]}
       />
       <div className='row row-xs clearfix'>

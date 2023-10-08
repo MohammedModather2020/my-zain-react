@@ -15,6 +15,7 @@ import {
   Statistics,
   UpdateCategory,
   UpdatePackage,
+  UpdateSegment,
 } from './routes/Routes';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path='/packages/:id/update' element={<UpdatePackage />} />
           <Route path='/segments' element={<Segments />} />
           <Route path='/segments/add' element={<AddSegment />} />
+          <Route path='/segments/:id/update' element={<UpdateSegment />} />
           {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>
