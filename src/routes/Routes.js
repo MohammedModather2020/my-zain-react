@@ -4,6 +4,7 @@ import AddCategory from '../pages/category/Add';
 import Categories from '../pages/category/Categories';
 import UpdateCategory from '../pages/category/Update';
 import Statistics from '../pages/dashboard/Statistics';
+import AddPackage from '../pages/package/Add';
 import Packages from '../pages/package/Packages';
 
 export {
@@ -14,4 +15,5 @@ export {
   AddCategory,
   UpdateCategory,
   Packages,
+  AddPackage
 };

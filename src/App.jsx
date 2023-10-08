@@ -5,6 +5,7 @@ import PublicRoute from './auth/PublicRoute';
 import AdminRoute from './auth/AdminRoute';
 import {
   AddCategory,
+  AddPackage,
   Categories,
   Login,
   Packages,
@@ -30,6 +31,7 @@ function App() {
           <Route path='/categories/add' element={<AddCategory />} />
           <Route path='/categories/:id/update' element={<UpdateCategory />} />
           <Route path='/packages' element={<Packages />} />
+          <Route path='/packages/add' element={<AddPackage />} />
           {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>
