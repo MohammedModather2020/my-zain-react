@@ -9,6 +9,7 @@ import {
   Login,
   Register,
   Statistics,
+  UpdateCategory,
 } from './routes/Routes';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path='/dashboard' element={<Statistics />} />
           <Route path='/categories' element={<Categories />} />
           <Route path='/categories/add' element={<AddCategory />} />
+          <Route path='/categories/:id/update' element={<UpdateCategory />} />
           {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>
