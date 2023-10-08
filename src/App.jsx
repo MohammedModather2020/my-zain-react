@@ -10,6 +10,7 @@ import {
   Login,
   Packages,
   Register,
+  Segments,
   Statistics,
   UpdateCategory,
   UpdatePackage,
@@ -34,6 +35,7 @@ function App() {
           <Route path='/packages' element={<Packages />} />
           <Route path='/packages/add' element={<AddPackage />} />
           <Route path='/packages/:id/update' element={<UpdatePackage />} />
+          <Route path='/segments' element={<Segments />} />
           {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>

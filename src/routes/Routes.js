@@ -7,6 +7,7 @@ import Statistics from '../pages/dashboard/Statistics';
 import AddPackage from '../pages/package/Add';
 import Packages from '../pages/package/Packages';
 import UpdatePackage from '../pages/package/Update';
+import Segments from '../pages/segment/Segments';
 
 export {
   Login,
@@ -18,4 +19,5 @@ export {
   Packages,
   AddPackage,
   UpdatePackage,
+  Segments
 };
