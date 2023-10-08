@@ -1,17 +1,22 @@
-import { Fragment, useMemo, useEffect } from 'react';
+import { Fragment, useMemo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { isArray } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiEdit } from 'react-icons/fi';
 import { AiFillDelete } from 'react-icons/ai';
 import { getData } from '../../redux/actions/api/getData';
+import { deleteData } from '../../redux/actions/api/deleteData';
 import { Loading } from '../../components/helper/loading/Loading';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import ModalConfirm from '../../components/helper/modal/ModalConfirm';
 import Table from '../../components/table/Table';
 
 export default function Categories() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [id, setId] = useState();
+  const [isShowLoading, setIsShowLoading] = useState(false);
+  const [showModalConfirm, setShowModalConfirm] = useState(false);
   const { accessToken } = useSelector((state) => state?.auth);
   const {
     data: categories,
@@ -49,10 +54,10 @@ export default function Categories() {
             </button>
             <button
               className='btn btn-danger btn-icon mg-r-5 mg-b-10'
-              // onClick={() => {
-              //   setMsisdn(row.values.MSISDN);
-              //   setShowModalConfirm(true);
-              // }}
+              onClick={() => {
+                setId(row.values.id);
+                setShowModalConfirm(true);
+              }}
             >
               <AiFillDelete />
             </button>
@@ -65,12 +70,28 @@ export default function Categories() {
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
     dispatch(getData(`category/getAllCategories`, accessToken));
-  }, [accessToken, dispatch]);
+  }, [accessToken, dispatch, isShowLoading]);
   // ----------------------------------------------------------------------------------->
   const data = useMemo(() => isArray(categories) && categories, [categories]);
 
   return (
     <Fragment>
+      <ModalConfirm
+        delete={() =>
+          dispatch(
+            deleteData(
+              `category/deleteCategory`,
+              accessToken,
+              setShowModalConfirm,
+              setIsShowLoading,
+              isShowLoading,
+              id,
+            ),
+          )
+        }
+        showModalConfirmTry={setShowModalConfirm}
+        toggleModal={showModalConfirm}
+      />
       <Breadcrumb title='All categories' textActive='Categories' />
       {loading ? (
         <Loading isLoading={loading} />

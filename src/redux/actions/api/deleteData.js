@@ -1,14 +1,9 @@
 import { toast } from 'react-toastify';
-import {
-  DELETE_DATA,
-  LOADED_ERROR,
-  PRE_REQUEST,
-  REMOVE_COOKIE,
-} from '../../type';
+import { LOADED_ERROR, LOADED_SUCCESS, PRE_REQUEST, REMOVE_COOKIE } from '../../type';
 import ApiConfig from '../../../api/ApiConfig';
 
 export const deleteData =
-  (url, token, setShowModalConfirm, setIsShowLoading, isShowLoading) =>
+  (url, token, setShowModalConfirm, setIsShowLoading, isShowLoading, id) =>
   async (dispatch) => {
     try {
       dispatch({
@@ -18,19 +13,25 @@ export const deleteData =
         headers: {
           authorization: `Bearer ${token}`,
         },
+        data: {
+          id,
+        },
       });
       if (res.status === 200) {
+        setShowModalConfirm(false);
+        setIsShowLoading(!isShowLoading);
         if (res.data.status) {
           toast.success(res.data.message);
           dispatch({
-            type: DELETE_DATA,
+            type: LOADED_SUCCESS,
+            payload: '',
           });
-          setShowModalConfirm(false);
-          setIsShowLoading(!isShowLoading);
+      
         } else {
+          toast.error(res.data.message);
           dispatch({
             type: LOADED_ERROR,
-            payload: res?.data?.message,
+            payload: '',
           });
         }
       }
