@@ -10,6 +10,7 @@ import {
   Categories,
   Login,
   Packages,
+  Profile,
   Register,
   Segments,
   Statistics,
@@ -40,6 +41,7 @@ function App() {
           <Route path='/segments' element={<Segments />} />
           <Route path='/segments/add' element={<AddSegment />} />
           <Route path='/segments/:id/update' element={<UpdateSegment />} />
+          <Route path='/auth/profile/' element={<Profile />} />
           {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>
