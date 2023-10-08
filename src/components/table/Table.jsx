@@ -288,7 +288,7 @@ function Table({
           </div> */}
         </>
       ) : (
-        <div className='text-error text-center'>No data found</div>
+        <div className='text-danger text-center'>No data found</div>
       )}
     </div>
   );
