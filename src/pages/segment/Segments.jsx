@@ -81,7 +81,7 @@ export default function Segments() {
         delete={() =>
           dispatch(
             deleteData(
-              `segment/deletePackage`,
+              `segment/deleteSegment`,
               accessToken,
               setShowModalConfirm,
               setIsShowLoading,

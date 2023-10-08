@@ -6,6 +6,7 @@ import AdminRoute from './auth/AdminRoute';
 import {
   AddCategory,
   AddPackage,
+  AddSegment,
   Categories,
   Login,
   Packages,
@@ -36,6 +37,7 @@ function App() {
           <Route path='/packages/add' element={<AddPackage />} />
           <Route path='/packages/:id/update' element={<UpdatePackage />} />
           <Route path='/segments' element={<Segments />} />
+          <Route path='/segments/add' element={<AddSegment />} />
           {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>
