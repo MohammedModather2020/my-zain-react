@@ -105,17 +105,7 @@ export default function Roles() {
         error
       ) : (
         <div className='card shadow mb-4'>
-          {data && (
-            <Table
-              // activePage={activePage}
-              // setActivePage={setActivePage}
-              // limitPage={limitPage}
-              total={roles?.total}
-              // setLimitPage={setLimitPage}
-              columns={columns}
-              data={data ?? []}
-            />
-          )}
+          {data && <Table columns={columns} data={data ?? []} />}
         </div>
       )}
     </Fragment>
