@@ -1,7 +1,6 @@
 import { Fragment, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
@@ -24,7 +23,6 @@ export default function UpdatePackage() {
   }, [dispatch, error, loading]);
   // ----------------------------------------------------------------------------------->
   const initialValues = {
-    // initial Values input felids
     titleAr: location?.state?.titleAr,
     titleEn: location?.state?.titleEn,
   };
@@ -45,7 +43,6 @@ export default function UpdatePackage() {
       titleAr: values?.titleAr,
       titleEn: values?.titleEn,
       id,
-      lastUpdate: moment().format(),
     };
 
     dispatch(

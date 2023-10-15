@@ -1,7 +1,6 @@
 import { Fragment, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
@@ -22,7 +21,6 @@ export default function AddPackage() {
   }, [dispatch, error, loading]);
   // ----------------------------------------------------------------------------------->
   const initialValues = {
-    // initial Values input felids
     titleAr: '',
     titleEn: '',
   };
@@ -42,8 +40,6 @@ export default function AddPackage() {
     const data = {
       titleAr: values?.titleAr,
       titleEn: values?.titleEn,
-      id: Math.floor(Math.random() * 5000) + 1,
-      lastUpdate: moment().format('L'),
     };
     dispatch(
       sendData(`package/addPackage`, accessToken, data, navigate, '/packages'),

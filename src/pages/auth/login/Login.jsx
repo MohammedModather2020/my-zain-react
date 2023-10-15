@@ -99,7 +99,7 @@ export default function Login() {
   return (
     <Fragment>
       <Loading isLoading={isLoading} />
-      <div className='ht-100v d-flex'>
+      <div className='ht-100v d-flex bg-page'>
         <div className='card shadow-2 border-0 pd-25 mx-auto wd-400 text-center bd-1 align-self-center'>
           <h4 className='card-title mt-3 text-center'>Sing In</h4>
           <p className='text-center'>Sing in to your account</p>

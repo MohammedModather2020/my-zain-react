@@ -46,7 +46,6 @@ export default function AddSegment() {
       titleAr: values?.titleAr,
       titleEn: values?.titleEn,
       ratePlan: values?.ratePlan,
-      id: Math.floor(Math.random() * 5000) + 1,
     };
     dispatch(
       sendData(`segment/addSegment`, accessToken, data, navigate, '/segments'),
