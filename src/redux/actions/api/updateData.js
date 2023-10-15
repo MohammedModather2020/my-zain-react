@@ -36,12 +36,12 @@ export const updateData =
       } else if (err?.response?.status === 400) {
         dispatch({
           type: LOADED_ERROR,
-          payload: err?.response?.data,
+          payload: err?.response?.data.message,
         });
       } else {
         dispatch({
           type: LOADED_ERROR,
-          payload: err?.response?.data,
+          payload: err?.response?.data.message,
         });
       }
     }
