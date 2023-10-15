@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { BiCategory } from 'react-icons/bi';
+import { BiCategory, BiSolidOffer } from 'react-icons/bi';
 import { FiHome, FiLogOut } from 'react-icons/fi';
 import { LiaShoppingBagSolid, LiaUsersCogSolid } from 'react-icons/lia';
 import { AiOutlineApartment, AiOutlineShop } from 'react-icons/ai';
@@ -28,12 +28,11 @@ export default function Sidebar() {
         </Link>
         <i className='ion-ios-close-empty' id='sidebar-toggle-button-close'></i>
       </div>
-
       <div className='page-sidebar-inner'>
         <div className='page-sidebar-menu'>
           <ul className='accordion-menu'>
             <li>
-              <Link to='#'>
+              <Link to='#' tabIndex={1}>
                 <FiHome size={25} />
                 <span>Dashboard</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
@@ -88,6 +87,21 @@ export default function Sidebar() {
                 </li>
                 <li>
                   <Link to='segments/add'>Add</Link>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <Link to='#'>
+                <BiSolidOffer  size={25} />
+                <span>Offers</span>
+                <i className='accordion-icon fa fa-angle-left'></i>
+              </Link>
+              <ul className='sub-menu'>
+                <li>
+                  <Link to='/offers/all'>All</Link>
+                </li>
+                <li>
+                  <Link to='/offers/add'>Add</Link>
                 </li>
               </ul>
             </li>
