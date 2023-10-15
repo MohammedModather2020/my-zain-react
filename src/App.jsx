@@ -18,6 +18,7 @@ import {
   Statistics,
   UpdateCategory,
   UpdatePackage,
+  UpdateRole,
   UpdateSegment,
 } from './routes/Routes';
 
@@ -46,6 +47,7 @@ function App() {
           <Route path='/auth/profile/' element={<Profile />} />
           <Route path='/roles' element={<Roles />} />
           <Route path='/roles/add' element={<AddRole />} />
+          <Route path='/roles/:id/update' element={<UpdateRole />} />
           {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>
