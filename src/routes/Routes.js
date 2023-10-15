@@ -10,6 +10,7 @@ import UpdatePackage from '../pages/package/Update';
 import Profile from '../pages/profile/Profile';
 import AddRole from '../pages/role/Add';
 import Roles from '../pages/role/Roles';
+import SignRole from '../pages/role/Sign';
 import UpdateRole from '../pages/role/Update';
 import AddSegment from '../pages/segment/Add';
 import Segments from '../pages/segment/Segments';
@@ -31,4 +32,5 @@ export {
   Roles,
   AddRole,
   UpdateRole,
+SignRole
 };

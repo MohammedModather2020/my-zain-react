@@ -15,6 +15,7 @@ import {
   Register,
   Roles,
   Segments,
+  SignRole,
   Statistics,
   UpdateCategory,
   UpdatePackage,
@@ -48,6 +49,7 @@ function App() {
           <Route path='/roles' element={<Roles />} />
           <Route path='/roles/add' element={<AddRole />} />
           <Route path='/roles/:id/update' element={<UpdateRole />} />
+          <Route path='/roles/sign' element={<SignRole />} />
           {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>
