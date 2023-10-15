@@ -1,7 +1,5 @@
 import React from 'react';
 import { matchSorter } from 'match-sorter';
-// import Pagination from 'react-js-pagination';
-
 import {
   useFilters,
   useGlobalFilter,
@@ -10,7 +8,8 @@ import {
   useTable,
 } from 'react-table';
 import { MdArrowDownward, MdArrowUpward, MdSwapVert } from 'react-icons/md';
-import GlobalTableFilter from '../helper/filter/GlobaltableFilter';
+import GlobalTableFilter from '../helper/filter/GlobalTableFilter';
+import { FiChevronsLeft, FiChevronsRight } from 'react-icons/fi';
 // ----------------------------------------------------------------------------------->
 export function SliderColumnFilter({
   column: { filterValue, setFilter, preFilteredRows, id },
@@ -143,7 +142,15 @@ function Table({
     getTableBodyProps,
     headerGroups,
     page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    pageOptions,
     state,
+    gotoPage,
+    pageCount,
+    setPageSize,
     setGlobalFilter,
     prepareRow,
   } = useTable(
@@ -158,7 +165,7 @@ function Table({
     useSortBy,
     usePagination,
   );
-  const { globalFilter } = state;
+  const { pageIndex, pageSize, globalFilter } = state;
   return (
     <div className='table-responsive p-3'>
       {data?.length > 0 ? (
@@ -248,44 +255,78 @@ function Table({
               </tbody>
             )}
           </table>
-          {/* <div className='row mt-2  align-items-center'>
-            <div className='col-6 col-md-2'>
+          <div className='row mt-2 align-items-center'>
+            <div className='col-md-2'>
               <span>
-                Page No{' '}
+                Page{' '}
                 <strong>
-                  {activePage} From {Math.ceil(total / limitPage)}
+                  {pageIndex + 1} of {pageOptions.length}
                 </strong>{' '}
               </span>
             </div>
-            <div className=' col-6 col-md-5 text-right d-flex align-items-center justify-content-between my-2 my-md-0'>
+            <div className='col-md-5 text-right d-flex align-items-center justify-content-between my-2 my-md-0'>
               <span>
-                Go To :{' '}
+                Go to:{' '}
                 <input
                   type='text'
-                  className='form-control d-inline-block mr-1 text-center'
-                  style={{ width: '70px' }}
-                  defaultValue={activePage}
+                  className='form-control d-inline-block mr-1 text-center py-2'
+                  defaultValue={pageIndex + 1}
                   onChange={(e) => {
-                    setActivePage(Number(e.target.value));
+                    const pageNumber = e.target.value
+                      ? Number(e.target.value) - 1
+                      : 0;
+                    gotoPage(pageNumber);
                   }}
+                  style={{ width: '70px' }}
                   onInput={(e) => {
                     e.target.value = e.target.value.replace(/[^0-9]/g, '');
                   }}
                 />
               </span>
+              <select
+                className='form-control d-inline-block py-1'
+                value={pageSize}
+                style={{ width: '150px' }}
+                onChange={(e) => setPageSize(Number(e.target.value))}
+              >
+                {[10, 25, 50].map((pageSize) => (
+                  <option key={pageSize} value={pageSize}>
+                    Show {pageSize}
+                  </option>
+                ))}
+              </select>
             </div>
-            <div className='pagination col-12 col-md-5 text-md-end justify-content-end'>
-              <Pagination
-                activePage={activePage}
-                itemsCountPerPage={10}
-                totalItemsCount={total}
-                pageRangeDisplayed={7}
-                itemClass='page-item'
-                linkClass='page-link'
-                onChange={(e) => setActivePage(e)}
-              />
+            <div className='pagination col-md-5 text-md-right justify-content-end'>
+              <button
+                className='page-link page-item active rounded'
+                onClick={() => gotoPage(0)}
+                disabled={!canPreviousPage}
+              >
+                <FiChevronsLeft />
+              </button>
+              <button
+                className='btn btn-light btn-pill me-3'
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                Prev
+              </button>
+              <button
+                className='btn btn-light btn-pill'
+                onClick={() => nextPage()}
+                disabled={!canNextPage}
+              >
+                Next
+              </button>
+              <button
+                className='page-link page-item active rounded'
+                onClick={() => gotoPage(pageCount - 1)}
+                disabled={!canNextPage}
+              >
+                <FiChevronsRight />
+              </button>
             </div>
-          </div> */}
+          </div>
         </>
       ) : (
         <div className='text-danger text-center'>No data found</div>
