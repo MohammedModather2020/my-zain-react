@@ -27,7 +27,6 @@ export const updateData =
         dispatch({
           type: LOADED_SUCCESS,
           payload: [],
-          error: '',
         });
         navigate(redirect);
       }
@@ -37,14 +36,12 @@ export const updateData =
       } else if (err?.response?.status === 400) {
         dispatch({
           type: LOADED_ERROR,
-          payload: [],
-          error: err?.response?.data,
+          payload: err?.response?.data,
         });
       } else {
         dispatch({
           type: LOADED_ERROR,
-          payload: [],
-          error: err?.response?.data,
+          payload: err?.response?.data,
         });
       }
     }

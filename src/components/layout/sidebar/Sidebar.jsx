@@ -143,6 +143,8 @@ export default function Sidebar() {
               <ul className='sub-menu'>
                 <li>
                   <Link to='/roles'>All</Link>
+                  <Link to='/roles/add'>Add</Link>
+                  <Link to='/roles/sign'>Sign</Link>
                 </li>
               </ul>
             </li>

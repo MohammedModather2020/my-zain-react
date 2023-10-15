@@ -30,13 +30,11 @@ export const deleteData =
           dispatch({
             type: LOADED_SUCCESS,
             payload: [],
-            error: '',
           });
         } else {
           dispatch({
             type: LOADED_ERROR,
-            payload: [],
-            error: res.data.message,
+            payload: res.data.message,
           });
         }
       }
@@ -46,14 +44,12 @@ export const deleteData =
       } else if (err?.response?.status === 400) {
         dispatch({
           type: LOADED_ERROR,
-          payload: [],
-          error: err?.response?.data,
+          payload: err?.response?.data,
         });
       } else {
         dispatch({
           type: LOADED_ERROR,
-          payload: [],
-          error: err?.response?.data,
+          payload: err?.response?.data,
         });
       }
     }
