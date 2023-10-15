@@ -24,14 +24,12 @@ export const sendData =
           dispatch({
             type: LOADED_SUCCESS,
             payload: [],
-            error: '',
           });
           navigate(redirect);
         } else {
           dispatch({
             type: LOADED_ERROR,
-            payload: [],
-            error: res?.data?.message,
+            payload: res?.data?.message,
           });
         }
       }
@@ -41,14 +39,12 @@ export const sendData =
       } else if (err?.response?.status === 400) {
         dispatch({
           type: LOADED_ERROR,
-          payload: [],
-          error: err?.response?.data,
+          payload: err?.response?.data.message,
         });
       } else {
         dispatch({
           type: LOADED_ERROR,
-          payload: [],
-          error: err?.response?.data,
+          payload: err?.response?.data.message,
         });
       }
     }

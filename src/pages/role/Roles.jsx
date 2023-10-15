@@ -98,7 +98,7 @@ export default function Roles() {
         showModalConfirmTry={setShowModalConfirm}
         toggleModal={showModalConfirm}
       />
-      <Breadcrumb title='All Segments' textActive='Segments' />
+      <Breadcrumb title='All roles' textActive='Roles' />
       {loading ? (
         <Loading isLoading={loading} />
       ) : error ? (

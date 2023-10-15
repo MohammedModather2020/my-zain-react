@@ -8,11 +8,11 @@ import AddPackage from '../pages/package/Add';
 import Packages from '../pages/package/Packages';
 import UpdatePackage from '../pages/package/Update';
 import Profile from '../pages/profile/Profile';
+import AddRole from '../pages/role/Add';
 import Roles from '../pages/role/Roles';
 import AddSegment from '../pages/segment/Add';
 import Segments from '../pages/segment/Segments';
 import UpdateSegment from '../pages/segment/Update';
-
 export {
   Login,
   Register,
@@ -27,5 +27,6 @@ export {
   AddSegment,
   UpdateSegment,
   Profile,
-  Roles
+  Roles,
+  AddRole,
 };
