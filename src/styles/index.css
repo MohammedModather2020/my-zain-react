@@ -5261,3 +5261,8 @@ pre {
 .search-global {
   position: relative;
 }
+.bg-page{
+  background-image: url(../../public/assets/images/bg-1.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
