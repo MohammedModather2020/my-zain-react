@@ -53,10 +53,10 @@ export default function Sidebar() {
               </Link>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/categories'>All</Link>
+                  <Link to='/categories'>All Categories</Link>
                 </li>
                 <li>
-                  <Link to='/categories/add'>Add</Link>
+                  <Link to='/categories/add'>Add Category</Link>
                 </li>
               </ul>
             </li>
@@ -68,10 +68,10 @@ export default function Sidebar() {
               </Link>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/packages'>All</Link>
+                  <Link to='/packages'>All Packages</Link>
                 </li>
                 <li>
-                  <Link to='/packages/Add'>Add</Link>
+                  <Link to='/packages/Add'>Add Package</Link>
                 </li>
               </ul>
             </li>
@@ -83,25 +83,25 @@ export default function Sidebar() {
               </Link>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/segments'>All</Link>
+                  <Link to='/segments'>All Segments</Link>
                 </li>
                 <li>
-                  <Link to='segments/add'>Add</Link>
+                  <Link to='segments/add'>Add Segment</Link>
                 </li>
               </ul>
             </li>
             <li>
               <Link to='#'>
-                <BiSolidOffer  size={25} />
+                <BiSolidOffer size={25} />
                 <span>Offers</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
               </Link>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/offers/all'>All</Link>
+                  <Link to='/offers/all'>All Offers</Link>
                 </li>
                 <li>
-                  <Link to='/offers/add'>Add</Link>
+                  <Link to='/offers/add'>Add Offer</Link>
                 </li>
               </ul>
             </li>
@@ -113,10 +113,10 @@ export default function Sidebar() {
               </Link>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/shops/all'>All</Link>
+                  <Link to='/shops/all'>All Shops</Link>
                 </li>
                 <li>
-                  <Link to='/shops/add'>Add</Link>
+                  <Link to='/shops/add'>Add Shop</Link>
                 </li>
               </ul>
             </li>
@@ -130,7 +130,7 @@ export default function Sidebar() {
               </Link>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/admins'>All</Link>
+                  <Link to='/admins'>All Admins</Link>
                 </li>
               </ul>
             </li>
@@ -142,9 +142,9 @@ export default function Sidebar() {
               </Link>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/roles'>All</Link>
-                  <Link to='/roles/add'>Add</Link>
-                  <Link to='/roles/sign'>Sign</Link>
+                  <Link to='/roles'>All Roles</Link>
+                  <Link to='/roles/add'>Add Role</Link>
+                  <Link to='/roles/sign'>Sign Role</Link>
                 </li>
               </ul>
             </li>

@@ -90,7 +90,7 @@ export default function Packages() {
               setShowModalConfirm,
               setIsShowLoading,
               isShowLoading,
-              id,
+              { id },
             ),
           )
         }

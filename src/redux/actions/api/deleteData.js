@@ -8,7 +8,7 @@ import {
 import ApiConfig from '../../../api/ApiConfig';
 
 export const deleteData =
-  (url, token, setShowModalConfirm, setIsShowLoading, isShowLoading, id) =>
+  (url, token, setShowModalConfirm, setIsShowLoading, isShowLoading, data) =>
   async (dispatch) => {
     try {
       dispatch({
@@ -18,9 +18,7 @@ export const deleteData =
         headers: {
           authorization: `Bearer ${token}`,
         },
-        data: {
-          id,
-        },
+        data: data,
       });
       if (res.status === 200) {
         setShowModalConfirm(false);

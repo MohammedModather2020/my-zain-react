@@ -32,5 +32,5 @@ export {
   Roles,
   AddRole,
   UpdateRole,
-SignRole
+  SignRole,
 };

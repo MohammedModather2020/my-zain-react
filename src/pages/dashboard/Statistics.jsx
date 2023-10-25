@@ -1,14 +1,13 @@
-import { useSelector } from 'react-redux';
-import useData from '../../hooks/useData';
 import { Fragment } from 'react';
-import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
+import { useSelector } from 'react-redux';
 import { BiSolidOffer, BiUser } from 'react-icons/bi';
 import { AiFillSliders } from 'react-icons/ai';
 import { MdOutlineLocalOffer } from 'react-icons/md';
+import useData from '../../hooks/useData';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 export default function Statistics() {
   const { accessToken } = useSelector((state) => state.auth);
-
   const { data: statistics } = useData(accessToken, 'dashboard/statistics');
 
   return (
