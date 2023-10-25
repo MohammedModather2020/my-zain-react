@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",
+    "@haribhandari/react-step": "^1.0.1",
     "axios": "^1.5.1",
     "bootstrap": "^4.1.0",
     "formik": "^2.4.5",
