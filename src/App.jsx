@@ -5,11 +5,13 @@ import PublicRoute from './auth/PublicRoute';
 import AdminRoute from './auth/AdminRoute';
 import {
   AddCategory,
+  AddOffer,
   AddPackage,
   AddRole,
   AddSegment,
   Categories,
   Login,
+  Offers,
   Packages,
   Profile,
   Register,
@@ -45,6 +47,8 @@ function App() {
           <Route path='/segments' element={<Segments />} />
           <Route path='/segments/add' element={<AddSegment />} />
           <Route path='/segments/:id/update' element={<UpdateSegment />} />
+          <Route path='/offers' element={<Offers />} />
+          <Route path='/offers/add' element={<AddOffer />} />
           <Route path='/auth/profile/' element={<Profile />} />
           <Route path='/roles' element={<Roles />} />
           <Route path='/roles/add' element={<AddRole />} />
