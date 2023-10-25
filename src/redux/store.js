@@ -13,13 +13,10 @@ const persistConfig = {
   key: 'root',
   storage,
 };
-const persistedReducer = persistReducer(
-  persistConfig,
-  combineReducers({
-    auth: AuthReducer,
-    api: ApiReducer,
-  }),
-);
+const persistedReducer = combineReducers({
+  auth: persistReducer(persistConfig, AuthReducer),
+  api: ApiReducer,
+});
 
 const store = createStore(persistedReducer, applyMiddleware(thunk));
 let persistor = persistStore(store);

@@ -149,12 +149,23 @@ export default function UpdateSegment() {
                       >
                         Rate plan <span className='tx-danger'>*</span>
                       </label>
-                      <input
-                        className='form-control'
-                        type='text'
+                      <select
+                        id='ratePlan'
                         name='ratePlan'
+                        className='custom-select form-control pb-0 pt-0'
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         {...formik.getFieldProps('ratePlan')}
-                      />
+                      >
+                        <option value='DC'>DATA CARD (DC)</option>
+                        <option value='PREPAID'>PREPAID</option>
+                        <option value='POSTPAID'>POSTPAID</option>
+                      </select>
+                      {formik.touched.ratePlan && formik.errors.ratePlan ? (
+                        <div className='tx-danger'>
+                          {formik.errors.ratePlan}
+                        </div>
+                      ) : null}
                       {formik.touched.ratePlan && formik.errors.ratePlan ? (
                         <div className='tx-danger'>
                           {formik.errors.ratePlan}
