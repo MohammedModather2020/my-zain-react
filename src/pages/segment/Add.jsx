@@ -23,7 +23,7 @@ export default function AddSegment() {
   const initialValues = {
     titleAr: '',
     titleEn: '',
-    ratePlan: '',
+    ratePlan: 'DC',
   };
   // ----------------------------------------------------------------------------------->
   const validationSchema = Yup.object({
@@ -138,12 +138,18 @@ export default function AddSegment() {
                       >
                         Rate plan <span className='tx-danger'>*</span>
                       </label>
-                      <input
-                        className='form-control'
-                        type='text'
+                      <select
+                        id='ratePlan'
                         name='ratePlan'
+                        className='form-control pb-0 pt-0 custom-select'
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         {...formik.getFieldProps('ratePlan')}
-                      />
+                      >
+                        <option value='DC'>DATA CARD (DC)</option>
+                        <option value='PREPAID'>PREPAID</option>
+                        <option value='POSTPAID'>POSTPAID</option>
+                      </select>
                       {formik.touched.ratePlan && formik.errors.ratePlan ? (
                         <div className='tx-danger'>
                           {formik.errors.ratePlan}
