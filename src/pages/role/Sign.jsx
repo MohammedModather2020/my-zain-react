@@ -1,8 +1,9 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import Multiselect from 'multiselect-react-dropdown';
 import { toast } from 'react-toastify';
 import { BsSend } from 'react-icons/bs';
 import { IoIosArrowDown, IoIosRefresh } from 'react-icons/io';
@@ -14,6 +15,7 @@ import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 export default function SignRole() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [roleSelected, setRoleSelected] = useState();
   const { accessToken } = useSelector((state) => state.auth);
   const { loading, error } = useSelector((state) => state.api);
   const { data: roles } = useData(accessToken, 'auth/getAllRoles');
@@ -45,6 +47,12 @@ export default function SignRole() {
     onSubmit,
     validationSchema,
   });
+  const onSelect = (selectedList, setItem) => {
+    setItem([...selectedList]);
+  };
+  const onRemove = (selectedList, setItem) => {
+    setItem([...selectedList]);
+  };
   return (
     <Fragment>
       <Loading isLoading={loading} />
@@ -91,16 +99,24 @@ export default function SignRole() {
                       </label>
                       <select
                         className='custom-select py-0'
-                        defaultValue={users[0]}
-                        value={formik.values.domainEvaluation}
+                        value={formik.values.userId}
                         {...formik.getFieldProps('userId')}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                       >
+                        <option
+                          className='placeholder'
+                          selected
+                          disabled
+                          value=''
+                        >
+                          Please select user
+                        </option>
+
                         {users &&
                           users?.map((user) => (
-                            <option key={user?.id} value={user.name}>
-                              {user.name}
+                            <option key={user?.id} value={user?.id}>
+                              {`${user.firstName}  ${user?.lastName}`}
                             </option>
                           ))}
                       </select>
@@ -111,28 +127,19 @@ export default function SignRole() {
                   </div>
                   <div className='col-lg-6'>
                     <div className='form-group'>
-                      <label
-                        htmlFor='role'
-                        className='form-control-label active'
-                      >
+                      <label htmlFor='role' className='form-control-label'>
                         Role <span className='tx-danger'>*</span>
                       </label>
-                      <select
-                        className='custom-select py-0'
-                        defaultValue={roles[0]}
-                        value={formik.values.domainEvaluation}
-                        {...formik.getFieldProps('role')}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                      >
-                        {roles &&
-                          roles?.map((role) => (
-                            <option key={role?.id} value={role.name}>
-                              {role.name}
-                            </option>
-                          ))}
-                      </select>
-
+                      <Multiselect
+                        displayValue='name'
+                        className='p-0 '
+                        placeholder='Please select roles'
+                        required
+                        selectedValues={''}
+                        onSelect={(value) => onSelect(value, setRoleSelected)}
+                        onRemove={(value) => onRemove(value, setRoleSelected)}
+                        options={roles}
+                      />
                       {formik.touched.role && formik.errors.role ? (
                         <div className='tx-danger'>{formik.errors.role}</div>
                       ) : null}

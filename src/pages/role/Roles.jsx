@@ -38,7 +38,7 @@ export default function Roles() {
         accessor: 'concurrencyStamp',
         Cell: ({ row }) => (
           <span>
-            {row?.values?.concurrencyStamp ? concurrencyStamp : 'null'}
+            {row?.values?.concurrencyStamp ? row?.values?.concurrencyStamp : 'null'}
           </span>
         ),
       },
