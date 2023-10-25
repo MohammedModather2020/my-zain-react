@@ -86,7 +86,7 @@ export default function Segments() {
               setShowModalConfirm,
               setIsShowLoading,
               isShowLoading,
-              id,
+              { id },
             ),
           )
         }

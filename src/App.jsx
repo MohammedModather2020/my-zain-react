@@ -35,7 +35,7 @@ function App() {
           <Route path='/auth/register' element={<Register />} />
         </Route>
         <Route element={<AdminRoute isLogin={isLogin} roles={roles} />}>
-          <Route path='/dashboard' element={<Statistics />} />
+          <Route path='/dashboard/statistics' element={<Statistics />} />
           <Route path='/categories' element={<Categories />} />
           <Route path='/categories/add' element={<AddCategory />} />
           <Route path='/categories/:id/update' element={<UpdateCategory />} />

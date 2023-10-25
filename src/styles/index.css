@@ -5266,3 +5266,11 @@ pre {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.multiselect-container .searchWrapper > input{
+  margin-top: 0 !important;
+  height: 38px !important;
+  padding-block: .5rem !important;
+}
+.multiselect-container .searchWrapper{
+  padding: 0 !important;
+}

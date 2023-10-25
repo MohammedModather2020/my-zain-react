@@ -94,7 +94,7 @@ export default function Categories() {
               setShowModalConfirm,
               setIsShowLoading,
               isShowLoading,
-              id,
+              { id },
             ),
           )
         }
