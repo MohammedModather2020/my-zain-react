@@ -108,7 +108,7 @@ export default function Categories() {
         error
       ) : (
         <div className='card shadow mb-4'>
-          {data && <Table columns={columns} data={data ?? []} />}
+          {data.length > 0 && <Table columns={columns} data={data ?? []} />}
         </div>
       )}
     </Fragment>

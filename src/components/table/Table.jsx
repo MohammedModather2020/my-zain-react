@@ -334,4 +334,4 @@ function Table({
     </div>
   );
 }
-export default React.memo(Table);
+export default Table;

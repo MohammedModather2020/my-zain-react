@@ -14,7 +14,7 @@ export default function Statistics() {
     <Fragment>
       <Breadcrumb title='All Statistics' textActive='Statistics' />
       <div className='row row-xs'>
-        <div className='col-sm-6 col-xl-3'>
+        <div className='col-md-4 col-sm-6 col-xl-3'>
           <div className='card mg-b-20'>
             <div className='card-body pd-y-0'>
               <div className='custom-fieldset mb-4'>
@@ -35,7 +35,7 @@ export default function Statistics() {
             </div>
           </div>
         </div>
-        <div className='col-sm-6 col-xl-3'>
+        <div className='col-md-4 col-sm-6 col-xl-3'>
           <div className='card mg-b-20'>
             <div className='card-body pd-y-0'>
               <div className='custom-fieldset mb-4'>
@@ -56,7 +56,7 @@ export default function Statistics() {
             </div>
           </div>
         </div>
-        <div className='col-sm-6 col-xl-3'>
+        <div className='col-md-4 col-sm-6 col-xl-3'>
           <div className='card mg-b-20'>
             <div className='card-body pd-y-0'>
               <div className='custom-fieldset mb-4'>
@@ -79,7 +79,7 @@ export default function Statistics() {
             </div>
           </div>
         </div>
-        <div className='col-sm-6 col-xl-3'>
+        <div className='col-md-4 col-sm-6 col-xl-3'>
           <div className='card mg-b-20'>
             <div className='card-body pd-y-0'>
               <div className='custom-fieldset mb-4'>
@@ -102,7 +102,7 @@ export default function Statistics() {
             </div>
           </div>
         </div>
-        <div className='col-sm-6 col-xl-3'>
+        <div className='col-md-4 col-sm-6 col-xl-3'>
           <div className='card mg-b-20'>
             <div className='card-body pd-y-0'>
               <div className='custom-fieldset mb-4'>
@@ -127,7 +127,7 @@ export default function Statistics() {
             </div>
           </div>
         </div>
-        <div className='col-sm-6 col-xl-3'>
+        <div className='col-md-4 col-sm-6 col-xl-3'>
           <div className='card mg-b-20'>
             <div className='card-body pd-y-0'>
               <div className='custom-fieldset mb-4'>
@@ -152,7 +152,7 @@ export default function Statistics() {
             </div>
           </div>
         </div>
-        <div className='col-sm-6 col-xl-3'>
+        <div className='col-md-4 col-sm-6 col-xl-3'>
           <div className='card mg-b-20'>
             <div className='card-body pd-y-0'>
               <div className='custom-fieldset mb-4'>
@@ -173,7 +173,7 @@ export default function Statistics() {
             </div>
           </div>
         </div>
-        <div className='col-sm-6 col-xl-3'>
+        <div className='col-md-4 col-sm-6 col-xl-3'>
           <div className='card mg-b-20'>
             <div className='card-body pd-y-0'>
               <div className='custom-fieldset mb-4'>
