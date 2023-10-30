@@ -1,5 +1,5 @@
 import { Fragment, useMemo, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
 import { FiEdit } from 'react-icons/fi';
@@ -10,17 +10,17 @@ import { Loading } from '../../components/helper/loading/Loading';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import ModalConfirm from '../../components/helper/modal/ModalConfirm';
 import Table from '../../components/table/Table';
-import moment from 'moment';
-import { BsArrowUpRight, BsBoxArrowUpRight } from 'react-icons/bs';
 
-export default function Offers() {
+export default function OfferSegments() {
+  const { state } = useLocation();
+  const { id: offerId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [id, setId] = useState();
+  const [segmentId, setSegmentId] = useState();
   const [isShowLoading, setIsShowLoading] = useState(false);
   const [showModalConfirm, setShowModalConfirm] = useState(false);
   const { accessToken } = useSelector((state) => state?.auth);
-  const { data: offers, loading, error } = useSelector((state) => state.api);
+  const { data: segments, loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
     () => [
@@ -35,68 +35,9 @@ export default function Offers() {
         accessor: 'titleEn',
       },
       {
-        Header: 'Modified By',
+        Header: 'Rate Plan',
         disableFilters: true,
-        accessor: 'modifiedBy',
-      },
-      {
-        Header: 'New Tariff',
-        disableFilters: true,
-        accessor: 'newTariff',
-      },
-      {
-        Header: 'Offer Id',
-        disableFilters: true,
-        accessor: 'offerId',
-      },
-      {
-        Header: 'Tag Id',
-        disableFilters: true,
-        accessor: 'tagId',
-      },
-      {
-        Header: 'Segments',
-        disableFilters: true,
-        accessor: 'segmentIds',
-        Cell: ({ row }) => (
-          <button
-            className='btn  btn-icon mg-r-5 mg-b-10'
-            onClick={() =>
-              navigate(`/offers/${row.values.id}/segments`, {
-                state: { titleEn: row?.values?.titleEn },
-              })
-            }
-          >
-            <BsArrowUpRight />
-          </button>
-        ),
-      },
-      {
-        Header: 'Active',
-        disableFilters: true,
-        accessor: 'active',
-        Cell: ({ row }) =>
-          row?.values?.active ? (
-            <span className='btn btn-sm btn-label-success'>True</span>
-          ) : (
-            <span className='btn btn-sm btn-label-danger'>False</span>
-          ),
-      },
-      {
-        Header: 'Created At',
-        disableFilters: true,
-        accessor: 'createdAt',
-        Cell: ({ row }) => (
-          <time>{moment(row.values.createdAt).format('LLL')}</time>
-        ),
-      },
-      {
-        Header: 'Last Updated',
-        disableFilters: true,
-        accessor: 'lastUpdated',
-        Cell: ({ row }) => (
-          <time>{moment(row.values.lastUpdated).format('LLL')}</time>
-        ),
+        accessor: 'ratePlan',
       },
       {
         Header: '',
@@ -107,7 +48,7 @@ export default function Offers() {
             <button
               className='btn btn-primary btn-icon mg-r-5 mg-b-10'
               onClick={() =>
-                navigate(`/offers/${row.values.id}/update`, {
+                navigate(`/segments/${row.values.id}/update`, {
                   state: row.original,
                 })
               }
@@ -117,21 +58,11 @@ export default function Offers() {
             <button
               className='btn btn-danger btn-icon mg-r-5 mg-b-10'
               onClick={() => {
-                setId(row.values.id);
+                setSegmentId(row.values.id);
                 setShowModalConfirm(true);
               }}
             >
               <AiFillDelete />
-            </button>
-            <button
-              className='btn btn-info btn-icon mg-r-5 mg-b-10'
-              onClick={() =>
-                navigate(`/offers/${row.values.id}/details`, {
-                  state: row.original,
-                })
-              }
-            >
-              <BsBoxArrowUpRight />
             </button>
           </Fragment>
         ),
@@ -141,10 +72,10 @@ export default function Offers() {
   );
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
-    dispatch(getData(`offer/getAllOffers`, accessToken));
-  }, [accessToken, dispatch, isShowLoading]);
+    dispatch(getData(`offer/getSegmentsInOffer?id=${offerId}`, accessToken));
+  }, [accessToken, dispatch, isShowLoading, offerId]);
   // ----------------------------------------------------------------------------------->
-  const data = useMemo(() => isArray(offers) && offers, [offers]);
+  const data = useMemo(() => isArray(segments) && segments, [segments]);
 
   return (
     <Fragment>
@@ -152,19 +83,23 @@ export default function Offers() {
         delete={() =>
           dispatch(
             deleteData(
-              `offer/deleteOffer`,
+              `segment/deleteSegment`,
               accessToken,
               setShowModalConfirm,
               setIsShowLoading,
               isShowLoading,
-              { id },
+              { offerId, segmentIds: [segmentId] },
             ),
           )
         }
         showModalConfirmTry={setShowModalConfirm}
         toggleModal={showModalConfirm}
       />
-      <Breadcrumb title='All Offers' textActive='Offers' />
+      <Breadcrumb
+        title={`All Segments In Offer ${state?.titleEn}`}
+        textActive='Segments'
+        items={[{ name: 'Offers', url: '/offer' }]}
+      />
       {loading ? (
         <Loading isLoading={loading} />
       ) : error ? (

@@ -7,6 +7,7 @@ import Statistics from '../pages/dashboard/Statistics';
 import AddOffer from '../pages/offer/Add';
 import DetailsOffer from '../pages/offer/Details';
 import Offers from '../pages/offer/Offers';
+import OfferSegments from '../pages/offer/Segments';
 import UpdateOffer from '../pages/offer/Update';
 import AddPackage from '../pages/package/Add';
 import Packages from '../pages/package/Packages';
@@ -41,4 +42,5 @@ export {
   AddOffer,
   DetailsOffer,
   UpdateOffer,
+  OfferSegments,
 };
