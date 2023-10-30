@@ -18,6 +18,7 @@ import Roles from '../pages/role/Roles';
 import SignRole from '../pages/role/Sign';
 import UpdateRole from '../pages/role/Update';
 import AddSegment from '../pages/segment/Add';
+import SegmentsOffer from '../pages/segment/Offer';
 import Segments from '../pages/segment/Segments';
 import UpdateSegment from '../pages/segment/Update';
 export {
@@ -43,4 +44,5 @@ export {
   DetailsOffer,
   UpdateOffer,
   OfferSegments,
+  SegmentsOffer,
 };
