@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
 import { FiEdit } from 'react-icons/fi';
 import { AiFillDelete } from 'react-icons/ai';
-import { BsArrowUpRight, BsBoxArrowUpRight } from 'react-icons/bs';
+import {  BsBoxArrowUpRight } from 'react-icons/bs';
 import { getData } from '../../redux/actions/api/getData';
 import { deleteData } from '../../redux/actions/api/deleteData';
 import { Loading } from '../../components/helper/loading/Loading';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
-import moment from 'moment';
 import ModalConfirm from '../../components/helper/modal/ModalConfirm';
 import Table from '../../components/table/Table';
 
@@ -25,78 +24,55 @@ export default function Shops() {
   const columns = useMemo(
     () => [
       {
-        Header: 'Title AR',
+        Header: 'Name Ar',
         disableFilters: true,
-        accessor: 'titleAr',
+        accessor: 'shopNameAr',
       },
       {
-        Header: 'Title En',
+        Header: 'Name En',
         disableFilters: true,
-        accessor: 'titleEn',
+        accessor: 'shopNameEn',
       },
       {
-        Header: 'Modified By',
+        Header: 'City Ar',
         disableFilters: true,
-        accessor: 'modifiedBy',
+        accessor: 'city',
       },
       {
-        Header: 'New Tariff',
+        Header: 'City En',
         disableFilters: true,
-        accessor: 'newTariff',
+        accessor: 'cityEn',
       },
       {
-        Header: 'Offer Id',
+        Header: 'State Ar',
         disableFilters: true,
-        accessor: 'offerId',
+        accessor: 'state',
       },
       {
-        Header: 'Tag Id',
+        Header: 'State En',
         disableFilters: true,
-        accessor: 'tagId',
+        accessor: 'stateEn',
       },
       {
-        Header: 'Segments',
+        Header: 'Status',
         disableFilters: true,
-        accessor: 'segmentIds',
-        Cell: ({ row }) => (
-          <button
-            className='btn  btn-icon mg-r-5 mg-b-10'
-            onClick={() =>
-              navigate(`/offers/${row.values.id}/segments`, {
-                state: { titleEn: row?.values?.titleEn },
-              })
-            }
-          >
-            <BsArrowUpRight />
-          </button>
-        ),
-      },
-      {
-        Header: 'Active',
-        disableFilters: true,
-        accessor: 'active',
+        accessor: 'status',
         Cell: ({ row }) =>
-          row?.values?.active ? (
-            <span className='btn btn-sm btn-label-success'>True</span>
+          row?.values?.status ? (
+            <span className='btn btn-sm btn-label-success'>ON</span>
           ) : (
-            <span className='btn btn-sm btn-label-danger'>False</span>
+            <span className='btn btn-sm btn-label-danger'>OFF</span>
           ),
       },
       {
-        Header: 'Created At',
+        Header: 'Sattothu From',
         disableFilters: true,
-        accessor: 'createdAt',
-        Cell: ({ row }) => (
-          <time>{moment(row.values.createdAt).format('LLL')}</time>
-        ),
+        accessor: 'sattothuFrom',
       },
       {
-        Header: 'Last Updated',
+        Header: 'Sattothu To',
         disableFilters: true,
-        accessor: 'lastUpdated',
-        Cell: ({ row }) => (
-          <time>{moment(row.values.lastUpdated).format('LLL')}</time>
-        ),
+        accessor: 'sattothuTo',
       },
       {
         Header: '',
