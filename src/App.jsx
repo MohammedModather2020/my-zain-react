@@ -19,6 +19,7 @@ import {
   Register,
   Roles,
   Segments,
+  SegmentsOffer,
   SignRole,
   Statistics,
   UpdateCategory,
@@ -50,6 +51,7 @@ function App() {
           <Route path='/segments' element={<Segments />} />
           <Route path='/segments/add' element={<AddSegment />} />
           <Route path='/segments/:id/update' element={<UpdateSegment />} />
+          <Route path='/segments/:id/offers' element={<SegmentsOffer />} />
           <Route path='/offers' element={<Offers />} />
           <Route path='/offers/add' element={<AddOffer />} />
           <Route path='/offers/:id/details' element={<DetailsOffer />} />

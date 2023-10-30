@@ -1,5 +1,5 @@
 import { Fragment, useMemo, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
 import { FiEdit } from 'react-icons/fi';
@@ -10,27 +10,19 @@ import { Loading } from '../../components/helper/loading/Loading';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import ModalConfirm from '../../components/helper/modal/ModalConfirm';
 import Table from '../../components/table/Table';
-import ApiConfig from '../../api/ApiConfig';
-import { BsArrowUpRight } from 'react-icons/bs';
+import moment from 'moment';
+import { BsArrowUpRight, BsBoxArrowUpRight } from 'react-icons/bs';
 
-export default function Segments() {
+export default function SegmentsOffer() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [id, setId] = useState();
+  const { id: segmentId } = useParams();
+  const { state } = useLocation();
+  const [offerId, setOfferId] = useState();
   const [isShowLoading, setIsShowLoading] = useState(false);
   const [showModalConfirm, setShowModalConfirm] = useState(false);
   const { accessToken } = useSelector((state) => state?.auth);
-  const { data: segments, loading, error } = useSelector((state) => state.api);
-  useEffect(() => {
-    ApiConfig.get(`segment/getOffersInSegment?id=5`, {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-    }).then((res) => {
-      console.log(res.data);
-    });
-  }, []);
-
+  const { data: offers, loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
     () => [
@@ -45,14 +37,34 @@ export default function Segments() {
         accessor: 'titleEn',
       },
       {
-        Header: 'Offers',
+        Header: 'Modified By',
         disableFilters: true,
-        accessor: 'Offers',
+        accessor: 'modifiedBy',
+      },
+      {
+        Header: 'New Tariff',
+        disableFilters: true,
+        accessor: 'newTariff',
+      },
+      {
+        Header: 'Offer Id',
+        disableFilters: true,
+        accessor: 'offerId',
+      },
+      {
+        Header: 'Tag Id',
+        disableFilters: true,
+        accessor: 'tagId',
+      },
+      {
+        Header: 'Segments',
+        disableFilters: true,
+        accessor: 'segmentIds',
         Cell: ({ row }) => (
           <button
             className='btn  btn-icon mg-r-5 mg-b-10'
             onClick={() =>
-              navigate(`/segments/${row.values.id}/offers`, {
+              navigate(`/offers/${row.values.id}/segments`, {
                 state: { titleEn: row?.values?.titleEn },
               })
             }
@@ -62,9 +74,31 @@ export default function Segments() {
         ),
       },
       {
-        Header: 'Rate Plan',
+        Header: 'Active',
         disableFilters: true,
-        accessor: 'ratePlan',
+        accessor: 'active',
+        Cell: ({ row }) =>
+          row?.values?.active ? (
+            <span className='btn btn-sm btn-label-success'>True</span>
+          ) : (
+            <span className='btn btn-sm btn-label-danger'>False</span>
+          ),
+      },
+      {
+        Header: 'Created At',
+        disableFilters: true,
+        accessor: 'createdAt',
+        Cell: ({ row }) => (
+          <time>{moment(row.values.createdAt).format('LLL')}</time>
+        ),
+      },
+      {
+        Header: 'Last Updated',
+        disableFilters: true,
+        accessor: 'lastUpdated',
+        Cell: ({ row }) => (
+          <time>{moment(row.values.lastUpdated).format('LLL')}</time>
+        ),
       },
       {
         Header: '',
@@ -75,7 +109,7 @@ export default function Segments() {
             <button
               className='btn btn-primary btn-icon mg-r-5 mg-b-10'
               onClick={() =>
-                navigate(`/segments/${row.values.id}/update`, {
+                navigate(`/offers/${row.values.id}/update`, {
                   state: row.original,
                 })
               }
@@ -85,11 +119,21 @@ export default function Segments() {
             <button
               className='btn btn-danger btn-icon mg-r-5 mg-b-10'
               onClick={() => {
-                setId(row.values.id);
+                setOfferId(row.values.id);
                 setShowModalConfirm(true);
               }}
             >
               <AiFillDelete />
+            </button>
+            <button
+              className='btn btn-info btn-icon mg-r-5 mg-b-10'
+              onClick={() =>
+                navigate(`/offers/${row.values.id}/details`, {
+                  state: row.original,
+                })
+              }
+            >
+              <BsBoxArrowUpRight />
             </button>
           </Fragment>
         ),
@@ -99,10 +143,12 @@ export default function Segments() {
   );
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
-    dispatch(getData(`segment/getAllSegments`, accessToken));
-  }, [accessToken, dispatch, isShowLoading]);
+    dispatch(
+      getData(`segment/getOffersInSegment?id=${segmentId}`, accessToken),
+    );
+  }, [accessToken, dispatch, isShowLoading, segmentId]);
   // ----------------------------------------------------------------------------------->
-  const data = useMemo(() => isArray(segments) && segments, [segments]);
+  const data = useMemo(() => isArray(offers) && offers, [offers]);
 
   return (
     <Fragment>
@@ -110,19 +156,23 @@ export default function Segments() {
         delete={() =>
           dispatch(
             deleteData(
-              `segment/deleteSegment`,
+              `offer/deleteOffer`,
               accessToken,
               setShowModalConfirm,
               setIsShowLoading,
               isShowLoading,
-              { id },
+              { id: offerId },
             ),
           )
         }
         showModalConfirmTry={setShowModalConfirm}
         toggleModal={showModalConfirm}
       />
-      <Breadcrumb title='All Segments' textActive='Segments' />
+      <Breadcrumb
+        title={`All offers in segment ${state?.titleEn}`}
+        textActive='Offers'
+        items={[{ name: 'Segments', url: '/segments' }]}
+      />
       {loading ? (
         <Loading isLoading={loading} />
       ) : error ? (
