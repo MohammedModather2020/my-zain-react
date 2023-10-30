@@ -10,6 +10,7 @@ import {
   AddRole,
   AddSegment,
   Categories,
+  DetailsOffer,
   Login,
   Offers,
   Packages,
@@ -49,12 +50,12 @@ function App() {
           <Route path='/segments/:id/update' element={<UpdateSegment />} />
           <Route path='/offers' element={<Offers />} />
           <Route path='/offers/add' element={<AddOffer />} />
+          <Route path='/offers/:id/details' element={<DetailsOffer />} />
           <Route path='/auth/profile/' element={<Profile />} />
           <Route path='/roles' element={<Roles />} />
           <Route path='/roles/add' element={<AddRole />} />
           <Route path='/roles/:id/update' element={<UpdateRole />} />
           <Route path='/roles/sign' element={<SignRole />} />
-          {/* <Route path='/dashboard/statistics' element={<Statistics />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>
