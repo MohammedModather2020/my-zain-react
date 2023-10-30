@@ -5,6 +5,7 @@ import Categories from '../pages/category/Categories';
 import UpdateCategory from '../pages/category/Update';
 import Statistics from '../pages/dashboard/Statistics';
 import AddOffer from '../pages/offer/Add';
+import DetailsOffer from '../pages/offer/Details';
 import Offers from '../pages/offer/Offers';
 import AddPackage from '../pages/package/Add';
 import Packages from '../pages/package/Packages';
@@ -37,4 +38,5 @@ export {
   SignRole,
   Offers,
   AddOffer,
+  DetailsOffer,
 };

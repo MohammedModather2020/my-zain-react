@@ -108,7 +108,11 @@ export default function Offers() {
             </button>
             <button
               className='btn btn-info btn-icon mg-r-5 mg-b-10'
-              onClick={() => navigate(`/offers/${row.values.id}/details`)}
+              onClick={() =>
+                navigate(`/offers/${row.values.id}/details`, {
+                  state: row.original,
+                })
+              }
             >
               <BsBoxArrowUpRight />
             </button>
