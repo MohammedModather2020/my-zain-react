@@ -90,6 +90,9 @@ export default function StepThree({ formik }) {
               onBlur={formik.handleBlur}
               {...formik.getFieldProps('status')}
             >
+              <option className='placeholder' selected disabled value=''>
+                Please select status
+              </option>
               <option value='1'>ON</option>
               <option value='0'>OFF</option>
             </select>
