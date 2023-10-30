@@ -20,7 +20,7 @@ export default function Shops() {
   const [isShowLoading, setIsShowLoading] = useState(false);
   const [showModalConfirm, setShowModalConfirm] = useState(false);
   const { accessToken } = useSelector((state) => state?.auth);
-  const { data: offers, loading, error } = useSelector((state) => state.api);
+  const { data: shops, loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
     () => [
@@ -107,7 +107,7 @@ export default function Shops() {
             <button
               className='btn btn-primary btn-icon mg-r-5 mg-b-10'
               onClick={() =>
-                navigate(`/offers/${row.values.id}/update`, {
+                navigate(`/shops/${row.values.id}/update`, {
                   state: row.original,
                 })
               }
@@ -126,7 +126,7 @@ export default function Shops() {
             <button
               className='btn btn-info btn-icon mg-r-5 mg-b-10'
               onClick={() =>
-                navigate(`/offers/${row.values.id}/details`, {
+                navigate(`/shops/${row.values.id}/details`, {
                   state: row.original,
                 })
               }
@@ -144,7 +144,7 @@ export default function Shops() {
     dispatch(getData(`shop/getAllShops`, accessToken));
   }, [accessToken, dispatch, isShowLoading]);
   // ----------------------------------------------------------------------------------->
-  const data = useMemo(() => isArray(offers) && offers, [offers]);
+  const data = useMemo(() => isArray(shops) && shops, [shops]);
 
   return (
     <Fragment>
@@ -152,7 +152,7 @@ export default function Shops() {
         delete={() =>
           dispatch(
             deleteData(
-              `offer/deleteOffer`,
+              `shop/deleteShop`,
               accessToken,
               setShowModalConfirm,
               setIsShowLoading,
@@ -164,7 +164,7 @@ export default function Shops() {
         showModalConfirmTry={setShowModalConfirm}
         toggleModal={showModalConfirm}
       />
-      <Breadcrumb title='All Offers' textActive='Offers' />
+      <Breadcrumb title='All Shops' textActive='Shops' />
       {loading ? (
         <Loading isLoading={loading} />
       ) : error ? (

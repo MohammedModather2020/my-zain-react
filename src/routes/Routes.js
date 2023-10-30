@@ -24,6 +24,7 @@ import Segments from '../pages/segment/Segments';
 import UpdateSegment from '../pages/segment/Update';
 import AddShop from '../pages/shop/Add';
 import Shops from '../pages/shop/Shops';
+import UpdateShop from '../pages/shop/Update';
 export {
   Login,
   Register,
@@ -51,4 +52,5 @@ export {
   Admins,
   Shops,
   AddShop,
+  UpdateShop,
 };
