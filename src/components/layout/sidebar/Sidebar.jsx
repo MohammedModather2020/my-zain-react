@@ -113,7 +113,7 @@ export default function Sidebar() {
               </Link>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/shops/all'>All Shops</Link>
+                  <Link to='/shops'>All Shops</Link>
                 </li>
                 <li>
                   <Link to='/shops/add'>Add Shop</Link>
