@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, createRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
@@ -12,41 +12,48 @@ import useData from '../../hooks/useData';
 import { Loading } from '../../components/helper/loading/Loading';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
+let formik;
 export default function SignRole() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [roleSelected, setRoleSelected] = useState();
   const { accessToken } = useSelector((state) => state.auth);
   const { loading, error } = useSelector((state) => state.api);
   const { data: roles } = useData(accessToken, 'auth/getAllRoles');
   const { data: users } = useData(accessToken, 'auth/getAllUsers');
+  const { data: roleSign } = useData(
+    accessToken,
+    `auth/getRolesForUser?userId=${formik?.values?.userId}`,
+  );
+  const roleRef = createRef(roleSign);
+  const [roleSelected, setRoleSelected] = useState(roleSign);
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
     error && toast.error(error);
   }, [dispatch, error, loading]);
   // ----------------------------------------------------------------------------------->
   const initialValues = {
-    role: '',
     userId: '',
   };
   // ----------------------------------------------------------------------------------->
   const validationSchema = Yup.object({
-    role: Yup.string().required(`role is required`),
     userId: Yup.string().required(`user is required`),
   });
   // ----------------------------------------------------------------------------------->
   const onSubmit = (values) => {
+    console.log(roleSelected);
+    const roles = roleRef.current.getSelectedItems().map((item) => item.name);
     const data = {
-      role: values?.role,
+      role: roles,
       userId: values?.userId,
     };
     dispatch(sendData(`auth/signRole`, accessToken, data, navigate, '/roles'));
   };
-  const formik = useFormik({
+  formik = useFormik({
     initialValues,
     onSubmit,
     validationSchema,
   });
+
   const onSelect = (selectedList, setItem) => {
     setItem([...selectedList]);
   };
@@ -112,7 +119,6 @@ export default function SignRole() {
                         >
                           Please select user
                         </option>
-
                         {users &&
                           users?.map((user) => (
                             <option key={user?.id} value={user?.id}>
@@ -135,14 +141,13 @@ export default function SignRole() {
                         className='p-0 '
                         placeholder='Please select roles'
                         required
-                        selectedValues={''}
+                        id='role'
+                        ref={roleRef}
+                        selectedValues={roleSign}
                         onSelect={(value) => onSelect(value, setRoleSelected)}
                         onRemove={(value) => onRemove(value, setRoleSelected)}
                         options={roles}
                       />
-                      {formik.touched.role && formik.errors.role ? (
-                        <div className='tx-danger'>{formik.errors.role}</div>
-                      ) : null}
                     </div>
                   </div>
                 </div>

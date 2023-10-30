@@ -10,6 +10,8 @@ import { Loading } from '../../components/helper/loading/Loading';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import ModalConfirm from '../../components/helper/modal/ModalConfirm';
 import Table from '../../components/table/Table';
+import moment from 'moment';
+import { BsBoxArrowUpRight } from 'react-icons/bs';
 
 export default function Offers() {
   const navigate = useNavigate();
@@ -33,9 +35,51 @@ export default function Offers() {
         accessor: 'titleEn',
       },
       {
-        Header: 'Rate Plan',
+        Header: 'Modified By',
         disableFilters: true,
-        accessor: 'ratePlan',
+        accessor: 'modifiedBy',
+      },
+      {
+        Header: 'New Tariff',
+        disableFilters: true,
+        accessor: 'newTariff',
+      },
+      {
+        Header: 'Offer Id',
+        disableFilters: true,
+        accessor: 'offerId',
+      },
+      {
+        Header: 'Tag Id',
+        disableFilters: true,
+        accessor: 'tagId',
+      },
+      {
+        Header: 'active',
+        disableFilters: true,
+        accessor: 'active',
+        Cell: ({ row }) =>
+          row?.values?.active ? (
+            <span className='btn btn-sm btn-label-success'>Active</span>
+          ) : (
+            <span className='btn btn-sm btn-label-danger'>inActive</span>
+          ),
+      },
+      {
+        Header: 'Created At',
+        disableFilters: true,
+        accessor: 'createdAt',
+        Cell: ({ row }) => (
+          <time>{moment(row.values.createdAt).format('LLL')}</time>
+        ),
+      },
+      {
+        Header: 'Last Updated',
+        disableFilters: true,
+        accessor: 'lastUpdated',
+        Cell: ({ row }) => (
+          <time>{moment(row.values.lastUpdated).format('LLL')}</time>
+        ),
       },
       {
         Header: '',
@@ -61,6 +105,12 @@ export default function Offers() {
               }}
             >
               <AiFillDelete />
+            </button>
+            <button
+              className='btn btn-info btn-icon mg-r-5 mg-b-10'
+              onClick={() => navigate(`/offers/${row.values.id}/details`)}
+            >
+              <BsBoxArrowUpRight />
             </button>
           </Fragment>
         ),
