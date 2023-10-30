@@ -9,6 +9,7 @@ import {
   AddPackage,
   AddRole,
   AddSegment,
+  AddShop,
   Admins,
   Categories,
   DetailsOffer,
@@ -21,6 +22,7 @@ import {
   Roles,
   Segments,
   SegmentsOffer,
+  Shops,
   SignRole,
   Statistics,
   UpdateCategory,
@@ -58,6 +60,8 @@ function App() {
           <Route path='/offers/:id/details' element={<DetailsOffer />} />
           <Route path='/offers/:id/update' element={<UpdateOffer />} />
           <Route path='/offers/:id/segments' element={<OfferSegments />} />
+          <Route path='/shops' element={<Shops />} />
+          <Route path='/shops/add' element={<AddShop />} />
           <Route path='/auth/profile/' element={<Profile />} />
           <Route path='/roles' element={<Roles />} />
           <Route path='/roles/add' element={<AddRole />} />

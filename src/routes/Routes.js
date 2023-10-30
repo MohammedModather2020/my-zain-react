@@ -22,6 +22,8 @@ import AddSegment from '../pages/segment/Add';
 import SegmentsOffer from '../pages/segment/Offer';
 import Segments from '../pages/segment/Segments';
 import UpdateSegment from '../pages/segment/Update';
+import AddShop from '../pages/shop/Add';
+import Shops from '../pages/shop/Shops';
 export {
   Login,
   Register,
@@ -47,4 +49,6 @@ export {
   OfferSegments,
   SegmentsOffer,
   Admins,
+  Shops,
+  AddShop,
 };

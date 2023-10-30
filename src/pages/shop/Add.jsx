@@ -12,15 +12,13 @@ import { toast } from 'react-toastify';
 import StepOne from './step/StepOne';
 import StepTwo from './step/StepTwo';
 import StepThree from './step/StepThree';
-import StepFour from './step/StepFour';
 import ButtonActionStep from '../../components/form/step/ButtonAction';
 
-export default function AddOffer() {
+export default function AddShop() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(1);
-  const [segmentsSelected, setSegmentsSelected] = useState();
-  const { accessToken, username } = useSelector((state) => state.auth);
+  const { accessToken } = useSelector((state) => state.auth);
   const { loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
@@ -28,79 +26,70 @@ export default function AddOffer() {
   }, [dispatch, error, loading]);
   // ----------------------------------------------------------------------------------->
   const initialValues = {
-    offerId: '',
-    offerCategoryId: '',
-    offerPackageId: '',
-    segmentIds: '',
-    titleAr: '',
-    titleEn: '',
-    descriptionAr: '',
-    descriptionEn: '',
-    tariff: '',
-    newTariff: '',
-    newTariffActiveDate: '',
-    offerChannel: '',
-    keyword: '',
-    active: false,
-    subs: '',
-    unsubs: '',
-    tagId: '',
-    ucId: '',
-    daId: '',
+    nameAr: '',
+    nameEn: '',
+    cityAr: '',
+    cityEn: '',
+    stateAr: '',
+    stateEn: '',
+    sattothuFrom: '',
+    sattothuTo: '',
+    friFrom: '',
+    friTo: '',
+    status: '',
+    action: '',
+    addressAr: '',
+    addressEn: '',
+    latitude: '',
+    longtitude: '',
+    searchKeywords1: '',
+    searchKeywords2: '',
+    distance: '',
   };
   // ----------------------------------------------------------------------------------->
   const validationSchema = Yup.object({
-    offerId: Yup.string()
-      .required(`OfferId is required`)
-      .min(1, `The offerId you should not be less than one character`)
-      .max(30, `The offerId you must not than 30 characters`),
+    nameAr: Yup.string()
+      .required(`Name [AR] is required`)
+      .min(1, `The Name [AR] you should not be less than one character`)
+      .max(50, `The Name [AR] you must not than 30 characters`),
   });
   // ----------------------------------------------------------------------------------->
   const onSubmit = (values) => {
     const data = {
-      active: values.active,
-      descAr: values.descriptionAr,
-      descEn: values.descriptionEn,
-      modifiedBy: username,
-      newTariff: values?.newTariff,
-      newTariffActiveDate: values?.newTariffActiveDate,
-      offerId: values?.offerId,
-      subs: values?.subs,
-      tagId: values?.tagId,
-      tariff: values?.tariff,
-      titleAr: values?.titleAr,
-      titleEn: values?.titleEn,
-      unsubs: values?.unsubs,
-      offerCategoryId: values?.offerCategoryId,
-      offerPackageId: values?.offerPackageId,
-      segmentIds: segmentsSelected.map((segment) => segment?.id),
-      keyword: values?.keyword,
-      daId: values?.daId,
-      ucId: values?.ucId,
-      offerChannel: values?.offerChannel,
+      shopNameEn: values?.nameEn,
+      shopNameAr: values?.nameAr,
+      sattothuFrom: values?.sattothuFrom,
+      sattothuTo: values?.sattothuTo,
+      friFrom: values?.friFrom,
+      friTo: values?.friTo,
+      state: values?.stateAr,
+      city: values?.cityAr,
+      addressEn: values?.addressEn,
+      addressAr: values?.addressAr,
+      latitude: values?.latitude,
+      longtitude: values?.longtitude,
+      searchKeywords: values?.searchKeywords1,
+      distance: values?.distance,
+      action: values?.action,
+      cityEn: values?.cityEn,
+      stateEn: values?.cityEn,
+      searchKeywords2: values?.searchKeywords2,
+      status: values?.status,
     };
-    dispatch(
-      sendData(`offer/addOffer`, accessToken, data, navigate, '/offers'),
-    );
+    dispatch(sendData(`shop/addShop`, accessToken, data, navigate, '/shops'));
   };
   const formik = useFormik({
     initialValues,
     onSubmit,
     validationSchema,
   });
-  const onSelect = (selectedList, setItem) => {
-    setItem([...selectedList]);
-  };
-  const onRemove = (selectedList, setItem) => {
-    setItem([...selectedList]);
-  };
   return (
     <Fragment>
       <Loading isLoading={loading} />
       <Breadcrumb
-        title='Add Offer'
+        title='Add Shops'
         textActive='Add'
-        items={[{ name: 'Offers', url: '/offers' }]}
+        items={[{ name: 'Shops', url: '/shops' }]}
       />
       <div className='row row-xs clearfix'>
         <div className='col-md-12 col-lg-12'>
@@ -112,14 +101,7 @@ export default function AddOffer() {
               >
                 <FormWizard activeStep={activeStep}>
                   <Step label='One'>
-                    <StepOne
-                      formik={formik}
-                      accessToken={accessToken}
-                      setSegmentsSelected={setSegmentsSelected}
-                      segmentsSelected={segmentsSelected}
-                      onRemove={onRemove}
-                      onSelect={onSelect}
-                    />
+                    <StepOne formik={formik} />
                   </Step>
                   <Step label='Two'>
                     <StepTwo formik={formik} />
@@ -127,14 +109,11 @@ export default function AddOffer() {
                   <Step label='Three'>
                     <StepThree formik={formik} />
                   </Step>
-                  <Step label='Four'>
-                    <StepFour formik={formik} />
-                  </Step>
                 </FormWizard>
                 <ButtonActionStep
                   activeStep={activeStep}
                   setActiveStep={setActiveStep}
-                  total={4}
+                  total={3}
                 />
               </form>
             </div>
