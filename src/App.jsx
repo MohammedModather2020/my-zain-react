@@ -9,6 +9,7 @@ import {
   AddPackage,
   AddRole,
   AddSegment,
+  Admins,
   Categories,
   DetailsOffer,
   Login,
@@ -62,6 +63,7 @@ function App() {
           <Route path='/roles/add' element={<AddRole />} />
           <Route path='/roles/:id/update' element={<UpdateRole />} />
           <Route path='/roles/sign' element={<SignRole />} />
+          <Route path='/admins' element={<Admins />} />
         </Route>
       </Routes>
     </BrowserRouter>
