@@ -15,12 +15,16 @@ import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import StepOne from './step/StepOne';
+import StepTwo from './step/StepTwo';
+import StepThree from './step/StepThree';
+import StepFour from './step/StepFour';
 
 export default function AddOffer() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(1);
-  const { accessToken } = useSelector((state) => state.auth);
+  const [segmentsSelected, setSegmentsSelected] = useState();
+  const { accessToken, username } = useSelector((state) => state.auth);
   const { loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
@@ -28,31 +32,75 @@ export default function AddOffer() {
   }, [dispatch, error, loading]);
   // ----------------------------------------------------------------------------------->
   const initialValues = {
+    offerId: '',
+    offerCategoryId: '',
+    offerPackageId: '',
+    segmentIds: '',
     titleAr: '',
     titleEn: '',
     descriptionAr: '',
     descriptionEn: '',
+    tariff: '',
+    newTariff: '',
+    newTariffActiveDate: '',
+    offerChannel: '',
+    keyword: '',
+    active: false,
+    subs: '',
+    unsubs: '',
+    tagId: '',
+    ucId: '',
+    daId: '',
   };
   // ----------------------------------------------------------------------------------->
   const validationSchema = Yup.object({
-    name: Yup.string()
-      .required(`Name is required`)
-      .min(3, `The name you should not be less than 3 characters`)
-      .max(70, `The name you must not than 70 characters`),
+    offerId: Yup.string()
+      .required(`OfferId is required`)
+      .min(1, `The offerId you should not be less than one character`)
+      .max(30, `The offerId you must not than 30 characters`),
   });
   // ----------------------------------------------------------------------------------->
   const onSubmit = (values) => {
-    const data = {};
-    dispatch(sendData(`offer/addOffer`, accessToken, data, navigate, '/roles'));
+    const data = {
+      active: values.active,
+      descAr: values.descriptionAr,
+      descEn: values.descriptionEn,
+      modifiedBy: username,
+      newTariff: values?.newTariff,
+      newTariffActiveDate: values?.newTariffActiveDate,
+      offerId: values?.offerId,
+      subs: values?.subs,
+      tagId: values?.tagId,
+      tariff: values?.tariff,
+      titleAr: values?.titleAr,
+      titleEn: values?.titleEn,
+      unsubs: values?.unsubs,
+      offerCategoryId: values?.offerCategoryId,
+      offerPackageId: values?.offerPackageId,
+      segmentIds: segmentsSelected.map((segment) => segment?.id),
+      keyword: values?.keyword,
+      daId: values?.daId,
+      ucId: values?.ucId,
+      offerChannel: values?.offerChannel,
+    };
+    dispatch(
+      sendData(`offer/addOffer`, accessToken, data, navigate, '/offers'),
+    );
   };
   const formik = useFormik({
     initialValues,
     onSubmit,
     validationSchema,
   });
+  const onSelect = (selectedList, setItem) => {
+    setItem([...selectedList]);
+  };
+  const onRemove = (selectedList, setItem) => {
+    setItem([...selectedList]);
+  };
   return (
     <Fragment>
-      {/* <Loading isLoading={loading} /> */}
+      <Loading isLoading={loading} />
       <Breadcrumb
         title='Add Offer'
         textActive='Add'
@@ -67,15 +115,24 @@ export default function AddOffer() {
                 onSubmit={formik.handleSubmit}
               >
                 <FormWizard activeStep={activeStep}>
-                  <StepOne formik={formik} />
+                  <Step label='One'>
+                    <StepOne
+                      formik={formik}
+                      accessToken={accessToken}
+                      setSegmentsSelected={setSegmentsSelected}
+                      segmentsSelected={segmentsSelected}
+                      onRemove={onRemove}
+                      onSelect={onSelect}
+                    />
+                  </Step>
                   <Step label='Two'>
-                    <p>Two</p>
+                    <StepTwo formik={formik} />
                   </Step>
                   <Step label='Three'>
-                    <p>One</p>
+                    <StepThree formik={formik} />
                   </Step>
                   <Step label='Four'>
-                    <p>One</p>
+                    <StepFour formik={formik} />
                   </Step>
                 </FormWizard>
                 <div className='form-layout-footer text-center mt-5 d-flex justify-content-between align-items-center'>
@@ -84,16 +141,16 @@ export default function AddOffer() {
                       activeStep === 1 ? 'disabled' : 'btn-custom-primary'
                     }`}
                     type='button'
+                    onClick={() =>
+                      setActiveStep((prevActive) =>
+                        prevActive > 1 ? prevActive - 1 : 1,
+                      )
+                    }
                   >
                     <MdOutlineKeyboardArrowLeft
                       color={activeStep == 1 ? 'black' : 'white'}
                       size={20}
                       className='mr-2'
-                      onClick={() =>
-                        setActiveStep((prevActive) =>
-                          prevActive > 1 ? prevActive - 1 : 1,
-                        )
-                      }
                     />
                     Previous
                   </button>

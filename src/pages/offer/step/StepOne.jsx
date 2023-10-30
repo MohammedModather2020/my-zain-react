@@ -1,187 +1,125 @@
-import { Step } from '@haribhandari/react-step';
 import Multiselect from 'multiselect-react-dropdown';
+import useData from '../../../hooks/useData';
 
 export default function StepOne({
+  accessToken,
   formik,
-  users = [],
   onSelect,
   onRemove,
-  setRoleSelected,
+  setSegmentsSelected,
+  segmentsSelected,
 }) {
+  const { data: categories } = useData(
+    accessToken,
+    'category/getAllCategories',
+  );
+  const { data: packages } = useData(accessToken, 'package/getAllPackages');
+  const { data: segments } = useData(accessToken, '/segment/getAllSegments');
+
   return (
-    <Step label='one'>
-      <div className='row mg-b-25'>
-        <div className='col-lg-6'>
-          <div className='form-group'>
-            <label htmlFor='titleAr' className='form-control-label active'>
-              Offer ID <span className='tx-danger'>*</span>
-            </label>
-            <input
-              className='form-control'
-              type='text'
-              id='titleAR'
-              name='titleAr'
-              {...formik.getFieldProps('titleAr')}
-            />
-            {formik.touched.titleAr && formik.errors.titleAr ? (
-              <div className='tx-danger'>{formik.errors.titleAr}</div>
-            ) : null}
-          </div>
-        </div>
-        <div className='col-lg-6'>
-          <div className='form-group'>
-            <label htmlFor='userId' className='form-control-label active'>
-              Category <span className='tx-danger'>*</span>
-            </label>
-            <select
-              className='custom-select py-0'
-              value={formik.values.userId}
-              {...formik.getFieldProps('userId')}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            >
-              <option className='placeholder' selected disabled value=''>
-                Please select user
-              </option>
-
-              {users &&
-                users?.map((user) => (
-                  <option key={user?.id} value={user?.id}>
-                    {`${user.firstName}  ${user?.lastName}`}
-                  </option>
-                ))}
-            </select>
-            {formik.touched.userId && formik.errors.userId ? (
-              <div className='tx-danger'>{formik.errors.userId}</div>
-            ) : null}
-          </div>
-        </div>
-        <div className='col-lg-6'>
-          <div className='form-group'>
-            <label htmlFor='userId' className='form-control-label active'>
-              Package <span className='tx-danger'>*</span>
-            </label>
-            <select
-              className='custom-select py-0'
-              value={formik.values.userId}
-              {...formik.getFieldProps('userId')}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            >
-              <option className='placeholder' selected disabled value=''>
-                Please select user
-              </option>
-
-              {users &&
-                users?.map((user) => (
-                  <option key={user?.id} value={user?.id}>
-                    {`${user.firstName}  ${user?.lastName}`}
-                  </option>
-                ))}
-            </select>
-            {formik.touched.userId && formik.errors.userId ? (
-              <div className='tx-danger'>{formik.errors.userId}</div>
-            ) : null}
-          </div>
-        </div>
-        <div className='col-lg-6'>
-          <div className='form-group'>
-            <label htmlFor='role' className='form-control-label'>
-              Segments <span className='tx-danger'>*</span>
-            </label>
-            <Multiselect
-              displayValue='name'
-              className='p-0 '
-              placeholder='Please select roles'
-              required
-              selectedValues={''}
-              onSelect={(value) => onSelect(value, setRoleSelected)}
-              onRemove={(value) => onRemove(value, setRoleSelected)}
-              options={users}
-            />
-            {formik.touched.role && formik.errors.role ? (
-              <div className='tx-danger'>{formik.errors.role}</div>
-            ) : null}
-          </div>
-        </div>
-        <div className='col-lg-6'>
-          <div className='form-group'>
-            <label htmlFor='titleAr' className='form-control-label active'>
-              Title [AR] <span className='tx-danger'>*</span>
-            </label>
-            <input
-              className='form-control'
-              type='text'
-              id='titleAR'
-              name='titleAr'
-              {...formik.getFieldProps('titleAr')}
-            />
-            {formik.touched.titleAr && formik.errors.titleAr ? (
-              <div className='tx-danger'>{formik.errors.titleAr}</div>
-            ) : null}
-          </div>
-        </div>
-        <div className='col-lg-6'>
-          <div className='form-group'>
-            <label htmlFor='titleEn' className='form-control-label active'>
-              Title [EN] <span className='tx-danger'>*</span>
-            </label>
-            <input
-              className='form-control'
-              type='text'
-              id='titleEn'
-              name='titleEn'
-              {...formik.getFieldProps('titleEn')}
-            />
-            {formik.touched.titleEn && formik.errors.titleEn ? (
-              <div className='tx-danger'>{formik.errors.titleEn}</div>
-            ) : null}
-          </div>
-        </div>
-        <div className='col-lg-6'>
-          <div className='form-group'>
-            <label
-              htmlFor='descriptionAr'
-              className='form-control-label active'
-            >
-              Description [AR]
-              <span className='tx-danger'>*</span>
-            </label>
-            <textarea
-              className='form-control'
-              type='text'
-              rows={6}
-              name='descriptionAr'
-              id='descriptionAr'
-              {...formik.getFieldProps('descriptionAr')}
-            ></textarea>
-            {formik.touched.descriptionAr && formik.errors.descriptionAr ? (
-              <div className='tx-danger'>{formik.errors.descriptionAr}</div>
-            ) : null}
-          </div>
-        </div>
-        <div className='col-lg-6'>
-          <div className='form-group'>
-            <label
-              htmlFor='descriptionEn'
-              className='form-control-label active'
-            >
-              Description [EN] <span className='tx-danger'>*</span>
-            </label>
-            <textarea
-              className='form-control'
-              type='text'
-              rows={6}
-              id='descriptionEn'
-              name='descriptionEn'
-              {...formik.getFieldProps('descriptionEn')}
-            ></textarea>
-            {formik.touched.descriptionEn && formik.errors.descriptionEn ? (
-              <div className='tx-danger'>{formik.errors.descriptionEn}</div>
-            ) : null}
-          </div>
+    <div className='row mg-b-25'>
+      <div className='col-lg-6'>
+        <div className='form-group'>
+          <label htmlFor='offerId' className='form-control-label active'>
+            Offer ID <span className='tx-danger'>*</span>
+          </label>
+          <input
+            className='form-control'
+            type='text'
+            required
+            id='offerId'
+            name='offerId'
+            {...formik.getFieldProps('offerId')}
+          />
+          {formik.touched.offerId && formik.errors.offerId ? (
+            <div className='tx-danger'>{formik.errors.offerId}</div>
+          ) : null}
         </div>
       </div>
-    </Step>
+      <div className='col-lg-6'>
+        <div className='form-group'>
+          <label
+            htmlFor='offerCategoryId'
+            className='form-control-label active'
+          >
+            Category <span className='tx-danger'>*</span>
+          </label>
+          <select
+            className='custom-select py-0'
+            required
+            value={formik.values.offerCategoryId}
+            {...formik.getFieldProps('offerCategoryId')}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          >
+            <option className='placeholder' selected disabled value=''>
+              Please select category
+            </option>
+            {categories &&
+              categories?.map((category) => (
+                <option key={category?.id} value={category?.id}>
+                  {category.titleEn}
+                </option>
+              ))}
+          </select>
+          {formik.touched.offerCategoryId && formik.errors.offerCategoryId ? (
+            <div className='tx-danger'>{formik.errors.offerCategoryId}</div>
+          ) : null}
+        </div>
+      </div>
+      <div className='col-lg-6'>
+        <div className='form-group'>
+          <label htmlFor='offerPackageId' className='form-control-label active'>
+            Package <span className='tx-danger'>*</span>
+          </label>
+          <select
+            className='custom-select py-0'
+            required
+            value={formik.values.offerPackageId}
+            {...formik.getFieldProps('offerPackageId')}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          >
+            <option className='placeholder' selected disabled value=''>
+              Please select package
+            </option>
+
+            {packages &&
+              packages?.map((item) => (
+                <option key={item?.id} value={item?.id}>
+                  {item.titleEn}
+                </option>
+              ))}
+          </select>
+          {formik.touched.offerPackageId && formik.errors.offerPackageId ? (
+            <div className='tx-danger'>{formik.errors.offerPackageId}</div>
+          ) : null}
+        </div>
+      </div>
+      <div className='col-lg-6'>
+        <div className='form-group'>
+          <label htmlFor='segmentIds' className='form-control-label'>
+            Segments <span className='tx-danger'>*</span>
+          </label>
+          <Multiselect
+            displayValue='titleEn'
+            isObject={true}
+            id='segmentIds'
+            className='p-0 '
+            placeholder='Please select segments'
+            {...formik.getFieldProps('segmentIds')}
+            required
+            selectedValues={segmentsSelected}
+            onKeyPressFn={(value) => onSelect(value, setSegmentsSelected)}
+            onSelect={(value) => onSelect(value, setSegmentsSelected)}
+            onRemove={(value) => onRemove(value, setSegmentsSelected)}
+            options={segments}
+          />
+          {formik.touched.segmentIds && formik.errors.segmentIds ? (
+            <div className='tx-danger'>{formik.errors.segmentIds}</div>
+          ) : null}
+        </div>
+      </div>
+    </div>
   );
 }
