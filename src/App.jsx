@@ -13,6 +13,7 @@ import {
   Admins,
   Categories,
   DetailsOffer,
+  DetailsShop,
   Login,
   OfferSegments,
   Offers,
@@ -30,6 +31,7 @@ import {
   UpdatePackage,
   UpdateRole,
   UpdateSegment,
+  UpdateShop,
 } from './routes/Routes';
 
 function App() {
@@ -62,6 +64,8 @@ function App() {
           <Route path='/offers/:id/segments' element={<OfferSegments />} />
           <Route path='/shops' element={<Shops />} />
           <Route path='/shops/add' element={<AddShop />} />
+          <Route path='/shops/:id/update' element={<UpdateShop />} />
+          <Route path='/shops/:id/details' element={<DetailsShop />} />
           <Route path='/auth/profile/' element={<Profile />} />
           <Route path='/roles' element={<Roles />} />
           <Route path='/roles/add' element={<AddRole />} />

@@ -23,6 +23,7 @@ import SegmentsOffer from '../pages/segment/Offer';
 import Segments from '../pages/segment/Segments';
 import UpdateSegment from '../pages/segment/Update';
 import AddShop from '../pages/shop/Add';
+import DetailsShop from '../pages/shop/Details';
 import Shops from '../pages/shop/Shops';
 import UpdateShop from '../pages/shop/Update';
 export {
@@ -53,4 +54,5 @@ export {
   Shops,
   AddShop,
   UpdateShop,
+  DetailsShop,
 };
