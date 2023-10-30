@@ -1,3 +1,4 @@
+import Admins from '../pages/admin/Admins';
 import Login from '../pages/auth/login/Login';
 import Register from '../pages/auth/register/Register';
 import AddCategory from '../pages/category/Add';
@@ -45,4 +46,5 @@ export {
   UpdateOffer,
   OfferSegments,
   SegmentsOffer,
+  Admins,
 };
