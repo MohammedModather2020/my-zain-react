@@ -12,6 +12,7 @@ import {
   Categories,
   DetailsOffer,
   Login,
+  OfferSegments,
   Offers,
   Packages,
   Profile,
@@ -53,6 +54,7 @@ function App() {
           <Route path='/offers/add' element={<AddOffer />} />
           <Route path='/offers/:id/details' element={<DetailsOffer />} />
           <Route path='/offers/:id/update' element={<UpdateOffer />} />
+          <Route path='/offers/:id/segments' element={<OfferSegments />} />
           <Route path='/auth/profile/' element={<Profile />} />
           <Route path='/roles' element={<Roles />} />
           <Route path='/roles/add' element={<AddRole />} />
