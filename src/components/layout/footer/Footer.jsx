@@ -6,8 +6,8 @@ export default function Footer() {
           <p className='pd-y-10 mb-0'>
             Copyright &copy; {new Date().getFullYear()} | All rights reserved. |
             Created By{' '}
-            <a href='' target='_blank'>
-              Eservice Team
+            <a href='https://www.sd.zain.com' target='_blank' rel='noreferrer'>
+              E-Service Team
             </a>
           </p>
         </div>

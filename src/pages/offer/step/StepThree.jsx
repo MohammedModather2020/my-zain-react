@@ -1,4 +1,4 @@
-export default function StepThree({ formik }) {
+export default function StepThree({ formik, roles }) {
   return (
     <div className='row mg-b-25'>
       <div className='col-lg-6'>
@@ -10,7 +10,6 @@ export default function StepThree({ formik }) {
             className='form-control'
             type='text'
             id='tariff'
-            required
             name='tariff'
             {...formik.getFieldProps('tariff')}
           />
@@ -28,7 +27,6 @@ export default function StepThree({ formik }) {
             className='form-control'
             type='text'
             id='newTariff'
-            required
             name='newTariff'
             {...formik.getFieldProps('newTariff')}
           />
@@ -45,7 +43,6 @@ export default function StepThree({ formik }) {
           <input
             className='form-control'
             type='date'
-            required
             id='newTariffActiveDate'
             name='newTariffActiveDate'
             {...formik.getFieldProps('newTariffActiveDate')}

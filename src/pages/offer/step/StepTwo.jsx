@@ -1,6 +1,8 @@
 import { Step } from '@haribhandari/react-step';
+import { requiredFiledByRole } from '../../../utils/requiredFiledByRole';
+import { disabledFiledByRole } from '../../../utils/disabledFiledByRole';
 
-export default function StepTwo({ formik }) {
+export default function StepTwo({ formik, roles }) {
   return (
     <Step label='Two'>
       <div className='row mg-b-25'>
@@ -13,7 +15,8 @@ export default function StepTwo({ formik }) {
               className='form-control'
               type='text'
               id='titleAr'
-              required
+              required={requiredFiledByRole(roles, 'Business')}
+              disabled={disabledFiledByRole(roles, 'Business')}
               name='titleAr'
               {...formik.getFieldProps('titleAr')}
             />
@@ -30,7 +33,8 @@ export default function StepTwo({ formik }) {
             <input
               className='form-control'
               type='text'
-              required
+              required={requiredFiledByRole(roles, 'Business')}
+              disabled={disabledFiledByRole(roles, 'Business')}
               id='titleEn'
               name='titleEn'
               {...formik.getFieldProps('titleEn')}
@@ -53,7 +57,8 @@ export default function StepTwo({ formik }) {
               className='form-control'
               type='text'
               rows={6}
-              required
+              required={requiredFiledByRole(roles, 'Business')}
+              disabled={disabledFiledByRole(roles, 'Business')}
               name='descriptionAr'
               id='descriptionAr'
               {...formik.getFieldProps('descriptionAr')}
@@ -75,7 +80,8 @@ export default function StepTwo({ formik }) {
               className='form-control'
               type='text'
               rows={6}
-              required
+              required={requiredFiledByRole(roles, 'Business')}
+              disabled={disabledFiledByRole(roles, 'Business')}
               id='descriptionEn'
               name='descriptionEn'
               {...formik.getFieldProps('descriptionEn')}

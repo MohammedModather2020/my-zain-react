@@ -1,5 +1,7 @@
 import Multiselect from 'multiselect-react-dropdown';
 import useData from '../../../hooks/useData';
+import { requiredFiledByRole } from '../../../utils/requiredFiledByRole';
+import { disabledFiledByRole } from '../../../utils/disabledFiledByRole';
 
 export default function StepOne({
   accessToken,
@@ -8,6 +10,7 @@ export default function StepOne({
   onRemove,
   setSegmentsSelected,
   segmentsSelected,
+  roles,
 }) {
   const { data: categories } = useData(
     accessToken,
@@ -26,7 +29,8 @@ export default function StepOne({
           <input
             className='form-control'
             type='text'
-            required
+            required={requiredFiledByRole(roles, 'ProductOffering')}
+            disabled={disabledFiledByRole(roles, 'ProductOffering')}
             id='offerId'
             name='offerId'
             {...formik.getFieldProps('offerId')}

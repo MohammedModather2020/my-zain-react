@@ -37,7 +37,7 @@ export default function Navbar() {
           <ul className='list-inline justify-content-end'>
             <li className='list-inline-item dropdown'>
               <a
-                href=''
+                href='#'
                 data-toggle='dropdown'
                 aria-haspopup='true'
                 aria-expanded='false'
@@ -65,7 +65,6 @@ export default function Navbar() {
                   <Link to='/auth/profile' className='dropdown-item'>
                     <CgProfile /> My profile
                   </Link>
-
                   <Link
                     to='#'
                     className='dropdown-item'

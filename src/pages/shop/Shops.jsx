@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
 import { FiEdit } from 'react-icons/fi';
 import { AiFillDelete } from 'react-icons/ai';
-import {  BsBoxArrowUpRight } from 'react-icons/bs';
+import { BsBoxArrowUpRight } from 'react-icons/bs';
 import { getData } from '../../redux/actions/api/getData';
 import { deleteData } from '../../redux/actions/api/deleteData';
 import { Loading } from '../../components/helper/loading/Loading';

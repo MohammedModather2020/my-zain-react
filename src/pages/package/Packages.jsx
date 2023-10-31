@@ -38,7 +38,7 @@ export default function Packages() {
         disableFilters: true,
         accessor: 'lastUpdate',
         Cell: ({ row }) => (
-          <time>{moment(row.values.lastUpdate).format('LLL')}</time>
+          <time>{moment(row.values.lastUpdate).format('LL')}</time>
         ),
       },
       {
@@ -104,7 +104,7 @@ export default function Packages() {
         error
       ) : (
         <div className='card shadow mb-4'>
-          {data && <Table columns={columns} data={data ?? []} />}
+          {data && <Table columns={columns} data={data} />}
         </div>
       )}
     </Fragment>
