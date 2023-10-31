@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import { BiSolidOffer, BiUser } from 'react-icons/bi';
 import { AiFillSliders } from 'react-icons/ai';
-import { MdOutlineLocalOffer } from 'react-icons/md';
+import { MdCalendarMonth, MdOutlineLocalOffer } from 'react-icons/md';
 import useData from '../../hooks/useData';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
@@ -121,6 +121,12 @@ export default function Statistics() {
                         {statistics?.lastCreatedOffers}
                       </span>
                     </h2>
+                    <div className='d-flex align-items-center tx-gray-500'>
+                      <span className='text-primary mr-2 d-flex align-items-center'>
+                        <MdCalendarMonth className='mr-1' />
+                        Month
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -146,6 +152,12 @@ export default function Statistics() {
                         {statistics?.lastModifiedOffers}
                       </span>
                     </h2>
+                    <div className='d-flex align-items-center tx-gray-500'>
+                      <span className='text-primary mr-2 d-flex align-items-center'>
+                        <MdCalendarMonth className='mr-1' />
+                        Month
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

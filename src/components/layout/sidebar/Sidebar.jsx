@@ -32,11 +32,11 @@ export default function Sidebar() {
         <div className='page-sidebar-menu'>
           <ul className='accordion-menu'>
             <li>
-              <Link to='#' tabIndex={1}>
+              <a href='#' tabIndex={1}>
                 <FiHome size={25} />
                 <span>Dashboard</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </Link>
+              </a>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/dashboard/statistics'>Statistics</Link>
@@ -46,11 +46,11 @@ export default function Sidebar() {
             <li className='menu-divider mg-y-20-force'></li>
             <li className='mg-20-force menu-elements'>Elements</li>
             <li>
-              <Link to='#'>
+              <a href='#'>
                 <BiCategory size={25} />
                 <span>Categories</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </Link>
+              </a>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/categories'>All Categories</Link>
@@ -61,11 +61,11 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <Link to='#'>
+              <a href='#'>
                 <LiaShoppingBagSolid size={25} />
                 <span>Packages</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </Link>
+              </a>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/packages'>All Packages</Link>
@@ -76,11 +76,11 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <Link to='#'>
+              <a href='#'>
                 <AiOutlineApartment size={25} />
                 <span>Segments</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </Link>
+              </a>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/segments'>All Segments</Link>
@@ -91,11 +91,11 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <Link to='#'>
+              <a href='#'>
                 <BiSolidOffer size={25} />
                 <span>Offers</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </Link>
+              </a>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/offers'>All Offers</Link>
@@ -106,11 +106,11 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <Link to='#'>
+              <a href='#'>
                 <AiOutlineShop size={25} />
                 <span>Shops</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </Link>
+              </a>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/shops'>All Shops</Link>
@@ -123,11 +123,11 @@ export default function Sidebar() {
             <li className='menu-divider mg-y-20-force'></li>
             <li className='mg-20-force menu-extras'>Authorization</li>
             <li>
-              <Link to='#'>
+              <a href='#'>
                 <MdOutlineAdminPanelSettings size={25} />
                 <span>Admins</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </Link>
+              </a>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/admins'>All Admins</Link>
@@ -135,11 +135,11 @@ export default function Sidebar() {
               </ul>
             </li>
             <li>
-              <Link to='#'>
+              <a href='#'>
                 <LiaUsersCogSolid size={25} />
                 <span>Roles</span>
                 <i className='accordion-icon fa fa-angle-left'></i>
-              </Link>
+              </a>
               <ul className='sub-menu'>
                 <li>
                   <Link to='/roles'>All Roles</Link>

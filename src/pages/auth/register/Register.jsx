@@ -102,11 +102,11 @@ export default function Register() {
 
             toast.success(message);
             if (roles.includes('Admin')) {
-              navigate('/dashboard');
+              navigate('/dashboard/statistics');
             } else if (roles.includes('Shop')) {
               navigate('/shops');
             } else {
-              navigate('/user');
+              navigate('/categories');
             }
           } else {
             toast.warn(

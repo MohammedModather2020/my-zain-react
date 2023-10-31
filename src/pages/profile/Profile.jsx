@@ -6,7 +6,7 @@ import Avatar from 'react-avatar';
 
 export default function Profile() {
   const { roles, firstName, lastName, username, email } = useSelector(
-    (state) => state.auth,
+    (state) => state?.auth,
   );
 
   return (

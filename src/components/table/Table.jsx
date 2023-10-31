@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { matchSorter } from 'match-sorter';
 import {
   useFilters,
@@ -10,75 +10,9 @@ import {
 import { MdArrowDownward, MdArrowUpward, MdSwapVert } from 'react-icons/md';
 import GlobalTableFilter from '../helper/filter/GlobalTableFilter';
 import { FiChevronsLeft, FiChevronsRight } from 'react-icons/fi';
-// ----------------------------------------------------------------------------------->
-export function SliderColumnFilter({
-  column: { filterValue, setFilter, preFilteredRows, id },
-}) {
-  // Calculate the min and max
-  // using the preFilteredRows
-  const [min, max] = React.useMemo(() => {
-    let min = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
-    let max = preFilteredRows.length ? preFilteredRows[0].values[id] : 0;
-    preFilteredRows.forEach((row) => {
-      min = Math.min(row.values[id], min);
-      max = Math.max(row.values[id], max);
-    });
-    return [min, max];
-  }, [id, preFilteredRows]);
+import { DefaultColumnFilter } from '../helper/filter/DefaultColumnFilter';
 
-  return (
-    <div className='form-group'>
-      <input
-        className='form-group ml-1'
-        type='range'
-        min={min}
-        max={max}
-        value={filterValue || min}
-        onChange={(e) => {
-          setFilter(parseInt(e.target.value, 10));
-        }}
-      />
-    </div>
-  );
-}
-// ----------------------------------------------------------------------------------->
-export function SelectColumnFilter({
-  column: { filterValue, setFilter, preFilteredRows, id },
-}) {
-  // Calculate the options for filtering
-  // using the preFilteredRows
-  const options = React.useMemo(() => {
-    const options = new Set();
-    preFilteredRows.forEach((row) => {
-      options.add(row.values[id]);
-    });
-    return [...options.values()];
-  }, [id, preFilteredRows]);
-
-  // Render a multi-select box
-  return (
-    <select
-      value={filterValue}
-      className='form-control'
-      onChange={(e) => {
-        setFilter(e.target.value || undefined);
-      }}
-    >
-      <option value=''>All</option>
-      {options.map((option, i) => (
-        <option key={i} value={option}>
-          {option === 0 || option === 1
-            ? option === 0
-              ? 'inactive'
-              : 'active'
-            : option}
-        </option>
-      ))}
-    </select>
-  );
-}
-// ----------------------------------------------------------------------------------->
-function Table({
+export default function Table({
   columns,
   data = [],
   activePage,
@@ -87,23 +21,6 @@ function Table({
   total,
   setLimitPage,
 }) {
-  // Define a default UI for filtering
-  function DefaultColumnFilter({
-    column: { filterValue, preFilteredRows, setFilter },
-  }) {
-    const count = preFilteredRows.length;
-
-    return (
-      <input
-        value={filterValue || ''}
-        className='form-control'
-        onChange={(e) => {
-          setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
-        }}
-        placeholder={`Search ${count} records...`}
-      />
-    );
-  }
   // ----------------------------------------------------------------------------------->
   function fuzzyTextFilterFn(rows, id, filterValue) {
     return matchSorter(rows, filterValue, { keys: [(row) => row.values[id]] });
@@ -163,13 +80,13 @@ function Table({
     useFilters,
     useGlobalFilter,
     useSortBy,
-    usePagination,
+    usePagination
   );
   const { pageIndex, pageSize, globalFilter } = state;
   return (
     <div className='table-responsive p-3'>
       {data?.length > 0 ? (
-        <>
+        <Fragment>
           <div className='row align-items-start mb-2'>
             <div className='col-md-5'>
               <GlobalTableFilter
@@ -260,7 +177,7 @@ function Table({
               <span>
                 Page{' '}
                 <strong>
-                  {pageIndex + 1} of {pageOptions.length}
+                  {pageIndex + 1} of {pageOptions?.length}
                 </strong>{' '}
               </span>
             </div>
@@ -327,11 +244,10 @@ function Table({
               </button>
             </div>
           </div>
-        </>
+        </Fragment>
       ) : (
         <div className='text-danger text-center'>No data found</div>
       )}
     </div>
   );
 }
-export default Table;

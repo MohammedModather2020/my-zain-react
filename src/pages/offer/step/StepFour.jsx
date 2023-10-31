@@ -1,4 +1,7 @@
-export default function StepFour({ formik }) {
+import { disabledFiledByRole } from '../../../utils/disabledFiledByRole';
+import { requiredFiledByRole } from '../../../utils/requiredFiledByRole';
+
+export default function StepFour({ formik, roles }) {
   return (
     <div className='row mg-b-25'>
       <div className='col-lg-6'>
@@ -45,7 +48,8 @@ export default function StepFour({ formik }) {
           <input
             className='form-control'
             type='text'
-            required
+            required={requiredFiledByRole(roles, 'ProductOffering')}
+            disabled={disabledFiledByRole(roles, 'ProductOffering')}
             id='tagId'
             name='tagId'
             {...formik.getFieldProps('tagId')}
@@ -64,7 +68,8 @@ export default function StepFour({ formik }) {
             className='form-control'
             type='text'
             id='daId'
-            required
+            required={requiredFiledByRole(roles, 'ProductOffering')}
+            disabled={disabledFiledByRole(roles, 'ProductOffering')}
             name='daId'
             {...formik.getFieldProps('daId')}
           />
@@ -83,7 +88,8 @@ export default function StepFour({ formik }) {
             type='text'
             id='ucId'
             name='ucId'
-            required
+            required={requiredFiledByRole(roles, 'ProductOffering')}
+            disabled={disabledFiledByRole(roles, 'ProductOffering')}
             {...formik.getFieldProps('ucId')}
           />
           {formik.touched.ucId && formik.errors.ucId ? (

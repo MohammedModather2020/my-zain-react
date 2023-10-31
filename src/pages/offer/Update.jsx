@@ -26,7 +26,7 @@ export default function UpdateOffer() {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(1);
   const [segmentsSelected, setSegmentsSelected] = useState();
-  const { accessToken, username } = useSelector((state) => state.auth);
+  const { accessToken, username, roles } = useSelector((state) => state.auth);
   const { loading, error } = useSelector((state) => state.api);
   const { data: segments } = useData(
     accessToken,
@@ -61,10 +61,10 @@ export default function UpdateOffer() {
   };
   // ----------------------------------------------------------------------------------->
   const validationSchema = Yup.object({
-    offerId: Yup.string()
-      .required(`OfferId is required`)
-      .min(1, `The offerId you should not be less than one character`)
-      .max(30, `The offerId you must not than 30 characters`),
+    // offerId: Yup.string()
+    //   .required(`OfferId is required`)
+    //   .min(1, `The offerId you should not be less than one character`)
+    //   .max(30, `The offerId you must not than 30 characters`),
   });
   // ----------------------------------------------------------------------------------->
   const onSubmit = (values) => {
@@ -140,16 +140,17 @@ export default function UpdateOffer() {
                       segmentsSelected={segmentsSelected}
                       onRemove={onRemove}
                       onSelect={onSelect}
+                      roles={roles}
                     />
                   </Step>
                   <Step label='Two'>
-                    <StepTwo formik={formik} />
+                    <StepTwo formik={formik} roles={roles} />
                   </Step>
                   <Step label='Three'>
-                    <StepThree formik={formik} />
+                    <StepThree formik={formik} roles={roles} />
                   </Step>
                   <Step label='Four'>
-                    <StepFour formik={formik} />
+                    <StepFour formik={formik} roles={roles} />
                   </Step>
                 </FormWizard>
                 <div className='form-layout-footer text-center mt-5 d-flex justify-content-between align-items-center'>

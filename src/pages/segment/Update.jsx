@@ -31,15 +31,15 @@ export default function UpdateSegment() {
   const validationSchema = Yup.object({
     titleAr: Yup.string()
       .required(`Title [ar] is required`)
-      .min(3, `The title [ar] you should not be less than 3 characters`)
+      .min(1, `The title [ar] you should not be less than one character`)
       .max(70, `The title [ar] you must not than 70 characters`),
     titleEn: Yup.string()
       .required(`Title [en] is required`)
-      .min(3, `The title [en] you should not be less than 3 characters`)
+      .min(1, `The title [en] you should not be less than one character`)
       .max(70, `The title [en] you must not than 70 characters`),
     ratePlan: Yup.string()
       .required(`Rate Plan is required`)
-      .min(1, `The Rate Plan you should not be less than 1 characters`)
+      .min(1, `The Rate Plan you should not be less than one character`)
       .max(70, `The Rate Plan you must not than 70 characters`),
   });
   // ----------------------------------------------------------------------------------->
@@ -157,6 +157,14 @@ export default function UpdateSegment() {
                         onBlur={formik.handleBlur}
                         {...formik.getFieldProps('ratePlan')}
                       >
+                        <option
+                          className='placeholder'
+                          selected
+                          disabled
+                          value=''
+                        >
+                          Please select rate plan
+                        </option>
                         <option value='DC'>DATA CARD (DC)</option>
                         <option value='PREPAID'>PREPAID</option>
                         <option value='POSTPAID'>POSTPAID</option>
