@@ -95,9 +95,12 @@ export default function Offers() {
         Header: 'Last Updated',
         disableFilters: true,
         accessor: 'lastUpdated',
-        Cell: ({ row }) => (
-          <time>{moment(row.values.lastUpdated).format('LLL')}</time>
-        ),
+        Cell: ({ row }) =>
+          row.values.lastUpdated ? (
+            <time>{moment(row.values.lastUpdated).format('LLL')}</time>
+          ) : (
+            '-------------'
+          ),
       },
       {
         Header: 'Actions',

@@ -39,7 +39,7 @@ export default function Packages() {
         disableFilters: true,
         accessor: 'lastUpdate',
         Cell: ({ row }) => (
-          <time>{moment(row.values.lastUpdate).format('LL')}</time>
+          <time>{moment(row.values.lastUpdate).format('LLL')}</time>
         ),
       },
       {

@@ -373,6 +373,12 @@ _::future,
   border-left: none;
 }
 
+@media (max-width: 768px) {
+  .page-footer {
+    left: 0;
+  }
+}
+
 /**********************************************************************
 ***********************************************************************
 ### Header CSS
@@ -5245,7 +5251,7 @@ pre {
 .search-global {
   position: relative;
 }
-.search-global input{
+.search-global input {
   border-radius: 2rem;
   -webkit-border-radius: 2rem;
   -moz-border-radius: 2rem;
@@ -5261,17 +5267,16 @@ pre {
 .search-global {
   position: relative;
 }
-.bg-page{
+.bg-page {
   background-image: url(../../public/assets/images/bg-1.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
-.multiselect-container .searchWrapper > input{
+.multiselect-container .searchWrapper > input {
   margin-top: 0 !important;
   height: 38px !important;
-  padding-block: .5rem !important;
+  padding-block: 0.5rem !important;
 }
-.multiselect-container .searchWrapper{
+.multiselect-container .searchWrapper {
   padding: 0 !important;
 }
-

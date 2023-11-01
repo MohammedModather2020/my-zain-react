@@ -61,7 +61,6 @@ export default function StepThree({ formik }) {
             className='custom-control-input'
             type='checkbox'
             id='active'
-            required
             checked={formik?.values?.active}
             name='active'
             {...formik.getFieldProps('active')}

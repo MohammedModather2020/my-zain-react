@@ -71,9 +71,9 @@ export default function Login() {
             });
 
             toast.success(message);
-            if (roles.includes('Admin')) {
+            if (roles?.includes('Admin')) {
               navigate('/dashboard/statistics');
-            } else if (roles.includes('Shop')) {
+            } else if (roles?.includes('Shop')) {
               navigate('/shops');
             } else {
               navigate('/categories');
