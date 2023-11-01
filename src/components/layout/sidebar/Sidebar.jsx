@@ -142,10 +142,10 @@ export default function Sidebar() {
                 <li className='menu-divider mg-y-20-force'></li>
                 <li className='mg-20-force menu-extras'>Authorization</li>
                 <li>
+                  <a href='' tabIndex={6}>
                     <MdOutlineAdminPanelSettings size={25} />
                     <span>Admins</span>
                     <i className='accordion-icon fa fa-angle-left'></i>
-                  <a href='' tabIndex={6}>
                   </a>
                   <ul className='sub-menu'>
                     <li>
