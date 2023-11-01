@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { matchSorter } from 'match-sorter';
 import {
-  useFilters,
   useGlobalFilter,
   usePagination,
   useSortBy,
@@ -13,8 +12,8 @@ import GlobalTableFilter from '../helper/filter/GlobalTableFilter';
 import { DefaultColumnFilter } from '../helper/filter/DefaultColumnFilter';
 import Pagination from 'react-js-pagination';
 
-export default function Table({ columns, data }) {
-  // ----------------------------------------------------------------------------------->
+export default function Table({ columns = [], data }) {
+  
   function fuzzyTextFilterFn(rows, id, filterValue) {
     return matchSorter(rows, filterValue, { keys: [(row) => row.values[id]] });
   }
@@ -43,6 +42,18 @@ export default function Table({ columns, data }) {
     [],
   );
   // ----------------------------------------------------------------------------------->
+  const tableInstance = useTable(
+    {
+      columns,
+      data,
+      defaultColumn,
+      filterTypes,
+      initialState: { pageSize: 5, pageIndex: 0 },
+    },
+    useGlobalFilter,
+    useSortBy,
+    usePagination,
+  );
   const {
     getTableProps,
     getTableBodyProps,
@@ -54,19 +65,7 @@ export default function Table({ columns, data }) {
     setPageSize,
     setGlobalFilter,
     prepareRow,
-  } = useTable(
-    {
-      columns,
-      data,
-      defaultColumn,
-      filterTypes,
-      initialState: { pageSize: 5, pageIndex: 0 },
-    },
-    useFilters,
-    useGlobalFilter,
-    useSortBy,
-    usePagination,
-  );
+  } = tableInstance;
   return (
     <div className='table-responsive p-3'>
       {data?.length > 0 ? (
@@ -157,7 +156,7 @@ export default function Table({ columns, data }) {
             )}
           </table>
           <div className='row mt-2 align-items-center'>
-            <div className='col-md-2'>
+            <div className='col-md-2 col-6'>
               <span>
                 Page{' '}
                 <strong>
@@ -165,8 +164,8 @@ export default function Table({ columns, data }) {
                 </strong>{' '}
               </span>
             </div>
-            <div className='col-md-5 text-right d-flex align-items-center justify-content-between my-2 my-md-0'>
-              <span>
+            <div className='col-6 col-md-5 text-right d-flex align-items-center justify-content-between my-2 my-md-0'>
+              <span className='d-none d-md-block'>
                 Go to:{' '}
                 <input
                   type='text'
@@ -187,7 +186,6 @@ export default function Table({ columns, data }) {
               <select
                 className='form-control d-inline-block py-1'
                 value={pageSize}
-                defaultValue={pageSize}
                 style={{ width: '150px' }}
                 onChange={(e) => setPageSize(Number(e.target.value))}
               >

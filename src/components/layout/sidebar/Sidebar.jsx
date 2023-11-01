@@ -4,7 +4,7 @@ import { BiCategory, BiSolidOffer } from 'react-icons/bi';
 import { FiHome, FiLogOut } from 'react-icons/fi';
 import { LiaShoppingBagSolid, LiaUsersCogSolid } from 'react-icons/lia';
 import { AiOutlineApartment, AiOutlineShop } from 'react-icons/ai';
-import { MdOutlineAdminPanelSettings } from 'react-icons/md';
+import { MdClose, MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import { logout } from '../../../utils/logout';
 import { Fragment } from 'react';
@@ -28,7 +28,7 @@ export default function Sidebar() {
             alt='Logo'
           />
         </Link>
-        <i className='ion-ios-close-empty' id='sidebar-toggle-button-close'></i>
+        <MdClose id='sidebar-toggle-button-close' />
       </div>
       <div className='page-sidebar-inner'>
         <div className='page-sidebar-menu'>

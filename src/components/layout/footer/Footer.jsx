@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className='page-footer text-center'>
+    <footer className='page-footer text-center w-100'>
       <div className='pd-t-5 pd-b-0 pd-x-20'>
         <div className='tx-10 tx-uppercase'>
           <p className='pd-y-10 mb-0'>

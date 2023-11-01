@@ -81,19 +81,18 @@ export default function Shops() {
         disableFilters: true,
         Cell: ({ row }) => (
           <Fragment>
-            {roles?.includes('Admin') &&
-              roles?.includes('Shop')(
-                <button
-                  className='btn btn-primary btn-icon mg-r-5 mg-b-10'
-                  onClick={() =>
-                    navigate(`/shops/${row.values.id}/update`, {
-                      state: row.original,
-                    })
-                  }
-                >
-                  <FiEdit />
-                </button>,
-              )}
+            {(roles?.includes('Admin') || roles.includes('Shop')) && (
+              <button
+                className='btn btn-primary btn-icon mg-r-5 mg-b-10'
+                onClick={() =>
+                  navigate(`/shops/${row.values.id}/update`, {
+                    state: row.original,
+                  })
+                }
+              >
+                <FiEdit />
+              </button>
+            )}
             {roles?.includes('Admin') && (
               <button
                 className='btn btn-danger btn-icon mg-r-5 mg-b-10'

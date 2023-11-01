@@ -42,9 +42,12 @@ export default function Categories() {
         Header: 'Last Update',
         disableFilters: true,
         accessor: 'lastUpdate',
-        Cell: ({ row }) => (
-          <time>{moment(row.values.lastUpdate).format('LLL')}</time>
-        ),
+        Cell: ({ row }) =>
+          row.values.lastUpdate ? (
+            <time>{moment(row.values.lastUpdate).format('LLL')}</time>
+          ) : (
+            '-------------'
+          ),
       },
       {
         Header: 'Actions',
