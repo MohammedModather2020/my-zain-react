@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { disabledFiledByRole } from '../../../utils/disabledFiledByRole';
 import { requiredFiledByRole } from '../../../utils/requiredFiledByRole';
 
@@ -100,3 +101,8 @@ export default function StepFour({ formik, roles }) {
     </div>
   );
 }
+
+StepFour.propTypes = {
+  formik: PropTypes.object,
+  roles: PropTypes.array,
+};

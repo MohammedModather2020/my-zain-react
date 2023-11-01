@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { matchSorter } from 'match-sorter';
 import {
@@ -9,18 +10,10 @@ import {
 } from 'react-table';
 import { MdArrowDownward, MdArrowUpward, MdSwapVert } from 'react-icons/md';
 import GlobalTableFilter from '../helper/filter/GlobalTableFilter';
-import { FiChevronsLeft, FiChevronsRight } from 'react-icons/fi';
 import { DefaultColumnFilter } from '../helper/filter/DefaultColumnFilter';
+import Pagination from 'react-js-pagination';
 
-export default function Table({
-  columns,
-  data = [],
-  activePage,
-  setActivePage,
-  limitPage,
-  total,
-  setLimitPage,
-}) {
+export default function Table({ columns, data }) {
   // ----------------------------------------------------------------------------------->
   function fuzzyTextFilterFn(rows, id, filterValue) {
     return matchSorter(rows, filterValue, { keys: [(row) => row.values[id]] });
@@ -28,7 +21,6 @@ export default function Table({
   // ----------------------------------------------------------------------------------->
   const defaultColumn = React.useMemo(
     () => ({
-      // Let's set up our default Filter UI
       Filter: DefaultColumnFilter,
     }),
     [],
@@ -36,10 +28,7 @@ export default function Table({
   // ----------------------------------------------------------------------------------->
   const filterTypes = React.useMemo(
     () => ({
-      // Add a new fuzzyTextFilterFn filter type.
       fuzzyText: fuzzyTextFilterFn,
-      // Or, override the default text filter to use
-      // "startWith"
       text: (rows, id, filterValue) => {
         return rows.filter((row) => {
           const rowValue = row.values[id];
@@ -59,14 +48,9 @@ export default function Table({
     getTableBodyProps,
     headerGroups,
     page,
-    nextPage,
-    previousPage,
-    canNextPage,
-    canPreviousPage,
     pageOptions,
-    state,
+    state: { pageIndex, pageSize, globalFilter },
     gotoPage,
-    pageCount,
     setPageSize,
     setGlobalFilter,
     prepareRow,
@@ -74,15 +58,15 @@ export default function Table({
     {
       columns,
       data,
-      defaultColumn, // Be sure to pass the defaultColumn option
+      defaultColumn,
       filterTypes,
+      initialState: { pageSize: 5, pageIndex: 0 },
     },
     useFilters,
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
   );
-  const { pageIndex, pageSize, globalFilter } = state;
   return (
     <div className='table-responsive p-3'>
       {data?.length > 0 ? (
@@ -135,7 +119,7 @@ export default function Table({
                     >
                       {column.render('Header')}
                       {column.id !== 'id' && (
-                        <>
+                        <Fragment>
                           <MdSwapVert />
                           <span>
                             {column.isSorted ? (
@@ -148,7 +132,7 @@ export default function Table({
                               ''
                             )}
                           </span>
-                        </>
+                        </Fragment>
                       )}
                     </th>
                   ))}
@@ -157,13 +141,13 @@ export default function Table({
             </thead>
             {page?.length > 0 && (
               <tbody {...getTableBodyProps()}>
-                {page.map((row, index) => {
+                {page?.map((row, index) => {
                   prepareRow(row);
                   return (
-                    <tr {...row.getRowProps()} key={index}>
-                      {row.cells.map((cell, index) => (
-                        <td key={index} {...cell.getCellProps()}>
-                          {cell.render('Cell')}
+                    <tr {...row?.getRowProps()} key={index}>
+                      {row?.cells?.map((cell, index) => (
+                        <td key={index} {...cell?.getCellProps()}>
+                          {cell?.render('Cell')}
                         </td>
                       ))}
                     </tr>
@@ -203,45 +187,27 @@ export default function Table({
               <select
                 className='form-control d-inline-block py-1'
                 value={pageSize}
+                defaultValue={pageSize}
                 style={{ width: '150px' }}
                 onChange={(e) => setPageSize(Number(e.target.value))}
               >
-                {[10, 25, 50].map((pageSize) => (
+                {[5, 10, 25, 50].map((pageSize) => (
                   <option key={pageSize} value={pageSize}>
                     Show {pageSize}
                   </option>
                 ))}
               </select>
             </div>
-            <div className='pagination col-md-5 text-md-right justify-content-end'>
-              <button
-                className='page-link page-item active rounded'
-                onClick={() => gotoPage(0)}
-                disabled={!canPreviousPage}
-              >
-                <FiChevronsLeft />
-              </button>
-              <button
-                className='btn btn-light btn-pill me-3'
-                onClick={() => previousPage()}
-                disabled={!canPreviousPage}
-              >
-                Prev
-              </button>
-              <button
-                className='btn btn-light btn-pill'
-                onClick={() => nextPage()}
-                disabled={!canNextPage}
-              >
-                Next
-              </button>
-              <button
-                className='page-link page-item active rounded'
-                onClick={() => gotoPage(pageCount - 1)}
-                disabled={!canNextPage}
-              >
-                <FiChevronsRight />
-              </button>
+            <div className='pagination col-12 col-md-5 text-md-end justify-content-end'>
+              <Pagination
+                activePage={pageIndex + 1}
+                itemsCountPerPage={5}
+                totalItemsCount={data?.length}
+                pageRangeDisplayed={7}
+                itemClass='page-item'
+                linkClass='page-link'
+                onChange={(count) => gotoPage(count ? Number(count) - 1 : 0)}
+              />
             </div>
           </div>
         </Fragment>
@@ -251,3 +217,8 @@ export default function Table({
     </div>
   );
 }
+
+Table.propTypes = {
+  columns: PropTypes.array,
+  data: PropTypes.array,
+};

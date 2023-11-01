@@ -1,17 +1,18 @@
+import PropTypes from 'prop-types';
+import moment from 'moment';
 import { Fragment, useMemo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
 import { FiEdit } from 'react-icons/fi';
 import { AiFillDelete } from 'react-icons/ai';
+import { BsArrowUpRight, BsBoxArrowUpRight } from 'react-icons/bs';
 import { getData } from '../../redux/actions/api/getData';
 import { deleteData } from '../../redux/actions/api/deleteData';
 import { Loading } from '../../components/helper/loading/Loading';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import ModalConfirm from '../../components/helper/modal/ModalConfirm';
 import Table from '../../components/table/Table';
-import moment from 'moment';
-import { BsArrowUpRight, BsBoxArrowUpRight } from 'react-icons/bs';
 
 export default function Offers() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Offers() {
   const [id, setId] = useState();
   const [isShowLoading, setIsShowLoading] = useState(false);
   const [showModalConfirm, setShowModalConfirm] = useState(false);
-  const { accessToken } = useSelector((state) => state?.auth);
+  const { accessToken, roles } = useSelector((state) => state?.auth);
   const { data: offers, loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
@@ -99,30 +100,35 @@ export default function Offers() {
         ),
       },
       {
-        Header: '',
+        Header: 'Actions',
         accessor: 'id',
         disableFilters: true,
         Cell: ({ row }) => (
           <Fragment>
-            <button
-              className='btn btn-primary btn-icon mg-r-5 mg-b-10'
-              onClick={() =>
-                navigate(`/offers/${row.values.id}/update`, {
-                  state: row.original,
-                })
-              }
-            >
-              <FiEdit />
-            </button>
-            <button
-              className='btn btn-danger btn-icon mg-r-5 mg-b-10'
-              onClick={() => {
-                setId(row.values.id);
-                setShowModalConfirm(true);
-              }}
-            >
-              <AiFillDelete />
-            </button>
+            {(roles?.includes('Admin') ||
+              roles?.includes('ProductOffering')) && (
+              <button
+                className='btn btn-primary btn-icon mg-r-5 mg-b-10'
+                onClick={() =>
+                  navigate(`/offers/${row.values.id}/update`, {
+                    state: row.original,
+                  })
+                }
+              >
+                <FiEdit />
+              </button>
+            )}
+            {roles?.includes('Admin') && (
+              <button
+                className='btn btn-danger btn-icon mg-r-5 mg-b-10'
+                onClick={() => {
+                  setId(row.values.id);
+                  setShowModalConfirm(true);
+                }}
+              >
+                <AiFillDelete />
+              </button>
+            )}
             <button
               className='btn btn-info btn-icon mg-r-5 mg-b-10'
               onClick={() =>
@@ -137,7 +143,7 @@ export default function Offers() {
         ),
       },
     ],
-    [navigate],
+    [navigate, roles],
   );
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
@@ -171,9 +177,13 @@ export default function Offers() {
         error
       ) : (
         <div className='card shadow mb-4'>
-          {data && <Table columns={columns} data={data ?? []} />}
+          {data && <Table columns={columns} data={data} />}
         </div>
       )}
     </Fragment>
   );
 }
+
+Offers.propTypes = {
+  row: PropTypes.object,
+};

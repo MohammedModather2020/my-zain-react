@@ -1,9 +1,7 @@
-import { Fragment, useEffect, useState } from 'react';
 import * as Yup from 'yup';
+import { Fragment, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { Loading } from '../../components/helper/loading/Loading';
-import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
-import FormWizard from '../../components/form/FormWizard';
 import { Step } from '@haribhandari/react-step';
 import { useLocation, useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +10,8 @@ import { updateData } from '../../redux/actions/api/updateData';
 import StepOne from './step/StepOne';
 import StepTwo from './step/StepTwo';
 import StepThree from './step/StepThree';
+import FormWizard from '../../components/form/FormWizard';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import ButtonActionStep from '../../components/form/step/ButtonAction';
 
 export default function UpdateShop() {

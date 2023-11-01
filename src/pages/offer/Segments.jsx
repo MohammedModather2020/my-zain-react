@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Fragment, useMemo, useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,7 +20,7 @@ export default function OfferSegments() {
   const [segmentId, setSegmentId] = useState();
   const [isShowLoading, setIsShowLoading] = useState(false);
   const [showModalConfirm, setShowModalConfirm] = useState(false);
-  const { accessToken } = useSelector((state) => state?.auth);
+  const { accessToken, roles } = useSelector((state) => state?.auth);
   const { data: segments, loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
@@ -40,35 +41,36 @@ export default function OfferSegments() {
         accessor: 'ratePlan',
       },
       {
-        Header: '',
+        Header: 'Actions',
         accessor: 'id',
         disableFilters: true,
-        Cell: ({ row }) => (
-          <Fragment>
-            <button
-              className='btn btn-primary btn-icon mg-r-5 mg-b-10'
-              onClick={() =>
-                navigate(`/segments/${row.values.id}/update`, {
-                  state: row.original,
-                })
-              }
-            >
-              <FiEdit />
-            </button>
-            <button
-              className='btn btn-danger btn-icon mg-r-5 mg-b-10'
-              onClick={() => {
-                setSegmentId(row.values.id);
-                setShowModalConfirm(true);
-              }}
-            >
-              <AiFillDelete />
-            </button>
-          </Fragment>
-        ),
+        Cell: ({ row }) =>
+          roles?.includes('Admin') && (
+            <Fragment>
+              <button
+                className='btn btn-primary btn-icon mg-r-5 mg-b-10'
+                onClick={() =>
+                  navigate(`/segments/${row?.values.id}/update`, {
+                    state: row.original,
+                  })
+                }
+              >
+                <FiEdit />
+              </button>
+              <button
+                className='btn btn-danger btn-icon mg-r-5 mg-b-10'
+                onClick={() => {
+                  setSegmentId(row.values.id);
+                  setShowModalConfirm(true);
+                }}
+              >
+                <AiFillDelete />
+              </button>
+            </Fragment>
+          ),
       },
     ],
-    [navigate],
+    [navigate, roles],
   );
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
@@ -106,9 +108,13 @@ export default function OfferSegments() {
         error
       ) : (
         <div className='card shadow mb-4'>
-          {data && <Table columns={columns} data={data ?? []} />}
+          {data && <Table columns={columns} data={data} />}
         </div>
       )}
     </Fragment>
   );
 }
+
+OfferSegments.propTypes = {
+  row: PropTypes.object,
+};

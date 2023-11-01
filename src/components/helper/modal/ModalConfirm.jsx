@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-modal';
+import { useEffect, useState } from 'react';
 import { FaInfo } from 'react-icons/fa';
 import { RiCloseLine } from 'react-icons/ri';
 import { GiCheckMark } from 'react-icons/gi';
@@ -80,4 +81,9 @@ function ModalConfirm(props) {
   );
 }
 
+ModalConfirm.propTypes = {
+  toggleModal: PropTypes.bool,
+  showModalConfirmTry: PropTypes.func,
+  delete: PropTypes.func,
+};
 export default ModalConfirm;

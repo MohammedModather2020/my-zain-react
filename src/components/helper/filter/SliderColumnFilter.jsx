@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export function SliderColumnFilter({
   column: { filterValue, setFilter, preFilteredRows, id },
@@ -30,3 +31,7 @@ export function SliderColumnFilter({
     </div>
   );
 }
+
+SliderColumnFilter.propTypes = {
+  column: PropTypes.object,
+};

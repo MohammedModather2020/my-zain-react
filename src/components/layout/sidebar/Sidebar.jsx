@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BiCategory, BiSolidOffer } from 'react-icons/bi';
 import { FiHome, FiLogOut } from 'react-icons/fi';
 import { LiaShoppingBagSolid, LiaUsersCogSolid } from 'react-icons/lia';
@@ -7,9 +7,11 @@ import { AiOutlineApartment, AiOutlineShop } from 'react-icons/ai';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import { logout } from '../../../utils/logout';
+import { Fragment } from 'react';
 
 export default function Sidebar() {
   const dispatch = useDispatch();
+  const { roles } = useSelector((state) => state?.auth);
   return (
     <div className='page-sidebar'>
       <div className='logo'>
@@ -31,19 +33,23 @@ export default function Sidebar() {
       <div className='page-sidebar-inner'>
         <div className='page-sidebar-menu'>
           <ul className='accordion-menu'>
-            <li>
-              <a href='#' tabIndex={1}>
-                <FiHome size={25} />
-                <span>Dashboard</span>
-                <i className='accordion-icon fa fa-angle-left'></i>
-              </a>
-              <ul className='sub-menu'>
+            {roles?.includes('Admin') && (
+              <Fragment>
                 <li>
-                  <Link to='/dashboard/statistics'>Statistics</Link>
+                  <a href='#' tabIndex={1}>
+                    <FiHome size={25} />
+                    <span>Dashboard</span>
+                    <i className='accordion-icon fa fa-angle-left'></i>
+                  </a>
+                  <ul className='sub-menu'>
+                    <li>
+                      <Link to='/dashboard/statistics'>Statistics</Link>
+                    </li>
+                  </ul>
                 </li>
-              </ul>
-            </li>
-            <li className='menu-divider mg-y-20-force'></li>
+                <li className='menu-divider mg-y-20-force'></li>
+              </Fragment>
+            )}
             <li className='mg-20-force menu-elements'>Elements</li>
             <li>
               <a href='#'>
@@ -55,9 +61,11 @@ export default function Sidebar() {
                 <li>
                   <Link to='/categories'>All Categories</Link>
                 </li>
-                <li>
-                  <Link to='/categories/add'>Add Category</Link>
-                </li>
+                {roles?.includes('Admin') && (
+                  <li>
+                    <Link to='/categories/add'>Add Category</Link>
+                  </li>
+                )}
               </ul>
             </li>
             <li>
@@ -70,9 +78,11 @@ export default function Sidebar() {
                 <li>
                   <Link to='/packages'>All Packages</Link>
                 </li>
-                <li>
-                  <Link to='/packages/Add'>Add Package</Link>
-                </li>
+                {roles?.includes('Admin') && (
+                  <li>
+                    <Link to='/packages/Add'>Add Package</Link>
+                  </li>
+                )}
               </ul>
             </li>
             <li>
@@ -85,9 +95,11 @@ export default function Sidebar() {
                 <li>
                   <Link to='/segments'>All Segments</Link>
                 </li>
-                <li>
-                  <Link to='segments/add'>Add Segment</Link>
-                </li>
+                {roles?.includes('Admin') && (
+                  <li>
+                    <Link to='segments/add'>Add Segment</Link>
+                  </li>
+                )}
               </ul>
             </li>
             <li>
@@ -100,9 +112,12 @@ export default function Sidebar() {
                 <li>
                   <Link to='/offers'>All Offers</Link>
                 </li>
-                <li>
-                  <Link to='/offers/add'>Add Offer</Link>
-                </li>
+                {(roles?.includes('Admin') ||
+                  roles.includes('ProductOffering')) && (
+                  <li>
+                    <Link to='/offers/add'>Add Offer</Link>
+                  </li>
+                )}
               </ul>
             </li>
             <li>
@@ -115,39 +130,45 @@ export default function Sidebar() {
                 <li>
                   <Link to='/shops'>All Shops</Link>
                 </li>
-                <li>
-                  <Link to='/shops/add'>Add Shop</Link>
-                </li>
+                {(roles?.includes('Admin') || roles.includes('Shop')) && (
+                  <li>
+                    <Link to='/shops/add'>Add Shop</Link>
+                  </li>
+                )}
               </ul>
             </li>
-            <li className='menu-divider mg-y-20-force'></li>
-            <li className='mg-20-force menu-extras'>Authorization</li>
-            <li>
-              <a href='#'>
-                <MdOutlineAdminPanelSettings size={25} />
-                <span>Admins</span>
-                <i className='accordion-icon fa fa-angle-left'></i>
-              </a>
-              <ul className='sub-menu'>
+            {roles?.includes('Admin') && (
+              <Fragment>
+                <li className='menu-divider mg-y-20-force'></li>
+                <li className='mg-20-force menu-extras'>Authorization</li>
                 <li>
-                  <Link to='/admins'>All Admins</Link>
+                  <a href='#'>
+                    <MdOutlineAdminPanelSettings size={25} />
+                    <span>Admins</span>
+                    <i className='accordion-icon fa fa-angle-left'></i>
+                  </a>
+                  <ul className='sub-menu'>
+                    <li>
+                      <Link to='/admins'>All Admins</Link>
+                    </li>
+                  </ul>
                 </li>
-              </ul>
-            </li>
-            <li>
-              <a href='#'>
-                <LiaUsersCogSolid size={25} />
-                <span>Roles</span>
-                <i className='accordion-icon fa fa-angle-left'></i>
-              </a>
-              <ul className='sub-menu'>
                 <li>
-                  <Link to='/roles'>All Roles</Link>
-                  <Link to='/roles/add'>Add Role</Link>
-                  <Link to='/roles/sign'>Sign Role</Link>
+                  <a href='#'>
+                    <LiaUsersCogSolid size={25} />
+                    <span>Roles</span>
+                    <i className='accordion-icon fa fa-angle-left'></i>
+                  </a>
+                  <ul className='sub-menu'>
+                    <li>
+                      <Link to='/roles'>All Roles</Link>
+                      <Link to='/roles/add'>Add Role</Link>
+                      <Link to='/roles/sign'>Sign Role</Link>
+                    </li>
+                  </ul>
                 </li>
-              </ul>
-            </li>
+              </Fragment>
+            )}
           </ul>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import React from "react";
-
+import React from 'react';
+import PropTypes from 'prop-types';
 export function SelectColumnFilter({
   column: { filterValue, setFilter, preFilteredRows, id },
 }) {
@@ -35,3 +35,6 @@ export function SelectColumnFilter({
     </select>
   );
 }
+SelectColumnFilter.propTypes = {
+  column: PropTypes.object,
+};
