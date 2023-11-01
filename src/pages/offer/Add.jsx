@@ -1,14 +1,14 @@
-import { Fragment, useEffect, useState } from 'react';
 import * as Yup from 'yup';
+import { Fragment, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { Loading } from '../../components/helper/loading/Loading';
-import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
-import FormWizard from '../../components/form/FormWizard';
 import { Step } from '@haribhandari/react-step';
 import { sendData } from '../../redux/actions/api/sendData';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import FormWizard from '../../components/form/FormWizard';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import StepOne from './step/StepOne';
 import StepTwo from './step/StepTwo';
 import StepThree from './step/StepThree';
@@ -73,7 +73,7 @@ export default function AddOffer() {
       unsubs: values?.unsubs,
       offerCategoryId: values?.offerCategoryId,
       offerPackageId: values?.offerPackageId,
-      segmentIds: segmentsSelected.map((segment) => segment?.id),
+      segmentIds: segmentsSelected.map((segment) => Number(segment?.id)),
       keyword: values?.keyword,
       daId: values?.daId,
       ucId: values?.ucId,

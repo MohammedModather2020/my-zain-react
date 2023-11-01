@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 export default function StepTwo({ formik }) {
   return (
     <div className='row mg-b-25'>
@@ -136,3 +137,6 @@ export default function StepTwo({ formik }) {
     </div>
   );
 }
+StepTwo.propTypes = {
+  formik: PropTypes.object,
+};

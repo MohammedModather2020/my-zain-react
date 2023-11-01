@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Multiselect from 'multiselect-react-dropdown';
 import useData from '../../../hooks/useData';
 import { requiredFiledByRole } from '../../../utils/requiredFiledByRole';
@@ -127,3 +128,13 @@ export default function StepOne({
     </div>
   );
 }
+
+StepOne.propTypes = {
+  formik: PropTypes.object,
+  roles: PropTypes.array,
+  accessToken: PropTypes.string,
+  onSelect: PropTypes.func,
+  onRemove: PropTypes.func,
+  setSegmentsSelected: PropTypes.func,
+  segmentsSelected: PropTypes.func,
+};

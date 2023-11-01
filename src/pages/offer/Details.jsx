@@ -1,7 +1,7 @@
-import { Fragment } from 'react';
-import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
-import { useLocation } from 'react-router';
 import moment from 'moment';
+import { Fragment } from 'react';
+import { useLocation } from 'react-router';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 export default function DetailsOffer() {
   const { state } = useLocation();

@@ -1,8 +1,8 @@
+import Avatar from 'react-avatar';
 import { Fragment } from 'react';
-import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import { useSelector } from 'react-redux';
 import { IoIosArrowDown, IoIosRefresh } from 'react-icons/io';
-import Avatar from 'react-avatar';
+import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 export default function Profile() {
   const { roles, firstName, lastName, username, email } = useSelector(

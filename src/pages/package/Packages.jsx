@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
+import moment from 'moment';
 import { Fragment, useMemo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
-import moment from 'moment';
 import { FiEdit } from 'react-icons/fi';
 import { AiFillDelete } from 'react-icons/ai';
 import { getData } from '../../redux/actions/api/getData';
@@ -18,7 +19,7 @@ export default function Packages() {
   const [id, setId] = useState();
   const [isShowLoading, setIsShowLoading] = useState(false);
   const [showModalConfirm, setShowModalConfirm] = useState(false);
-  const { accessToken } = useSelector((state) => state?.auth);
+  const { accessToken, roles } = useSelector((state) => state?.auth);
   const { data: packages, loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
@@ -42,35 +43,36 @@ export default function Packages() {
         ),
       },
       {
-        Header: '',
+        Header: 'Actions',
         accessor: 'id',
         disableFilters: true,
-        Cell: ({ row }) => (
-          <Fragment>
-            <button
-              className='btn btn-primary btn-icon mg-r-5 mg-b-10'
-              onClick={() =>
-                navigate(`/packages/${row.values.id}/update`, {
-                  state: row.original,
-                })
-              }
-            >
-              <FiEdit />
-            </button>
-            <button
-              className='btn btn-danger btn-icon mg-r-5 mg-b-10'
-              onClick={() => {
-                setId(row.values.id);
-                setShowModalConfirm(true);
-              }}
-            >
-              <AiFillDelete />
-            </button>
-          </Fragment>
-        ),
+        Cell: ({ row }) =>
+          roles?.includes('Admin') && (
+            <Fragment>
+              <button
+                className='btn btn-primary btn-icon mg-r-5 mg-b-10'
+                onClick={() =>
+                  navigate(`/packages/${row.values.id}/update`, {
+                    state: row.original,
+                  })
+                }
+              >
+                <FiEdit />
+              </button>
+              <button
+                className='btn btn-danger btn-icon mg-r-5 mg-b-10'
+                onClick={() => {
+                  setId(row.values.id);
+                  setShowModalConfirm(true);
+                }}
+              >
+                <AiFillDelete />
+              </button>
+            </Fragment>
+          ),
       },
     ],
-    [navigate],
+    [navigate, roles],
   );
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
@@ -110,3 +112,6 @@ export default function Packages() {
     </Fragment>
   );
 }
+Packages.propTypes = {
+  row: PropTypes.object,
+};

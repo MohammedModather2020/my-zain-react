@@ -1,15 +1,15 @@
+import * as Yup from 'yup';
+import Multiselect from 'multiselect-react-dropdown';
 import { Fragment, createRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import Multiselect from 'multiselect-react-dropdown';
 import { toast } from 'react-toastify';
 import { BsSend } from 'react-icons/bs';
 import { IoIosArrowDown, IoIosRefresh } from 'react-icons/io';
 import { sendData } from '../../redux/actions/api/sendData';
-import useData from '../../hooks/useData';
 import { Loading } from '../../components/helper/loading/Loading';
+import useData from '../../hooks/useData';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 
 let formik;
@@ -40,10 +40,9 @@ export default function SignRole() {
   });
   // ----------------------------------------------------------------------------------->
   const onSubmit = (values) => {
-    console.log(roleSelected);
-    const roles = roleRef.current.getSelectedItems().map((item) => item.name);
+    // const roles = roleRef.current.getSelectedItems().map((item) => item.name);
     const data = {
-      role: roles,
+      role: roleSelected[roleSelected.length - 1]?.name,
       userId: values?.userId,
     };
     dispatch(sendData(`auth/signRole`, accessToken, data, navigate, '/roles'));
@@ -139,9 +138,11 @@ export default function SignRole() {
                       <Multiselect
                         displayValue='name'
                         className='p-0 '
+                        disablePreSelectedValues
                         placeholder='Please select roles'
                         required
                         id='role'
+                        selectionLimit={roleSign.length + 1}
                         ref={roleRef}
                         selectedValues={roleSign}
                         onSelect={(value) => onSelect(value, setRoleSelected)}

@@ -1,4 +1,6 @@
-export default function StepThree({ formik, roles }) {
+import PropTypes from 'prop-types';
+
+export default function StepThree({ formik }) {
   return (
     <div className='row mg-b-25'>
       <div className='col-lg-6'>
@@ -111,3 +113,7 @@ export default function StepThree({ formik, roles }) {
     </div>
   );
 }
+
+StepThree.propTypes = {
+  formik: PropTypes.object,
+};

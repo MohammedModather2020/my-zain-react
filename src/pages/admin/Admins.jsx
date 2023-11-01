@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
+import Avatar from 'react-avatar';
 import { Fragment, useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
-import Avatar from 'react-avatar';
 import { getData } from '../../redux/actions/api/getData';
 import { Loading } from '../../components/helper/loading/Loading';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
@@ -50,8 +51,10 @@ export default function Admins() {
         disableFilters: true,
         accessor: 'roles',
         Cell: ({ row }) =>
-          row?.values?.roles?.map((role) => (
-            <span className='badge badge-primary p-2 mr-2'>{role}</span>
+          row?.values?.roles?.map((role, index) => (
+            <span key={index} className='badge badge-primary p-2 mr-2'>
+              {role}
+            </span>
           )),
       },
       {
@@ -84,9 +87,12 @@ export default function Admins() {
         error
       ) : (
         <div className='card shadow mb-4'>
-          {data && <Table columns={columns} data={data ?? []} />}
+          {data && <Table columns={columns} data={data} />}
         </div>
       )}
     </Fragment>
   );
 }
+Admins.propTypes = {
+  row: PropTypes.object,
+};

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Fragment, useMemo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,24 +29,7 @@ export default function Roles() {
         accessor: 'name',
       },
       {
-        Header: 'Normalized Name',
-        disableFilters: true,
-        accessor: 'normalizedName',
-      },
-      {
-        Header: 'Concurrency Stamp',
-        disableFilters: true,
-        accessor: 'concurrencyStamp',
-        Cell: ({ row }) => (
-          <span>
-            {row?.values?.concurrencyStamp
-              ? row?.values?.concurrencyStamp
-              : 'null'}
-          </span>
-        ),
-      },
-      {
-        Header: '',
+        Header: 'Actions',
         accessor: 'id',
         disableFilters: true,
         Cell: ({ row }) => (
@@ -107,9 +91,13 @@ export default function Roles() {
         error
       ) : (
         <div className='card shadow mb-4'>
-          {data && <Table columns={columns} data={data ?? []} />}
+          {data && <Table columns={columns} data={data} />}
         </div>
       )}
     </Fragment>
   );
 }
+
+Roles.propTypes = {
+  row: PropTypes.object,
+};

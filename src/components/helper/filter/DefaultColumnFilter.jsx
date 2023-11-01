@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export function DefaultColumnFilter({
   column: { filterValue, preFilteredRows, setFilter },
 }) {
@@ -14,3 +16,7 @@ export function DefaultColumnFilter({
     />
   );
 }
+
+DefaultColumnFilter.propTypes = {
+  column: PropTypes.object,
+};

@@ -1,24 +1,24 @@
+import * as Yup from 'yup';
 import { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
-import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { updateData } from '../../redux/actions/api/updateData';
 import FormWizard from '../../components/form/FormWizard';
-import { Step } from '@haribhandari/react-step';
 import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from 'react-icons/md';
 import { BsSend } from 'react-icons/bs';
 import { Loading } from '../../components/helper/loading/Loading';
+import { Step } from '@haribhandari/react-step';
+import useData from '../../hooks/useData';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import StepOne from './step/StepOne';
 import StepTwo from './step/StepTwo';
 import StepThree from './step/StepThree';
 import StepFour from './step/StepFour';
-import useData from '../../hooks/useData';
 
 export default function UpdateOffer() {
   const { state } = useLocation();
@@ -32,7 +32,6 @@ export default function UpdateOffer() {
     accessToken,
     `offer/getSegmentsInOffer?id=${state?.id}`,
   );
-  console.log(segments);
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
     error && toast.error(error);
@@ -85,7 +84,7 @@ export default function UpdateOffer() {
       unsubs: values?.unsubs,
       offerCategoryId: values?.offerCategoryId,
       offerPackageId: values?.offerPackageId,
-      segmentIds: segmentsSelected.map((segment) => segment?.id),
+      segmentIds: segmentsSelected.map((segment) => Number(segment?.id)),
       keyword: values?.keyword,
       daId: values?.daId,
       ucId: values?.ucId,
