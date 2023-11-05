@@ -66,12 +66,12 @@ export default function Shops() {
           ),
       },
       {
-        Header: 'Sattothu From',
+        Header: 'Sat - Thu From',
         disableFilters: true,
         accessor: 'sattothuFrom',
       },
       {
-        Header: 'Sattothu To',
+        Header: 'Sat - Thu To',
         disableFilters: true,
         accessor: 'sattothuTo',
       },

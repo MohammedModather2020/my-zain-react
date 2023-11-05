@@ -28,7 +28,7 @@ export default function UpdateOffer() {
   const [segmentsSelected, setSegmentsSelected] = useState();
   const { accessToken, username, roles } = useSelector((state) => state.auth);
   const { loading, error } = useSelector((state) => state.api);
-  const { data: segments } = useData(
+  const { data: segmentsInOffer } = useData(
     accessToken,
     `offer/getSegmentsInOffer?id=${state?.id}`,
   );
@@ -41,7 +41,7 @@ export default function UpdateOffer() {
     offerId: state?.offerId,
     offerCategoryId: state?.offerCategory?.id,
     offerPackageId: state?.offerPackage?.id,
-    segmentIds: segments,
+    segmentIds: segmentsInOffer,
     titleAr: state?.titleAr,
     titleEn: state?.titleEn,
     descriptionAr: state?.descAr,
@@ -113,7 +113,6 @@ export default function UpdateOffer() {
   const onRemove = (selectedList, setItem) => {
     setItem([...selectedList]);
   };
-  console.log(segments);
   return (
     <Fragment>
       <Loading isLoading={loading} />
@@ -136,7 +135,7 @@ export default function UpdateOffer() {
                       formik={formik}
                       accessToken={accessToken}
                       setSegmentsSelected={setSegmentsSelected}
-                      segmentsSelected={segmentsSelected}
+                      segmentsInOffer={segmentsInOffer}
                       onRemove={onRemove}
                       onSelect={onSelect}
                       roles={roles}
