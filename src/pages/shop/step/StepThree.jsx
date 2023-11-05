@@ -5,7 +5,7 @@ export default function StepThree({ formik }) {
       <div className='col-lg-6'>
         <div className='form-group'>
           <label htmlFor='sattothuFrom' className='form-control-label active'>
-            Sattothu From <span className='tx-danger'>*</span>
+            Saturday - Thursday From <span className='tx-danger'>*</span>
           </label>
           <input
             className='form-control'
@@ -23,7 +23,7 @@ export default function StepThree({ formik }) {
       <div className='col-lg-6'>
         <div className='form-group'>
           <label htmlFor='sattothuTo' className='form-control-label active'>
-            Sattothu To <span className='tx-danger'>*</span>
+            Saturday - Thursday To <span className='tx-danger'>*</span>
           </label>
           <input
             className='form-control'
@@ -41,7 +41,7 @@ export default function StepThree({ formik }) {
       <div className='col-lg-6'>
         <div className='form-group'>
           <label htmlFor='friFrom' className='form-control-label active'>
-            Fri From <span className='tx-danger'>*</span>
+            Friday From <span className='tx-danger'>*</span>
           </label>
           <input
             className='form-control'
@@ -59,7 +59,7 @@ export default function StepThree({ formik }) {
       <div className='col-lg-6'>
         <div className='form-group'>
           <label htmlFor='friTo' className='form-control-label active'>
-            Fri To <span className='tx-danger'>*</span>
+            Friday To <span className='tx-danger'>*</span>
           </label>
           <input
             className='form-control'

@@ -10,7 +10,7 @@ export default function StepOne({
   onSelect,
   onRemove,
   setSegmentsSelected,
-  segmentsSelected,
+  segmentsInOffer,
   roles,
 }) {
   const { data: categories } = useData(
@@ -114,7 +114,7 @@ export default function StepOne({
             placeholder='Please select segments'
             {...formik.getFieldProps('segmentIds')}
             required
-            selectedValues={segmentsSelected}
+            selectedValues={segmentsInOffer}
             onKeyPressFn={(value) => onSelect(value, setSegmentsSelected)}
             onSelect={(value) => onSelect(value, setSegmentsSelected)}
             onRemove={(value) => onRemove(value, setSegmentsSelected)}
@@ -132,9 +132,9 @@ export default function StepOne({
 StepOne.propTypes = {
   formik: PropTypes.object,
   roles: PropTypes.array,
+  segmentsInOffer: PropTypes.array,
   accessToken: PropTypes.string,
   onSelect: PropTypes.func,
   onRemove: PropTypes.func,
   setSegmentsSelected: PropTypes.func,
-  segmentsSelected: PropTypes.func,
 };

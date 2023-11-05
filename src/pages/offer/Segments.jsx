@@ -26,7 +26,7 @@ export default function OfferSegments() {
   const columns = useMemo(
     () => [
       {
-        Header: 'Title AR',
+        Header: 'Title Ar',
         disableFilters: true,
         accessor: 'titleAr',
       },

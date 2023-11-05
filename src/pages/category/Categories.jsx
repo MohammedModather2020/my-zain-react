@@ -29,7 +29,7 @@ export default function Categories() {
   const columns = useMemo(
     () => [
       {
-        Header: 'Title AR',
+        Header: 'Title Ar',
         disableFilters: true,
         accessor: 'titleAr',
       },
