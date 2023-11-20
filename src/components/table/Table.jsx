@@ -12,8 +12,7 @@ import GlobalTableFilter from '../helper/filter/GlobalTableFilter';
 import { DefaultColumnFilter } from '../helper/filter/DefaultColumnFilter';
 import Pagination from 'react-js-pagination';
 
-export default function Table({ columns = [], data }) {
-  
+export default function Table({ limit = 5, columns = [], data }) {
   function fuzzyTextFilterFn(rows, id, filterValue) {
     return matchSorter(rows, filterValue, { keys: [(row) => row.values[id]] });
   }
@@ -48,7 +47,7 @@ export default function Table({ columns = [], data }) {
       data,
       defaultColumn,
       filterTypes,
-      initialState: { pageSize: 5, pageIndex: 0 },
+      initialState: { pageSize: limit, pageIndex: 0 },
     },
     useGlobalFilter,
     useSortBy,
@@ -217,6 +216,7 @@ export default function Table({ columns = [], data }) {
 }
 
 Table.propTypes = {
+  limit: PropTypes.number,
   columns: PropTypes.array,
   data: PropTypes.array,
 };
