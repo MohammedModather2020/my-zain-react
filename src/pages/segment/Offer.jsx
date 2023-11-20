@@ -63,7 +63,7 @@ export default function SegmentsOffer() {
         accessor: 'segmentIds',
         Cell: ({ row }) => (
           <button
-            className='btn  btn-icon mg-r-5 mg-b-10'
+            className='btn btn-icon mg-r-5 mg-b-10'
             onClick={() =>
               navigate(`/offers/${row.values.id}/segments`, {
                 state: { titleEn: row?.values?.titleEn },
