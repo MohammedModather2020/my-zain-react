@@ -35,7 +35,9 @@ import {
   UpdateRole,
   UpdateSegment,
   UpdateShop,
+  VasDspProducts,
 } from './routes/Routes';
+import VasDspTop from './pages/vas/dsp/Top';
 
 function App() {
   const { isLogin, roles } = useSelector((state) => state?.auth);
@@ -69,6 +71,8 @@ function App() {
           <Route path='/shops/add' element={<AddShop />} />
           <Route path='/shops/:id/update' element={<UpdateShop />} />
           <Route path='/shops/:id/details' element={<DetailsShop />} />
+          <Route path='/vas-dsp/top' element={<VasDspTop />} />
+          <Route path='/vas-dsp/products' element={<VasDspProducts />} />
         </Route>
         <Route element={<AdminRoute isLogin={isLogin} roles={roles} />}>
           <Route path='/dashboard/statistics' element={<Statistics />} />

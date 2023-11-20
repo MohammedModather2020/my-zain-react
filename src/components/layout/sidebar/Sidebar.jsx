@@ -5,6 +5,7 @@ import { FiHome, FiLogOut } from 'react-icons/fi';
 import { LiaShoppingBagSolid, LiaUsersCogSolid } from 'react-icons/lia';
 import { AiOutlineApartment, AiOutlineShop } from 'react-icons/ai';
 import { MdClose, MdOutlineAdminPanelSettings } from 'react-icons/md';
+import { PiAlignTopLight } from 'react-icons/pi';
 import { CgProfile } from 'react-icons/cg';
 import { logout } from '../../../utils/logout';
 import { Fragment } from 'react';
@@ -135,6 +136,21 @@ export default function Sidebar() {
                     <Link to='/shops/add'>Add Shop</Link>
                   </li>
                 )}
+              </ul>
+            </li>
+            <li>
+              <a href='' tabIndex={5}>
+                <PiAlignTopLight size={25} />
+                <span>VAS DSP</span>
+                <i className='accordion-icon fa fa-angle-left'></i>
+              </a>
+              <ul className='sub-menu'>
+                <li>
+                  <Link to='/vas-dsp/top'>DSP Top</Link>
+                </li>
+                <li>
+                  <Link to='/vas-dsp/products'>DSP Products</Link>
+                </li>
               </ul>
             </li>
             {roles?.includes('Admin') && (

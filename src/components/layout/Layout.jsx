@@ -13,8 +13,8 @@ export default function Layout() {
           <div id='main-wrapper'>
             <Outlet />
           </div>
-        </div>
         <Footer />
+        </div>
       </div>
     </div>
   );

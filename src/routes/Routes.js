@@ -26,6 +26,7 @@ import AddShop from '../pages/shop/Add';
 import DetailsShop from '../pages/shop/Details';
 import Shops from '../pages/shop/Shops';
 import UpdateShop from '../pages/shop/Update';
+import VasDspProducts from '../pages/vas/dsp/Products';
 export {
   Login,
   Register,
@@ -55,4 +56,5 @@ export {
   AddShop,
   UpdateShop,
   DetailsShop,
+  VasDspProducts,
 };
