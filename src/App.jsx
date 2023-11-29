@@ -39,10 +39,12 @@ import {
   UpdateSegment,
   UpdateShop,
   VasCategories,
-  VasDspProducts,
+  VasDspDigitalProducts,
+  VasDspIvrProducts,
+  VasDspSmsProducts,
   VasUpdateCategory,
 } from './routes/Routes';
-import VasDspTop from './pages/vas/dsp/Top';
+import VasDspTop from './pages/vas/dsp/product/Top';
 
 function App() {
   const { isLogin, roles } = useSelector((state) => state?.auth);
@@ -76,8 +78,10 @@ function App() {
           <Route path='/shops/add' element={<AddShop />} />
           <Route path='/shops/:id/update' element={<UpdateShop />} />
           <Route path='/shops/:id/details' element={<DetailsShop />} />
-          <Route path='/vas-dsp/top' element={<VasDspTop />} />
-          <Route path='/vas-dsp/products' element={<VasDspProducts />} />
+          <Route path='/vas-dsp/products/top' element={<VasDspTop />} />
+          <Route path='/vas-dsp/products/sms' element={<VasDspSmsProducts />} />
+          <Route path='/vas-dsp/products/ivr' element={<VasDspIvrProducts />} />
+          <Route path='/vas-dsp/products/digital' element={<VasDspDigitalProducts />} />
           <Route path='/promotions' element={<Promotions />} />
           <Route path='/promotions/add' element={<AddPromotions />} />
           <Route path='/vas-dsp/categories' element={<VasCategories />} />
