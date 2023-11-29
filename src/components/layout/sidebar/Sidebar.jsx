@@ -6,6 +6,7 @@ import { LiaShoppingBagSolid, LiaUsersCogSolid } from 'react-icons/lia';
 import { AiOutlineApartment, AiOutlineShop } from 'react-icons/ai';
 import { MdClose, MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { PiAlignTopLight } from 'react-icons/pi';
+import { GiUpgrade } from "react-icons/gi";
 import { CgProfile } from 'react-icons/cg';
 import { logout } from '../../../utils/logout';
 import { Fragment } from 'react';
@@ -60,7 +61,7 @@ export default function Sidebar() {
               </a>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/categories'>All Categories</Link>
+                  <Link to='/categories'>Categories</Link>
                 </li>
                 {roles?.includes('Admin') && (
                   <li>
@@ -77,7 +78,7 @@ export default function Sidebar() {
               </a>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/packages'>All Packages</Link>
+                  <Link to='/packages'>Packages</Link>
                 </li>
                 {roles?.includes('Admin') && (
                   <li>
@@ -94,7 +95,7 @@ export default function Sidebar() {
               </a>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/segments'>All Segments</Link>
+                  <Link to='/segments'>Segments</Link>
                 </li>
                 {roles?.includes('Admin') && (
                   <li>
@@ -111,7 +112,7 @@ export default function Sidebar() {
               </a>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/offers'>All Offers</Link>
+                  <Link to='/offers'>Offers</Link>
                 </li>
                 {(roles?.includes('Admin') ||
                   roles.includes('ProductOffering')) && (
@@ -129,7 +130,7 @@ export default function Sidebar() {
               </a>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/shops'>All Shops</Link>
+                  <Link to='/shops'>Shops</Link>
                 </li>
                 {(roles?.includes('Admin') || roles.includes('Shop')) && (
                   <li>
@@ -153,6 +154,23 @@ export default function Sidebar() {
                 </li>
               </ul>
             </li>
+            <li>
+              <a href='' tabIndex={4}>
+                <GiUpgrade size={25} />
+                <span>Promotions</span>
+                <i className='accordion-icon fa fa-angle-left'></i>
+              </a>
+              <ul className='sub-menu'>
+                <li>
+                  <Link to='/promotions'>Promotions</Link>
+                </li>
+                {roles?.includes('Admin') && (
+                  <li>
+                    <Link to='/promotions/add'>Add Promotions</Link>
+                  </li>
+                )}
+              </ul>
+            </li>
             {roles?.includes('Admin') && (
               <Fragment>
                 <li className='menu-divider mg-y-20-force'></li>
@@ -165,7 +183,7 @@ export default function Sidebar() {
                   </a>
                   <ul className='sub-menu'>
                     <li>
-                      <Link to='/admins'>All Admins</Link>
+                      <Link to='/admins'>Admins</Link>
                     </li>
                   </ul>
                 </li>
@@ -177,7 +195,7 @@ export default function Sidebar() {
                   </a>
                   <ul className='sub-menu'>
                     <li>
-                      <Link to='/roles'>All Roles</Link>
+                      <Link to='/roles'>Roles</Link>
                       <Link to='/roles/add'>Add Role</Link>
                       <Link to='/roles/sign'>Sign Role</Link>
                     </li>

@@ -10,6 +10,7 @@ import {
   AddCategory,
   AddOffer,
   AddPackage,
+  AddPromotions,
   AddRole,
   AddSegment,
   AddShop,
@@ -22,6 +23,7 @@ import {
   Offers,
   Packages,
   Profile,
+  Promotions,
   Register,
   Roles,
   Segments,
@@ -73,6 +75,8 @@ function App() {
           <Route path='/shops/:id/details' element={<DetailsShop />} />
           <Route path='/vas-dsp/top' element={<VasDspTop />} />
           <Route path='/vas-dsp/products' element={<VasDspProducts />} />
+          <Route path='/promotions' element={<Promotions />} />
+          <Route path='/promotions/add' element={<AddPromotions />} />
         </Route>
         <Route element={<AdminRoute isLogin={isLogin} roles={roles} />}>
           <Route path='/dashboard/statistics' element={<Statistics />} />

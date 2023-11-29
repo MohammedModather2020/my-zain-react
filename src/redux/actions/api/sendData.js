@@ -16,6 +16,8 @@ export const sendData =
       const res = await ApiConfig.post(`${url}`, data, {
         headers: {
           authorization: `Bearer ${token}`,
+              // 'Content-Type': 'multipart/form-data',
+
         },
       });
       if (res.status === 200) {
