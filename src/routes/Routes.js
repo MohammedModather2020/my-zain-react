@@ -29,6 +29,7 @@ import DetailsShop from '../pages/shop/Details';
 import Shops from '../pages/shop/Shops';
 import UpdateShop from '../pages/shop/Update';
 import VasDspProducts from '../pages/vas/dsp/Products';
+import VasCategories from '../pages/vas/dsp/category/Categories';
 export {
   Login,
   Register,
@@ -60,5 +61,6 @@ export {
   DetailsShop,
   VasDspProducts,
   Promotions,
-  AddPromotions
+  AddPromotions,
+  VasCategories
 };
