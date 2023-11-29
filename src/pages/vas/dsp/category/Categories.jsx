@@ -47,7 +47,7 @@ export default function VasCategories() {
               <button
                 className='btn btn-primary btn-icon mg-r-5 mg-b-10'
                 onClick={() =>
-                  navigate(`/categories/${row.values.id}/update`, {
+                  navigate(`/vas-dsp/categories/${row.values.id}/update`, {
                     state: row.original,
                   })
                 }
