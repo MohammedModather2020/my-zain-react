@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import Multiselect from 'multiselect-react-dropdown';
 import useData from '../../../hooks/useData';
-import { requiredFiledByRole } from '../../../utils/requiredFiledByRole';
-import { disabledFiledByRole } from '../../../utils/disabledFiledByRole';
+import { requiredFiledByRole } from '../../../utils/validation/requiredFiledByRole';
+import { disabledFiledByRole } from '../../../utils/validation/disabledFiledByRole';
 
 export default function StepOne({
   accessToken,

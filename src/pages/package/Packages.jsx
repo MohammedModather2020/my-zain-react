@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Fragment, useMemo, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
@@ -21,6 +22,10 @@ export default function Packages() {
   const [showModalConfirm, setShowModalConfirm] = useState(false);
   const { accessToken, roles } = useSelector((state) => state?.auth);
   const { data: packages, loading, error } = useSelector((state) => state.api);
+  // ----------------------------------------------------------------------------------->
+  useEffect(() => {
+    error && toast.error(error);
+  }, [dispatch, error, loading]);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
     () => [
@@ -102,8 +107,6 @@ export default function Packages() {
       <Breadcrumb title='All packages' textActive='packages' />
       {loading ? (
         <Loading isLoading={loading} />
-      ) : error ? (
-        error
       ) : (
         <div className='card shadow mb-4'>
           {data && <Table columns={columns} data={data} />}

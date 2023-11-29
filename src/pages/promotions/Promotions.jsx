@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import Avatar from 'react-avatar';
 import moment from 'moment';
 import { Fragment, useMemo, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
@@ -26,6 +27,10 @@ export default function Promotions() {
     loading,
     error,
   } = useSelector((state) => state.api);
+  // ----------------------------------------------------------------------------------->
+  useEffect(() => {
+    error && toast.error(error);
+  }, [dispatch, error, loading]);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
     () => [
@@ -107,7 +112,7 @@ export default function Promotions() {
   );
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
-    dispatch(getData(`category/getAllPromotions`, accessToken));
+    dispatch(getData(`promotion/getAllPromotions`, accessToken));
   }, [accessToken, dispatch, isShowLoading]);
   // ----------------------------------------------------------------------------------->
   const data = useMemo(() => isArray(promotions) && promotions, [promotions]);
@@ -133,8 +138,6 @@ export default function Promotions() {
       <Breadcrumb title='All promotions' textActive='Promotions' />
       {loading ? (
         <Loading isLoading={loading} />
-      ) : error ? (
-        error
       ) : (
         <div className='card shadow mb-4'>
           <Table columns={columns} data={data} />

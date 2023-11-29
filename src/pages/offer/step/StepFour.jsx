@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { disabledFiledByRole } from '../../../utils/disabledFiledByRole';
-import { requiredFiledByRole } from '../../../utils/requiredFiledByRole';
+import { disabledFiledByRole } from '../../../utils/validation/disabledFiledByRole';
+import { requiredFiledByRole } from '../../../utils/validation/requiredFiledByRole';
 
 export default function StepFour({ formik, roles }) {
   return (
