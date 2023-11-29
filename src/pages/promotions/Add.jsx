@@ -66,20 +66,24 @@ export default function AddPromotions() {
       .max(1000, `The Description [en] you must not than 1000 characters`),
   });
   // ----------------------------------------------------------------------------------->
-  const onSubmit = (values) => {
-    const imageData = imageBase64?.split(',')[1];
-    const bytes = atob(imageData);
+  const onSubmit = async (values) => {
+    // const imageData = imageBase64?.split(',')[1];
+    // const bytes = atob(imageData);
 
-    // // Convert bytes to ArrayBuffer
-    const arrayBuffer = new ArrayBuffer(bytes.length);
-    // const uint8Array = new Uint8Array(arrayBuffer);
-    // for (let i = 0; i < bytes.length; i++) {
-    //   uint8Array[i] = bytes.charCodeAt(i);
-    // }
-    const blob = new Blob([arrayBuffer], { type: 'image/jpeg' }); // Update the type based on your image type
+    // // // Convert bytes to ArrayBuffer
+    // const arrayBuffer = new ArrayBuffer(bytes.length);
+    // // const uint8Array = new Uint8Array(arrayBuffer);
+    // // for (let i = 0; i < bytes.length; i++) {
+    // //   uint8Array[i] = bytes.charCodeAt(i);
+    // // }
+    // const blob = new Blob([arrayBuffer], { type: 'image/jpeg' }); // Update the type based on your image type
 
+    // const binary = await convertImageToBinary(values?.image);
+    // console.log(binary)
+    const hexadecimal = await convertImageToHex(values?.image);
+    console.log(hexadecimal)
     const data = {
-      image: imageData,
+      image: hexadecimal,
       name: values?.name,
       titleAr: values?.titleAr,
       titleEn: values?.titleEn,
@@ -109,6 +113,47 @@ export default function AddPromotions() {
     onSubmit,
     validationSchema,
   });
+
+  function convertImageToBinary(imageFile) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const binaryData = reader.result;
+        resolve(binaryData);
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader.readAsBinaryString(imageFile);
+    });
+  }
+  function convertImageToHex(imageFile) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const arrayBuffer = reader.result;
+        const bytes = new Uint8Array(arrayBuffer);
+        const hexArray = [];
+
+        for (let i = 0; i < bytes.length; i++) {
+          hexArray.push(bytes[i].toString(16).padStart(2, '0'));
+        }
+
+        const hexString = hexArray.join('');
+        resolve(hexString);
+      };
+
+      reader.onerror = (error) => {
+        reject(error);
+      };
+
+      reader?.readAsArrayBuffer(imageFile);
+    });
+  }
   return (
     <Fragment>
       <Loading isLoading={loading} />
