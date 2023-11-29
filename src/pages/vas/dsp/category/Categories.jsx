@@ -94,7 +94,7 @@ export default function VasCategories() {
         showModalConfirmTry={setShowModalConfirm}
         toggleModal={showModalConfirm}
       />
-      <Breadcrumb title='All VAS categories' textActive='Categories' />
+      <Breadcrumb title='All VAS categories' textActive='VAS Categories' />
       {loading ? (
         <Loading isLoading={loading} />
       ) : error ? (

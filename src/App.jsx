@@ -39,6 +39,7 @@ import {
   UpdateShop,
   VasCategories,
   VasDspProducts,
+  VasUpdateCategory,
 } from './routes/Routes';
 import VasDspTop from './pages/vas/dsp/Top';
 
@@ -79,6 +80,7 @@ function App() {
           <Route path='/promotions' element={<Promotions />} />
           <Route path='/promotions/add' element={<AddPromotions />} />
           <Route path='/vas-dsp/categories' element={<VasCategories />} />
+          <Route path='/vas-dsp/categories/:id/update' element={<VasUpdateCategory />} />
         </Route>
         <Route element={<AdminRoute isLogin={isLogin} roles={roles} />}>
           <Route path='/dashboard/statistics' element={<Statistics />} />
