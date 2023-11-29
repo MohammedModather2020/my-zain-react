@@ -14,6 +14,8 @@ import AddPackage from '../pages/package/Add';
 import Packages from '../pages/package/Packages';
 import UpdatePackage from '../pages/package/Update';
 import Profile from '../pages/profile/Profile';
+import AddPromotions from '../pages/promotions/Add';
+import Promotions from '../pages/promotions/Promotions';
 import AddRole from '../pages/role/Add';
 import Roles from '../pages/role/Roles';
 import SignRole from '../pages/role/Sign';
@@ -57,4 +59,6 @@ export {
   UpdateShop,
   DetailsShop,
   VasDspProducts,
+  Promotions,
+  AddPromotions
 };
