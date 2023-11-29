@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Fragment, useMemo, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
@@ -24,6 +25,10 @@ export default function VasCategories() {
     loading,
     error,
   } = useSelector((state) => state.api);
+  // ----------------------------------------------------------------------------------->
+  useEffect(() => {
+    error && toast.error(error);
+  }, [dispatch, error, loading]);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
     () => [
@@ -94,11 +99,9 @@ export default function VasCategories() {
         showModalConfirmTry={setShowModalConfirm}
         toggleModal={showModalConfirm}
       />
-      <Breadcrumb title='All VAS categories' textActive='Categories' />
+      <Breadcrumb title='All VAS categories' textActive='VAS Categories' />
       {loading ? (
         <Loading isLoading={loading} />
-      ) : error ? (
-        error
       ) : (
         <div className='card shadow mb-4'>
           <Table columns={columns} data={data} />

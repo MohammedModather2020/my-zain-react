@@ -1,21 +1,26 @@
 import PropTypes from 'prop-types';
 import { Fragment, useMemo, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { isArray } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { BsArrowUpRight } from 'react-icons/bs';
-import { getData } from '../../../redux/actions/api/getData';
-import { Loading } from '../../../components/helper/loading/Loading';
-import Breadcrumb from '../../../components/breadcrumb/Breadcrumb';
-import Table from '../../../components/table/Table';
+import { getData } from '../../../../redux/actions/api/getData';
+import { Loading } from '../../../../components/helper/loading/Loading';
+import Breadcrumb from '../../../../components/breadcrumb/Breadcrumb';
+import Table from '../../../../components/table/Table';
 
-export default function VasDspProducts() {
+export default function VasDspTop() {
   const dispatch = useDispatch();
   const { accessToken } = useSelector((state) => state?.auth);
   const { data: products, loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
   useEffect(() => {
-    dispatch(getData(`vasdsp/getAllVasDspProduct`, accessToken));
+    dispatch(getData(`vasdsp/getAllVasDspTop`, accessToken));
   }, [accessToken, dispatch]);
+  // ----------------------------------------------------------------------------------->
+  useEffect(() => {
+    error && toast.error(error);
+  }, [dispatch, error, loading]);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
     () => [
@@ -79,14 +84,12 @@ export default function VasDspProducts() {
   return (
     <Fragment>
       <Breadcrumb
-        title='All VAS DSP Products'
+        title='All VAS DSP Top'
         textActive='Products'
-        items={[{ name: 'VAS', url: '/vas-dsp/products' }]}
+        items={[{ name: 'VAS', url: '/vas-dsp/products/top' }]}
       />
       {loading ? (
         <Loading isLoading={loading} />
-      ) : error ? (
-        error
       ) : (
         <div className='card shadow mb-4'>
           <Table columns={columns} data={data} limit={10} />
@@ -95,6 +98,6 @@ export default function VasDspProducts() {
     </Fragment>
   );
 }
-VasDspProducts.propTypes = {
+VasDspTop.propTypes = {
   row: PropTypes.object,
 };

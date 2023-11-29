@@ -6,7 +6,7 @@ import { LiaShoppingBagSolid, LiaUsersCogSolid } from 'react-icons/lia';
 import { AiOutlineApartment, AiOutlineShop } from 'react-icons/ai';
 import { MdClose, MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { PiAlignTopLight } from 'react-icons/pi';
-import { GiUpgrade } from "react-icons/gi";
+import { GiUpgrade } from 'react-icons/gi';
 import { CgProfile } from 'react-icons/cg';
 import { logout } from '../../../utils/logout';
 import { Fragment } from 'react';
@@ -147,13 +147,24 @@ export default function Sidebar() {
               </a>
               <ul className='sub-menu'>
                 <li>
-                  <Link to='/vas-dsp/top'>DSP Top</Link>
+                  <Link to='/vas-dsp/products/top'>VAS Top</Link>
                 </li>
                 <li>
-                  <Link to='/vas-dsp/products'>DSP Products</Link>
+                  <Link to='/vas-dsp/products/sms'>VAS Products SMS</Link>
+                </li>
+                <li>
+                  <Link to='/vas-dsp/products/ivr'>VAS Products IVR</Link>
+                </li>
+                <li>
+                  <Link to='/vas-dsp/products/digital'>
+                    VAS Products Digital
+                  </Link>
                 </li>
                 <li>
                   <Link to='/vas-dsp/categories'>DSP Categories</Link>
+                </li>
+                <li>
+                  <Link to='/vas-dsp/categories/add'>Add DSP Categories</Link>
                 </li>
               </ul>
             </li>
