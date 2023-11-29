@@ -5,12 +5,12 @@ import { isArray } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { BsArrowUpRight } from 'react-icons/bs';
 import { AiFillDelete } from 'react-icons/ai';
-import { getData } from '../../../../redux/actions/api/getData';
-import { deleteData } from '../../../../redux/actions/api/deleteData';
-import { Loading } from '../../../../components/helper/loading/Loading';
-import Table from '../../../../components/table/Table';
-import Breadcrumb from '../../../../components/breadcrumb/Breadcrumb';
-import ModalConfirm from '../../../../components/helper/modal/ModalConfirm';
+import { getData } from '../../../../../redux/actions/api/getData';
+import { deleteData } from '../../../../../redux/actions/api/deleteData';
+import { Loading } from '../../../../../components/helper/loading/Loading';
+import Table from '../../../../../components/table/Table';
+import Breadcrumb from '../../../../../components/breadcrumb/Breadcrumb';
+import ModalConfirm from '../../../../../components/helper/modal/ModalConfirm';
 
 export default function VasDspIvrProducts() {
   const dispatch = useDispatch();
