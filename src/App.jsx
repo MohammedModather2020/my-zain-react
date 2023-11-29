@@ -14,6 +14,7 @@ import {
   AddRole,
   AddSegment,
   AddShop,
+  AddVasCategory,
   Admins,
   Categories,
   DetailsOffer,
@@ -80,6 +81,7 @@ function App() {
           <Route path='/promotions' element={<Promotions />} />
           <Route path='/promotions/add' element={<AddPromotions />} />
           <Route path='/vas-dsp/categories' element={<VasCategories />} />
+          <Route path='/vas-dsp/categories/add' element={<AddVasCategory />} />
           <Route path='/vas-dsp/categories/:id/update' element={<VasUpdateCategory />} />
         </Route>
         <Route element={<AdminRoute isLogin={isLogin} roles={roles} />}>

@@ -155,6 +155,9 @@ export default function Sidebar() {
                 <li>
                   <Link to='/vas-dsp/categories'>DSP Categories</Link>
                 </li>
+                <li>
+                  <Link to='/vas-dsp/categories/add'>Add DSP Categories</Link>
+                </li>
               </ul>
             </li>
             <li>

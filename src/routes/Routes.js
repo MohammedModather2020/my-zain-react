@@ -29,6 +29,7 @@ import DetailsShop from '../pages/shop/Details';
 import Shops from '../pages/shop/Shops';
 import UpdateShop from '../pages/shop/Update';
 import VasDspProducts from '../pages/vas/dsp/Products';
+import AddVasCategory from '../pages/vas/dsp/category/Add';
 import VasCategories from '../pages/vas/dsp/category/Categories';
 import VasUpdateCategory from '../pages/vas/dsp/category/Update';
 export {
@@ -64,5 +65,6 @@ export {
   Promotions,
   AddPromotions,
   VasCategories,
-  VasUpdateCategory
+  VasUpdateCategory,
+  AddVasCategory,
 };
