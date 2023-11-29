@@ -33,7 +33,8 @@ import VasCategories from '../pages/vas/dsp/category/Categories';
 import VasUpdateCategory from '../pages/vas/dsp/category/Update';
 import VasDspAddDigitalProduct from '../pages/vas/dsp/product/digital/Add';
 import VasDspDigitalProducts from '../pages/vas/dsp/product/digital/Digital';
-import VasDspIvrProducts from '../pages/vas/dsp/product/Ivr';
+import VasDspAddIvrProduct from '../pages/vas/dsp/product/ivr/Add';
+import VasDspIvrProducts from '../pages/vas/dsp/product/ivr/Ivr';
 import VasDspSmsProducts from '../pages/vas/dsp/product/sms/Sms';
 import VasDspUpdateSmsProduct from '../pages/vas/dsp/product/sms/Update';
 export {
@@ -74,5 +75,6 @@ export {
   VasDspIvrProducts,
   VasDspDigitalProducts,
   VasDspUpdateSmsProduct,
-  VasDspAddDigitalProduct
+  VasDspAddDigitalProduct,
+  VasDspAddIvrProduct,
 };

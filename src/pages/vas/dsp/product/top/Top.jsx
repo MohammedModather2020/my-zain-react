@@ -4,10 +4,10 @@ import { toast } from 'react-toastify';
 import { isArray } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { BsArrowUpRight } from 'react-icons/bs';
-import { getData } from '../../../../redux/actions/api/getData';
-import { Loading } from '../../../../components/helper/loading/Loading';
-import Breadcrumb from '../../../../components/breadcrumb/Breadcrumb';
-import Table from '../../../../components/table/Table';
+import { getData } from '../../../../../redux/actions/api/getData';
+import { Loading } from '../../../../../components/helper/loading/Loading';
+import Breadcrumb from '../../../../../components/breadcrumb/Breadcrumb';
+import Table from '../../../../../components/table/Table';
 
 export default function VasDspTop() {
   const dispatch = useDispatch();
