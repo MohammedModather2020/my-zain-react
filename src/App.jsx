@@ -39,9 +39,11 @@ import {
   UpdateSegment,
   UpdateShop,
   VasCategories,
+  VasDspAddDigitalProduct,
   VasDspDigitalProducts,
   VasDspIvrProducts,
   VasDspSmsProducts,
+  VasDspUpdateSmsProduct,
   VasUpdateCategory,
 } from './routes/Routes';
 import VasDspTop from './pages/vas/dsp/product/Top';
@@ -80,8 +82,10 @@ function App() {
           <Route path='/shops/:id/details' element={<DetailsShop />} />
           <Route path='/vas-dsp/products/top' element={<VasDspTop />} />
           <Route path='/vas-dsp/products/sms' element={<VasDspSmsProducts />} />
+          <Route path='/vas-dsp/products/sms/:id/update' element={<VasDspUpdateSmsProduct />} />
           <Route path='/vas-dsp/products/ivr' element={<VasDspIvrProducts />} />
           <Route path='/vas-dsp/products/digital' element={<VasDspDigitalProducts />} />
+          <Route path='/vas-dsp/products/digital/add' element={<VasDspAddDigitalProduct />} />
           <Route path='/promotions' element={<Promotions />} />
           <Route path='/promotions/add' element={<AddPromotions />} />
           <Route path='/vas-dsp/categories' element={<VasCategories />} />
