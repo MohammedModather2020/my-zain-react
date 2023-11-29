@@ -48,6 +48,8 @@ import {
   VasUpdateCategory,
 } from './routes/Routes';
 import VasDspTop from './pages/vas/dsp/product/top/Top';
+import AdminAndVasRoute from './auth/AdminAndVasRoute';
+import AdminAndOfferRoute from './auth/AdminAndOfferRoute';
 
 function App() {
   const { isLogin, roles } = useSelector((state) => state?.auth);
@@ -72,27 +74,12 @@ function App() {
           <Route path='/segments/:id/update' element={<UpdateSegment />} />
           <Route path='/segments/:id/offers' element={<SegmentsOffer />} />
           <Route path='/offers' element={<Offers />} />
-          <Route path='/offers/add' element={<AddOffer />} />
           <Route path='/offers/:id/details' element={<DetailsOffer />} />
-          <Route path='/offers/:id/update' element={<UpdateOffer />} />
           <Route path='/offers/:id/segments' element={<OfferSegments />} />
-          <Route path='/auth/profile/' element={<Profile />} />
-          <Route path='/shops' element={<Shops />} />
-          <Route path='/shops/add' element={<AddShop />} />
-          <Route path='/shops/:id/update' element={<UpdateShop />} />
-          <Route path='/shops/:id/details' element={<DetailsShop />} />
-          <Route path='/vas-dsp/products/top' element={<VasDspTop />} />
-          <Route path='/vas-dsp/products/sms' element={<VasDspSmsProducts />} />
-          <Route path='/vas-dsp/products/sms/:id/update' element={<VasDspUpdateSmsProduct />} />
-          <Route path='/vas-dsp/products/ivr' element={<VasDspIvrProducts />} />
-          <Route path='/vas-dsp/products/ivr/add' element={<VasDspAddIvrProduct />} />
-          <Route path='/vas-dsp/products/digital' element={<VasDspDigitalProducts />} />
-          <Route path='/vas-dsp/products/digital/add' element={<VasDspAddDigitalProduct />} />
           <Route path='/promotions' element={<Promotions />} />
-          <Route path='/promotions/add' element={<AddPromotions />} />
-          <Route path='/vas-dsp/categories' element={<VasCategories />} />
-          <Route path='/vas-dsp/categories/add' element={<AddVasCategory />} />
-          <Route path='/vas-dsp/categories/:id/update' element={<VasUpdateCategory />} />
+          <Route path='/shops' element={<Shops />} />
+          <Route path='/shops/:id/details' element={<DetailsShop />} />
+          <Route path='/auth/profile' element={<Profile />} />
         </Route>
         <Route element={<AdminRoute isLogin={isLogin} roles={roles} />}>
           <Route path='/dashboard/statistics' element={<Statistics />} />
@@ -103,11 +90,28 @@ function App() {
           <Route path='/admins' element={<Admins />} />
         </Route>
         <Route
-          element={<AdminAndUserRoute isLogin={isLogin} roles={roles} />}
-        ></Route>
-        <Route
-          element={<AdminAndShopRoute isLogin={isLogin} roles={roles} />}
-        ></Route>
+          element={<AdminAndUserRoute isLogin={isLogin} roles={roles} />}></Route>
+         <Route element={<AdminAndVasRoute isLogin={isLogin} roles={roles} />}>
+          <Route path='/vas-dsp/products/top' element={<VasDspTop />} />
+          <Route path='/vas-dsp/products/sms' element={<VasDspSmsProducts />} />
+          <Route path='/vas-dsp/products/sms/:id/update' element={<VasDspUpdateSmsProduct />} />
+          <Route path='/vas-dsp/products/ivr' element={<VasDspIvrProducts />} />
+          <Route path='/vas-dsp/products/ivr/add' element={<VasDspAddIvrProduct />} />
+          <Route path='/vas-dsp/products/digital' element={<VasDspDigitalProducts />} />
+          <Route path='/vas-dsp/products/digital/add' element={<VasDspAddDigitalProduct />} />
+          <Route path='/vas-dsp/categories' element={<VasCategories />} />
+          <Route path='/vas-dsp/categories/add' element={<AddVasCategory />} />
+          <Route path='/vas-dsp/categories/:id/update' element={<VasUpdateCategory />} />
+        </Route>
+        <Route element={<AdminAndShopRoute isLogin={isLogin} roles={roles} />}>
+          <Route path='/shops/add' element={<AddShop />} />
+          <Route path='/shops/:id/update' element={<UpdateShop />} />
+          <Route path='/promotions/add' element={<AddPromotions />} />
+        </Route>
+        <Route element={<AdminAndOfferRoute isLogin={isLogin} roles={roles} />}>
+          <Route path='/offers/add' element={<AddOffer />} />
+          <Route path='/offers/:id/update' element={<UpdateOffer />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

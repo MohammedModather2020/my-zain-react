@@ -59,7 +59,7 @@ export default function VasDspIvrProducts() {
             /&quot;/g,
             '',
           );
-          const url = withoutQuot.replace(/\[MSISDN\]/g, row?.original?.code);
+          const url = withoutQuot?.replace(/\[MSISDN\]/g, row?.original?.code);
           return (
             <a
               href={url}

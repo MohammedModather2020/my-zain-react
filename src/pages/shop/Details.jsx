@@ -42,7 +42,7 @@ export default function DetailsShop() {
           <div className='col-md-6'>
             <div className='row border-bottom border-right border-left'>
               <div className='col-4'>
-                <h3 className='tx-15 py-2'>Name [AR] :</h3>
+                <h3 className='tx-15 py-2'>Name [Ar] :</h3>
               </div>
               <div className='col-8'>
                 <h4 className='tx-15 font-weight-normal py-2'>
@@ -54,7 +54,7 @@ export default function DetailsShop() {
           <div className='col-md-6'>
             <div className='row border-bottom border-right border-left'>
               <div className='col-4'>
-                <h3 className='tx-15 py-2'>Name [EN] :</h3>
+                <h3 className='tx-15 py-2'>Name [En] :</h3>
               </div>
               <div className='col-8'>
                 <h4 className='tx-15 font-weight-normal py-2'>
@@ -66,7 +66,7 @@ export default function DetailsShop() {
           <div className='col-md-6'>
             <div className='row border-bottom border-right border-left'>
               <div className='col-4'>
-                <h3 className='tx-15 py-2'>City [AR] :</h3>
+                <h3 className='tx-15 py-2'>City [Ar] :</h3>
               </div>
               <div className='col-8'>
                 <h4 className='tx-15 font-weight-normal py-2'>{state?.city}</h4>
@@ -76,7 +76,7 @@ export default function DetailsShop() {
           <div className='col-md-6'>
             <div className='row border-bottom border-right border-left'>
               <div className='col-4'>
-                <h3 className='tx-15 py-2'>City [EN] :</h3>
+                <h3 className='tx-15 py-2'>City [En] :</h3>
               </div>
               <div className='col-8'>
                 <h4 className='tx-15 font-weight-normal py-2'>
@@ -88,7 +88,7 @@ export default function DetailsShop() {
           <div className='col-md-6'>
             <div className='row border-bottom border-right border-left'>
               <div className='col-4'>
-                <h3 className='tx-15 py-2'>State [AR] :</h3>
+                <h3 className='tx-15 py-2'>State [Ar] :</h3>
               </div>
               <div className='col-8'>
                 <h4 className='tx-15 font-weight-normal py-2'>
@@ -100,7 +100,7 @@ export default function DetailsShop() {
           <div className='col-md-6'>
             <div className='row border-bottom border-right border-left'>
               <div className='col-4'>
-                <h3 className='tx-15 py-2'>State [EN] :</h3>
+                <h3 className='tx-15 py-2'>State [En] :</h3>
               </div>
               <div className='col-8'>
                 <h4 className='tx-15 font-weight-normal py-2'>
@@ -112,7 +112,7 @@ export default function DetailsShop() {
           <div className='col-md-6'>
             <div className='row border-bottom border-right border-left'>
               <div className='col-4'>
-                <h3 className='tx-15 py-2'>Address [AR] :</h3>
+                <h3 className='tx-15 py-2'>Address [Ar] :</h3>
               </div>
               <div className='col-8'>
                 <h4 className='tx-15 font-weight-normal py-2'>
@@ -124,7 +124,7 @@ export default function DetailsShop() {
           <div className='col-md-6'>
             <div className='row border-bottom border-right border-left'>
               <div className='col-4'>
-                <h3 className='tx-15 py-2'>Address [EN] :</h3>
+                <h3 className='tx-15 py-2'>Address [En] :</h3>
               </div>
               <div className='col-6'>
                 <h4 className='tx-15 font-weight-normal py-2'>
@@ -253,7 +253,6 @@ export default function DetailsShop() {
               </div>
             </div>
           </div>
-        
         </div>
       </div>
     </Fragment>

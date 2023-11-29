@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { FaLock } from 'react-icons/fa';
 import { BiSolidUser } from 'react-icons/bi';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { toggleShowingPassword } from '../../../utils/toggleShowingPassword';
+import { toggleShowingPassword } from '../../../utils/validation/toggleShowingPassword';
 import { LOGIN_SUCCESS } from '../../../redux/type';
 import { Loading } from '../../../components/helper/loading/Loading';
 import ApiConfig from '../../../api/ApiConfig';

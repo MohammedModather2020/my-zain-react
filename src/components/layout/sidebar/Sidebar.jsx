@@ -8,7 +8,7 @@ import { MdClose, MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { PiAlignTopLight } from 'react-icons/pi';
 import { GiUpgrade } from 'react-icons/gi';
 import { CgProfile } from 'react-icons/cg';
-import { logout } from '../../../utils/logout';
+import { logout } from '../../../utils/functions/logout';
 import { Fragment } from 'react';
 
 export default function Sidebar() {
@@ -139,35 +139,37 @@ export default function Sidebar() {
                 )}
               </ul>
             </li>
-            <li>
-              <a href='' tabIndex={5}>
-                <PiAlignTopLight size={25} />
-                <span>VAS DSP</span>
-                <i className='accordion-icon fa fa-angle-left'></i>
-              </a>
-              <ul className='sub-menu'>
-                <li>
-                  <Link to='/vas-dsp/products/top'>VAS Top</Link>
-                </li>
-                <li>
-                  <Link to='/vas-dsp/products/sms'>VAS Products SMS</Link>
-                </li>
-                <li>
-                  <Link to='/vas-dsp/products/ivr'>VAS Products IVR</Link>
-                </li>
-                <li>
-                  <Link to='/vas-dsp/products/digital'>
-                    VAS Products Digital
-                  </Link>
-                </li>
-                <li>
-                  <Link to='/vas-dsp/categories'>DSP Categories</Link>
-                </li>
-                <li>
-                  <Link to='/vas-dsp/categories/add'>Add DSP Categories</Link>
-                </li>
-              </ul>
-            </li>
+            {(roles?.includes('Admin') || roles.includes('VasBusiness')) && (
+              <li>
+                <a href='' tabIndex={5}>
+                  <PiAlignTopLight size={25} />
+                  <span>VAS DSP</span>
+                  <i className='accordion-icon fa fa-angle-left'></i>
+                </a>
+                <ul className='sub-menu'>
+                  <li>
+                    <Link to='/vas-dsp/products/top'>VAS Top</Link>
+                  </li>
+                  <li>
+                    <Link to='/vas-dsp/products/sms'>VAS Products SMS</Link>
+                  </li>
+                  <li>
+                    <Link to='/vas-dsp/products/ivr'>VAS Products IVR</Link>
+                  </li>
+                  <li>
+                    <Link to='/vas-dsp/products/digital'>
+                      VAS Products Digital
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/vas-dsp/categories'>DSP Categories</Link>
+                  </li>
+                  <li>
+                    <Link to='/vas-dsp/categories/add'>Add DSP Categories</Link>
+                  </li>
+                </ul>
+              </li>
+            )}
             <li>
               <a href='' tabIndex={4}>
                 <GiUpgrade size={25} />

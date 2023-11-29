@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Fragment, useMemo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
 import { FiEdit } from 'react-icons/fi';
@@ -22,10 +23,14 @@ export default function Segments() {
   const { accessToken, roles } = useSelector((state) => state?.auth);
   const { data: segments, loading, error } = useSelector((state) => state.api);
   // ----------------------------------------------------------------------------------->
+  useEffect(() => {
+    error && toast.error(error);
+  }, [dispatch, error, loading]);
+  // ----------------------------------------------------------------------------------->
   const columns = useMemo(
     () => [
       {
-        Header: 'Title AR',
+        Header: 'Title Ar',
         disableFilters: true,
         accessor: 'titleAr',
       },
@@ -116,8 +121,6 @@ export default function Segments() {
       <Breadcrumb title='All Segments' textActive='Segments' />
       {loading ? (
         <Loading isLoading={loading} />
-      ) : error ? (
-        error
       ) : (
         <div className='card shadow mb-4'>
           {data && <Table columns={columns} data={data} />}

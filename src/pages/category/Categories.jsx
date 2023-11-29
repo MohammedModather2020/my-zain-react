@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Fragment, useMemo, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
@@ -25,6 +26,10 @@ export default function Categories() {
     loading,
     error,
   } = useSelector((state) => state.api);
+  // ----------------------------------------------------------------------------------->
+  useEffect(() => {
+    error && toast.error(error);
+  }, [dispatch, error, loading]);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
     () => [
@@ -109,8 +114,6 @@ export default function Categories() {
       <Breadcrumb title='All categories' textActive='Categories' />
       {loading ? (
         <Loading isLoading={loading} />
-      ) : error ? (
-        error
       ) : (
         <div className='card shadow mb-4'>
           <Table columns={columns} data={data} />

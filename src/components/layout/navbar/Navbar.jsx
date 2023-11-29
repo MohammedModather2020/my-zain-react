@@ -4,7 +4,7 @@ import Avatar from 'react-avatar';
 import { IoMdLogOut } from 'react-icons/io';
 import { CgProfile } from 'react-icons/cg';
 import { IoMenu } from 'react-icons/io5';
-import { logout } from '../../../utils/logout';
+import { logout } from '../../../utils/functions/logout';
 
 export default function Navbar() {
   const dispatch = useDispatch();

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Fragment, useMemo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { isArray } from 'lodash';
 import { FiEdit } from 'react-icons/fi';
@@ -11,7 +12,6 @@ import { Loading } from '../../components/helper/loading/Loading';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import ModalConfirm from '../../components/helper/modal/ModalConfirm';
 import Table from '../../components/table/Table';
-
 export default function Roles() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,6 +20,10 @@ export default function Roles() {
   const [showModalConfirm, setShowModalConfirm] = useState(false);
   const { accessToken } = useSelector((state) => state?.auth);
   const { data: roles, loading, error } = useSelector((state) => state.api);
+  // ----------------------------------------------------------------------------------->
+  useEffect(() => {
+    error && toast.error(error);
+  }, [dispatch, error, loading]);
   // ----------------------------------------------------------------------------------->
   const columns = useMemo(
     () => [
@@ -87,8 +91,6 @@ export default function Roles() {
       <Breadcrumb title='All roles' textActive='Roles' />
       {loading ? (
         <Loading isLoading={loading} />
-      ) : error ? (
-        error
       ) : (
         <div className='card shadow mb-4'>
           {data && <Table columns={columns} data={data} />}
