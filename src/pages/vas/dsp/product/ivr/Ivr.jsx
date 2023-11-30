@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import { Fragment, useMemo, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { isArray } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { BsArrowUpRight } from 'react-icons/bs';
 import { AiFillDelete } from 'react-icons/ai';
+import { FiEdit } from 'react-icons/fi';
 import { getData } from '../../../../../redux/actions/api/getData';
 import { deleteData } from '../../../../../redux/actions/api/deleteData';
 import { Loading } from '../../../../../components/helper/loading/Loading';
@@ -14,6 +16,7 @@ import ModalConfirm from '../../../../../components/helper/modal/ModalConfirm';
 
 export default function VasDspIvrProducts() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [id, setId] = useState();
   const [isShowLoading, setIsShowLoading] = useState(false);
   const [showModalConfirm, setShowModalConfirm] = useState(false);
@@ -83,19 +86,31 @@ export default function VasDspIvrProducts() {
         disableFilters: true,
         Cell: ({ row }) =>
           (roles?.includes('Admin') || roles?.includes('VasBusiness')) && (
-            <button
-              className='btn btn-danger btn-icon mg-r-5 mg-b-10'
-              onClick={() => {
-                setId(row.values.code);
-                setShowModalConfirm(true);
-              }}
-            >
-              <AiFillDelete />
-            </button>
+            <Fragment>
+              <button
+                className='btn btn-primary btn-icon mg-r-5 mg-b-10'
+                onClick={() =>
+                  navigate(`/vas-dsp/products/ivr/add`, {
+                    state: row.original,
+                  })
+                }
+              >
+                <FiEdit />
+              </button>
+              <button
+                className='btn btn-danger btn-icon mg-r-5 mg-b-10'
+                onClick={() => {
+                  setId(row.values.code);
+                  setShowModalConfirm(true);
+                }}
+              >
+                <AiFillDelete />
+              </button>
+            </Fragment>
           ),
       },
     ],
-    [roles],
+    [navigate, roles],
   );
   // ----------------------------------------------------------------------------------->
   const data = useMemo(

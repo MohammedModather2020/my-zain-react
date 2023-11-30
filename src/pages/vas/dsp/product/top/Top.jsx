@@ -72,9 +72,14 @@ export default function VasDspTop() {
         },
       },
       {
+        Header: 'Updated By',
+        disableFilters: true,
+        accessor: 'updatedBy',
+      },
+      {
         Header: 'Last Update',
         disableFilters: true,
-        accessor: 'lastUpdate',
+        accessor: 'lastUpdated',
       },
     ],
     [],
