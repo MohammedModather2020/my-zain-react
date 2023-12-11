@@ -6,7 +6,7 @@ import { LiaShoppingBagSolid, LiaUsersCogSolid } from 'react-icons/lia';
 import { AiOutlineApartment, AiOutlineShop } from 'react-icons/ai';
 import { MdClose, MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { PiAlignTopLight } from 'react-icons/pi';
-import { GiUpgrade } from 'react-icons/gi';
+// import { GiUpgrade } from 'react-icons/gi';
 import { CgProfile } from 'react-icons/cg';
 import { logout } from '../../../utils/functions/logout';
 import { Fragment } from 'react';
@@ -170,7 +170,7 @@ export default function Sidebar() {
                 </ul>
               </li>
             )}
-            <li>
+            {/* <li>
               <a href='' tabIndex={4}>
                 <GiUpgrade size={25} />
                 <span>Promotions</span>
@@ -186,7 +186,7 @@ export default function Sidebar() {
                   </li>
                 )}
               </ul>
-            </li>
+            </li> */}
             {roles?.includes('Admin') && (
               <Fragment>
                 <li className='menu-divider mg-y-20-force'></li>
@@ -212,7 +212,7 @@ export default function Sidebar() {
                   <ul className='sub-menu'>
                     <li>
                       <Link to='/roles'>Roles</Link>
-                      <Link to='/roles/add'>Add Role</Link>
+                      {/* <Link to='/roles/add'>Add Role</Link> */}
                       <Link to='/roles/sign'>Sign Role</Link>
                     </li>
                   </ul>
