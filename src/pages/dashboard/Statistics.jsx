@@ -40,7 +40,7 @@ export default function Statistics() {
             <div className='card-body pd-y-0'>
               <div className='custom-fieldset mb-4'>
                 <div className='clearfix'>
-                  <label>Offers Total</label>
+                  <label>Total Offers</label>
                 </div>
                 <div className='d-flex align-items-center text-dark'>
                   <div className='wd-40 wd-md-50 ht-40 ht-md-50 mg-r-10 mg-md-r-10 d-flex align-items-center justify-content-center rounded card-icon-teal'>
@@ -84,7 +84,7 @@ export default function Statistics() {
             <div className='card-body pd-y-0'>
               <div className='custom-fieldset mb-4'>
                 <div className='clearfix'>
-                  <label className='tx-sm-10'>In Active Offers</label>
+                  <label className='tx-sm-10'>InActive Offers</label>
                 </div>
                 <div className='d-flex align-items-center text-dark'>
                   <div className='wd-40 wd-md-50 ht-40 ht-md-50 mg-r-10 mg-md-r-10 d-flex align-items-center justify-content-center rounded card-icon-danger'>
@@ -169,7 +169,7 @@ export default function Statistics() {
             <div className='card-body pd-y-0'>
               <div className='custom-fieldset mb-4'>
                 <div className='clearfix'>
-                  <label className='tx-sm-10'>Subs Total</label>
+                  <label className='tx-sm-10'>Total Subs</label>
                 </div>
                 <div className='d-flex align-items-center text-dark'>
                   <div className='wd-40 wd-md-50 ht-40 ht-md-50 mg-r-10 mg-md-r-10 d-flex align-items-center justify-content-center rounded card-icon-success'>
@@ -190,7 +190,7 @@ export default function Statistics() {
             <div className='card-body pd-y-0'>
               <div className='custom-fieldset mb-4'>
                 <div className='clearfix'>
-                  <label className='tx-sm-10'>Un Subs Total</label>
+                  <label className='tx-sm-10'>Total Un Subs</label>
                 </div>
                 <div className='d-flex align-items-center text-dark'>
                   <div className='wd-40 wd-md-50 ht-40 ht-md-50 mg-r-10 mg-md-r-10 d-flex align-items-center justify-content-center rounded card-icon-danger'>

@@ -143,7 +143,7 @@ export default function Sidebar() {
               <li>
                 <a href='' tabIndex={5}>
                   <PiAlignTopLight size={25} />
-                  <span>VAS DSP</span>
+                  <span>VAS Products</span>
                   <i className='accordion-icon fa fa-angle-left'></i>
                 </a>
                 <ul className='sub-menu'>
